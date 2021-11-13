@@ -1,50 +1,22 @@
 <template>
   <div id="app">
-
-    <div class="content">
-
-<!--左側功能menu-->
-    <div class="menu">
-
-      <!--logo-->
-      <div class="img_logo"></div>
-
-      <!--btn-->
-      <div class="flex_col_cc h_100">
-
-        <div class="menu_btn active">
-          <i class="menu_i_search"></i>
-          <div class="menu_btn_txt">公車搜尋</div>
-        </div>
-
-        <div class="menu_btn">
-          <i class="menu_i_favoraite"></i>
-          <div class="menu_btn_txt">常用公車</div>
-        </div>
-
-        <div class="menu_btn">
-          <i class="menu_i_set"></i>
-          <div class="menu_btn_txt">設定</div>
-        </div>
-      </div>
-    </div>
-
- <!--右側顯示區塊-->
-    <div class="search">
-
-      <!--友善專區-->
-      <div class="btn_a11y">
-        <p>切換友善專區</p>
-        <i class="i_a11y"> </i>
-      </div>
-
-    </div>
-
-    </div>
+    <img alt="Vue logo" src="assets/logo.png" />
+    <Test />
+    <HelloWorld msg="Welcome to Your Vue.js App" />
   </div>
 </template>
 
 <script>
+import Test from "./components/Test.vue";
+import HelloWorld from "./components/HelloWorld.vue";
+
+export default {
+  name: "App",
+  components: {
+    HelloWorld,
+    Test
+  },
+};
 </script>
 
 <style>
