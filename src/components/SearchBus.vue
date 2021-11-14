@@ -19,14 +19,14 @@
 
           <div class="custom-select" @blur="open = false">
             <div class="selected" :class="{ open: open }" @click="open = !open">
-              {{ selected }}
+              {{ selected.text }}
             </div>
             <div class="items" :class="{ selectHide: !open }">
-              <div v-for="(option, i) in options" :key="i"
+              <div v-for="(city, i) in cities" :key="i"
                 @click="
-                  selected = option.text;
+                  selected = city;
                   open = false;">
-                {{option.text}}
+                {{city.text}}
               </div>
             </div>
           </div>
@@ -57,26 +57,14 @@
 </template>
 
 <script>
+import {CITIES} from "../constant/city";
+
 export default {
-  // name: "SearchBus",
+  name: "SearchBus",
   data() {
-    const cities = [
-      {
-        value: '台北市',
-        text: '台北市'
-      },
-      {
-        value: '台中市',
-        text: '台中市'
-      },
-      {
-        value: '台南市',
-        text: '台南市'
-      }
-    ];
     return {
-      options: cities,
-      selected: cities[0].text,
+      cities: CITIES,
+      selected: CITIES[0],
       open: false
     }
   }
