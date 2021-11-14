@@ -21,7 +21,9 @@
             <div class="selected" :class="{ open: open }" @click="open = !open">
               {{ selected.text }}
             </div>
+            <div class=" inner_scrollbar">
             <div class="items" :class="{ selectHide: !open }">
+              <div class="list_title">請選擇縣市</div>
               <div v-for="(city, i) in cities" :key="i"
                 @click="
                   selected = city;
@@ -29,12 +31,13 @@
                 {{city.text}}
               </div>
             </div>
+            </div>
           </div>
 
 
           <!-- 路線-input -->
           <input type="text" class="inner_group" placeholder="請輸入路線、站名搜尋">
-          <p class="text_R">搜尋時間 yyyy/mm/dd hh/mm/ss</p>
+          <p class="text_info">搜尋時間 2021/11/21 20:22:11</p>
         </div>
 
         <!--次要列表-->
@@ -111,11 +114,13 @@ export default {
   width: 100%;
   height: 100%;
   background-color: #FFFFFF;
+  border-radius: 20px;
   box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
 }
 .list_top{
   width: 100%;
   height: 60px;
+  line-height: 60px;
   text-align: center;
   font-weight: bold;
   box-shadow: 0px 1px 10px 0px rgba(217, 217, 217, 1);
@@ -128,7 +133,8 @@ export default {
   margin-bottom: 16px;
 }
 
-.text_R{
+.text_info{
+  font-size: 0.875em;
   text-align: right;
   width: 100%;
 }
@@ -242,7 +248,6 @@ input:focus{
 .custom-select .selected.open {
   border-color: transparent;
   box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
-  /*border-radius: 6px 6px 0px 0px;*/
 }
 
 .custom-select .selected:after {
@@ -258,29 +263,44 @@ input:focus{
   background-size: 20px;
 }
 
-.custom-select .items {
-  border-radius: 20px;
-  overflow: hidden;
+.custom-select .selected.open:after{
+  background-image: url("../assets/images/icon/i_up.svg");
+}
+
+.list_title{
+  height: 48px;
   border-bottom: 1px solid #D9D9D9;
+  padding-bottom: 12px;
+ font-weight: bold;
+}
+.custom-select .items {
   position: absolute;
-  background-color: #FFFFFF;
   left: 0;
   right: 0;
   z-index: 1;
+  overflow-y: scroll;
+
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
+  max-height: 340px;
 }
 
 .custom-select .items div {
-  padding-left: 1em;
+  height: 48px;
+  text-align: center;
   cursor: pointer;
   user-select: none;
+  padding-right: 8px;
 }
 
 .custom-select .items div:hover {
-  background-color: #ad8225;
+ color:#2398A1;
 }
 
 
 .selectHide {
   display: none;
 }
+
 </style>
