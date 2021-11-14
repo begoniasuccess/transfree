@@ -38,9 +38,13 @@
         <i class="i_a11y"> </i>
       </div>
 
-    </div>
+      <!--功能區塊-->
+      <div class="content_function">
+      </div>
 
     </div>
+
+  </div>
   </div>
 </template>
 
@@ -85,6 +89,7 @@ export default {
   p{
     margin-block-start:auto;
     margin-block-end: auto;
+    margin-bottom: 0 ;
   }
 
 
@@ -147,18 +152,22 @@ export default {
   width: calc(100vw - 200px);
   max-width: 1220px;
   height: calc(100vh - 96px);
+  padding: 36px;
 
   background-color: #FFFFFF;
   border-radius: 24px;
   z-index: 999;
 }
+.content_function{
+  width: 100%;
+  height: calc(100% - 36px);
+}
+
 .btn_a11y{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
-  margin: 36px 36px 0 36px;
-
   font-weight: bold;
 }
 
@@ -204,6 +213,9 @@ export default {
 .h_100{
   height: 100%;
 }
+.w_100{
+  width: 100%;
+}
 
 /* ---images--- */
 .img_logo{
@@ -226,6 +238,7 @@ export default {
   background-image: url("./assets/images/icon/i_a11y.svg");
   background-repeat: no-repeat;
   background-size: 24px;
+  margin: 0 0 16px 4px;
   /*background-position: center;*/
 }
 /*menu-icon*/
