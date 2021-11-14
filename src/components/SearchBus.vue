@@ -10,17 +10,27 @@
           <p class="title_txt">公車搜尋</p>
 
           <!-- 位置-select -->
-          <div class="inner_group flex_row_cb">
-            <div class="select_inner">
-              <div>當前預設位置</div>
-              </div>
-              <i class="i_down"></i>
+<!--          <div class="inner_group flex_row_cb">-->
+<!--            <div class="select_inner">-->
+<!--              <div>當前預設位置</div>-->
+<!--              </div>-->
+<!--              <i class="i_down"></i>-->
+<!--            </div>-->
+
+          <div class="custom-select" @blur="open = false">
+            <div class="selected" :class="{ open: open }" @click="open = !open">
+              {{ selected }}
             </div>
-            <b-form-select>
-              <b-form-select-option value="1">1</b-form-select-option>
-              <b-form-select-option value="2">2</b-form-select-option>
-              <b-form-select-option value="3">3</b-form-select-option>
-            </b-form-select>
+            <div class="items" :class="{ selectHide: !open }">
+              <div v-for="(option, i) in options" :key="i"
+                @click="
+                  selected = option.text;
+                  open = false;">
+                {{option.text}}
+              </div>
+            </div>
+          </div>
+
 
           <!-- 路線-input -->
           <input type="text" class="inner_group" placeholder="請輸入路線、站名搜尋">
@@ -48,7 +58,28 @@
 
 <script>
 export default {
-  name: "SearchBus"
+  // name: "SearchBus",
+  data() {
+    const cities = [
+      {
+        value: '台北市',
+        text: '台北市'
+      },
+      {
+        value: '台中市',
+        text: '台中市'
+      },
+      {
+        value: '台南市',
+        text: '台南市'
+      }
+    ];
+    return {
+      options: cities,
+      selected: cities[0].text,
+      open: false
+    }
+  }
 }
 
 
@@ -138,7 +169,6 @@ input::placeholder{
 
 input:focus{
   border-color:transparent;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6);
   box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
   outline: 0 none;
 }
@@ -193,5 +223,76 @@ input:focus{
   background-repeat: no-repeat;
   background-size: 20px;
   background-position: center;
+}
+
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  text-align: left;
+  outline: none;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 16px;
+}
+
+.custom-select .selected {
+  padding-left: 1em;
+  cursor: pointer;
+  user-select: none;
+
+  background-color: #ffffff;
+  border-radius: 20px;
+  border-color: transparent;
+  box-shadow: 0px 0px 8px 0px rgba(145, 145, 145, 0.3);
+  padding-right: 16px;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 16px;
+}
+
+.custom-select .selected.open {
+  border-color: transparent;
+  box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
+  /*border-radius: 6px 6px 0px 0px;*/
+}
+
+.custom-select .selected:after {
+  position: absolute;
+  content: "";
+  top: 9px;
+  right: 16px;
+
+  width: 24px;
+  height: 24px;
+  background-image: url("../assets/images/icon/i_down.svg");
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+
+.custom-select .items {
+  border-radius: 20px;
+  overflow: hidden;
+  border-bottom: 1px solid #D9D9D9;
+  position: absolute;
+  background-color: #FFFFFF;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.custom-select .items div {
+  padding-left: 1em;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-select .items div:hover {
+  background-color: #ad8225;
+}
+
+
+.selectHide {
+  display: none;
 }
 </style>
