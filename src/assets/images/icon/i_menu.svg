@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="background: #919191;">
+    <title>icon/i_menu</title>
+    <g id="icon/i_menu" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#919191" opacity="0.3" x="0" y="0" width="20" height="20"></rect>
+        <path d="M9,15 C9.55228475,15 10,15.3581722 10,15.8 C10,16.2418278 9.55228475,16.6 9,16.6 L9,16.6 L1,16.6 C0.44771525,16.6 0,16.2418278 0,15.8 C0,15.3581722 0.44771525,15 1,15 L1,15 Z M14,9 C14.5522847,9 15,9.3581722 15,9.8 C15,10.2418278 14.5522847,10.6 14,10.6 L14,10.6 L1,10.6 C0.44771525,10.6 0,10.2418278 0,9.8 C0,9.3581722 0.44771525,9 1,9 L1,9 Z M19,3 C19.5522847,3 20,3.3581722 20,3.8 C20,4.2418278 19.5522847,4.6 19,4.6 L19,4.6 L1,4.6 C0.44771525,4.6 0,4.2418278 0,3.8 C0,3.3581722 0.44771525,3 1,3 L1,3 Z" id="menu" fill="#4A4A4A"></path>
+    </g>
+</svg>
