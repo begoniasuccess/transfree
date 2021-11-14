@@ -1,14 +1,17 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
+// import Home from "../views/Home.vue";
+import Search from "../views/Search.vue";
+import Favorite from "../views/Favorite.vue";
+import Setting from "../views/Setting.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Search",
+    component: Search,
   },
   {
     path: "/about",
@@ -18,6 +21,21 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
+  },
+  {
+    path: "/search",
+    name: "Search",
+    component: Search,
+  },
+  {
+    path: "/favorite",
+    name: "Favorite",
+    component: Favorite,
+  },
+  {
+    path: "/setting",
+    name: "Setting",
+    component: Setting,
   },
 ];
 
