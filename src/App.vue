@@ -3,48 +3,50 @@
 
     <div class="content">
 
-<!--左側功能menu-->
-    <div class="menu">
+      <!--左側功能menu-->
+      <div class="menu">
 
-      <!--logo-->
-      <div class="img_logo"></div>
+        <!--logo-->
+        <div class="img_logo"></div>
 
-      <!--btn-->
-      <div class="flex_col_cc h_100">
+        <!--btn-->
+        <div class="flex_col_cc h_100">
+          <router-link to="/search-bus" class="menu_btn" active-class="active">
+            <i class="menu_i_search"></i>
+            <div class="menu_btn_txt">
+              公車搜尋
+            </div>
+          </router-link>
 
-        <div class="menu_btn active">
-          <i class="menu_i_search"></i>
-          <div class="menu_btn_txt">公車搜尋</div>
-        </div>
+          <div class="menu_btn">
+            <i class="menu_i_favoraite"></i>
+            <div class="menu_btn_txt">常用公車</div>
+          </div>
 
-        <div class="menu_btn">
-          <i class="menu_i_favoraite"></i>
-          <div class="menu_btn_txt">常用公車</div>
-        </div>
-
-        <div class="menu_btn">
-          <i class="menu_i_set"></i>
-          <div class="menu_btn_txt">設定</div>
+          <div class="menu_btn">
+            <i class="menu_i_set"></i>
+            <div class="menu_btn_txt">設定</div>
+          </div>
         </div>
       </div>
+
+      <!--右側顯示區塊-->
+      <div class="search">
+
+        <!--友善專區-->
+        <div class="btn_a11y">
+          <p>切換友善專區</p>
+          <i class="i_a11y"> </i>
+        </div>
+
+        <!--功能區塊-->
+        <div class="content_function">
+          <router-view></router-view>
+        </div>
+
+      </div>
+
     </div>
-
- <!--右側顯示區塊-->
-    <div class="search">
-
-      <!--友善專區-->
-      <div class="btn_a11y">
-        <p>切換友善專區</p>
-        <i class="i_a11y"> </i>
-      </div>
-
-      <!--功能區塊-->
-      <div class="content_function">
-      </div>
-
-    </div>
-
-  </div>
   </div>
 </template>
 
@@ -78,7 +80,7 @@ export default {
   -webkit-overflow-scrolling: touch;
   word-break: break-word;
 
-  display:flex;
+  display: flex;
   justify-content: center;
 
   padding: 0;
@@ -86,14 +88,14 @@ export default {
   overflow: hidden;
 }
 
-  p{
-    margin-block-start:auto;
-    margin-block-end: auto;
-    margin-bottom: 0 ;
-  }
+p {
+  margin-block-start: auto;
+  margin-block-end: auto;
+  margin-bottom: 0;
+}
 
 
-.content{
+.content {
   position: fixed;
   width: calc(100vw - 48px);
   max-width: 1392px;
@@ -107,7 +109,7 @@ export default {
   z-index: 9;
 }
 
-.menu{
+.menu {
   position: absolute;
   top: 0;
   left: 0;
@@ -119,7 +121,7 @@ export default {
 }
 
 /*按鈕*/
-.menu_btn{
+.menu_btn {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -144,9 +146,9 @@ export default {
   white-space: nowrap;
 }
 
-.search{
+.search {
   position: absolute;
-  top:0;
+  top: 0;
   right: 0;
 
   width: calc(100vw - 200px);
@@ -158,12 +160,13 @@ export default {
   border-radius: 24px;
   z-index: 999;
 }
-.content_function{
+
+.content_function {
   width: 100%;
   height: calc(100% - 36px);
 }
 
-.btn_a11y{
+.btn_a11y {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -203,6 +206,7 @@ export default {
   align-items: center;
   justify-content: flex-end;
 }
+
 .flex_col_cc {
   display: flex;
   flex-direction: column;
@@ -210,15 +214,16 @@ export default {
   justify-content: center;
 }
 
-.h_100{
+.h_100 {
   height: 100%;
 }
-.w_100{
+
+.w_100 {
   width: 100%;
 }
 
 /* ---images--- */
-.img_logo{
+.img_logo {
   display: inline-block;
   width: 48px;
   height: 48px;
@@ -241,6 +246,7 @@ export default {
   margin: 0 0 16px 4px;
   /*background-position: center;*/
 }
+
 /*menu-icon*/
 .menu_i_search {
   display: inline-block;
@@ -252,7 +258,7 @@ export default {
   background-position: center;
 }
 
-.menu_i_favoraite{
+.menu_i_favoraite {
   display: inline-block;
   width: 48px;
   height: 48px;
@@ -262,7 +268,7 @@ export default {
   background-position: center;
 }
 
-.menu_i_set{
+.menu_i_set {
   display: inline-block;
   width: 48px;
   height: 48px;
