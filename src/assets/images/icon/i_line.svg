@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon/i_line</title>
+    <g id="icon/i_line" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <path d="" id="Combined-Shape" stroke="#4A4A4A"></path>
+            <rect id="Rectangle" fill="#4A4A4A" x="0" y="0" width="10.9090909" height="10.9090909" rx="1"></rect>
+            <rect id="Rectangle" stroke="#4A4A4A" x="13.5909091" y="0.5" width="9.90909091" height="9.90909091" rx="1"></rect>
+            <rect id="Rectangle-Copy" stroke="#4A4A4A" x="0.5" y="13.5909091" width="9.90909091" height="9.90909091" rx="1"></rect>
+        </g>
+    </g>
+</svg>
