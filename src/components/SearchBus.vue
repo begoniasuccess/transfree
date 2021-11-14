@@ -58,6 +58,7 @@
 
 <script>
 import {CITIES} from "../constant/city";
+import {BUS_URL_V2, sendRequest} from "../utils/https";
 
 export default {
   name: "SearchBus",
@@ -67,6 +68,13 @@ export default {
       selected: CITIES[0],
       open: false
     }
+  },
+  //TODO need to remove(for testing axios)
+  mounted() {
+    sendRequest('get', `${BUS_URL_V2}/RealTimeByFrequency/Streaming/City/Hsinchu?$top=30&$format=JSON`)
+      .then(res => {
+        console.log(res);
+      })
   }
 }
 
