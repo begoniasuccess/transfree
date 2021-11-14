@@ -7,6 +7,10 @@ Vue.use(VueRouter);
 export default new VueRouter({
     routes: [
         {
+            path: '/',
+            redirect: '/search-bus'
+        },
+        {
             path: '/search-bus',
             name: 'SearchBus',
             component: SearchBus
