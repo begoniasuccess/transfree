@@ -42,7 +42,6 @@ export default {
   display: inline-block;
   width: 100%;
   height: 100%;
-  /*background-image: url("./src/assets/images/img_listbg.png");*/
   background-repeat: no-repeat;
   background-size: 100%;
   background-position: center;
