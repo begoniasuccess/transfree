@@ -94,7 +94,7 @@ p {
   margin-bottom: 0;
 }
 
-
+/* ---底版位置設定--- */
 .content {
   position: fixed;
   width: calc(100vw - 48px);
@@ -109,6 +109,7 @@ p {
   z-index: 9;
 }
 
+/* ---menu位置設定--- */
 .menu {
   position: absolute;
   top: 0;
@@ -120,7 +121,7 @@ p {
   z-index: 99;
 }
 
-/*按鈕*/
+/* ---menu按鈕--- */
 .menu_btn {
   display: flex;
   flex-direction: column;
@@ -128,14 +129,10 @@ p {
   align-items: center;
   width: 76px;
   margin: 24px 48px 24px 36px;
+  text-decoration:none;
 }
 
-.menu_btn.active .menu_btn_txt {
-  color: #FFB13E;
-  font-weight: bold;
-}
-
-/*按鈕圖底下文字*/
+/* ---menu按鈕-底下文字--- */
 .menu_btn_txt {
   width: auto;
   font-size: 14px;
@@ -145,6 +142,24 @@ p {
   overflow-y: hidden;
   white-space: nowrap;
 }
+
+/* ---menu按鈕-active文字--- */
+.menu_btn.active .menu_btn_txt {
+  color: #FFB13E;
+  font-weight: bold;
+}
+
+/* ---menu按鈕-hover--- */
+.menu_btn:hover{
+  transition: .3s;
+  transform: scale(1.1);
+}
+
+.menu_btn:hover > .menu_btn_txt{
+  color: #FFB13E;
+}
+
+
 
 .search {
   position: absolute;
