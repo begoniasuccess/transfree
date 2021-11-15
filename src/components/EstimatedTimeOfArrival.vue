@@ -5,7 +5,7 @@
       <i class="i_model_map"></i>
       <p>搜尋清單</p>
       <div class="flex_row_ce">
-        <i class="i_update"></i>
+        <i class="i_update" @click="getList"></i>
         <i class="i_info"></i>
       </div>
     </div>
@@ -14,19 +14,24 @@
 
 
     <div class="bookmark_container">
-      <button class="active">預設頁籤</button>
-      <button>頁籤選項</button>
+      <button :class="{active : isGoListActive}" @click="isGoListActive = true">去</button>
+      <button :class="{active : !isGoListActive}" @click="isGoListActive = false">返</button>
     </div>
 
 
     <div class="list_bottom flex_col">
-      <div></div>
       <div class="select_scrollbar">
 
-        <div class="list_inner">
+        <div v-for="(data, i) in activeList" :key="i" class="list_inner">
           <div class="flex_row">
-            <label class="bus_status1"><span>4</span>分</label>
-            <p>公車站牌名稱</p>
+            <span v-if="data.StopStatus == 0">
+              <label class="bus_status1"><span>{{ parseInt(data.EstimateTime / 60) }}</span>分</label>
+            </span>
+            <span v-if="data.StopStatus == 1"><label class="bus_status1">尚未發車</label> </span>
+            <span v-if="data.StopStatus == 2"><label class="bus_status1">交管不停靠</label></span>
+            <span v-if="data.StopStatus == 3"><label class="bus_status1">末班車已過</label></span>
+            <span v-if="data.StopStatus == 4"><label class="bus_status1">今日未營運</label></span>
+            <p>{{ data.StopName.Zh_tw }}</p>
           </div>
           <div class="flex_row_ce">
             <p class="text_primary">590-GT</p>
@@ -34,29 +39,117 @@
           </div>
         </div>
 
-        <div class="list_inner">
-          <div class="flex_row">
-            <label class="bus_status1"><span>4</span>分</label>
-            <p>公車站牌名稱</p>
-          </div>
-          <div class="flex_row_ce">
-            <p class="text_primary">590-GT</p>
-            <i class="i_a11ybus"></i>
-          </div>
-        </div>
+        <!--        <div class="list_inner">-->
+        <!--          <div class="flex_row">-->
+        <!--            <label class="bus_status1"><span>4</span>分</label>-->
+        <!--            <p>公車站牌名稱</p>-->
+        <!--          </div>-->
+        <!--          <div class="flex_row_ce">-->
+        <!--            <p class="text_primary">590-GT</p>-->
+        <!--            <i class="i_a11ybus"></i>-->
+        <!--          </div>-->
+        <!--        </div>-->
 
+        <!--        <div class="list_inner">-->
+        <!--          <div class="flex_row">-->
+        <!--            <label class="bus_status1"><span>4</span>分</label>-->
+        <!--            <p>公車站牌名稱</p>-->
+        <!--          </div>-->
+        <!--          <div class="flex_row_ce">-->
+        <!--            <p class="text_primary">590-GT</p>-->
+        <!--            <i class="i_a11ybus"></i>-->
+        <!--          </div>-->
+        <!--        </div>-->
 
+        <!--        <div class="list_inner">-->
+        <!--          <div class="flex_row">-->
+        <!--            <label class="bus_status2">進站中</label>-->
+        <!--            <p>公車站牌名稱</p>-->
+        <!--          </div>-->
+        <!--          <div class="flex_row_ce">-->
+        <!--            <p class="text_primary">590-GT</p>-->
+        <!--            <i class="i_a11ybus"></i>-->
+        <!--          </div>-->
+        <!--        </div>-->
+
+        <!--        <div class="list_inner">-->
+        <!--          <div class="flex_row">-->
+        <!--            <label class="bus_status0">未發車</label>-->
+        <!--            <p>公車站牌名稱</p>-->
+        <!--          </div>-->
+        <!--          &lt;!&ndash;          <div class="flex_row_ce">&ndash;&gt;-->
+        <!--          &lt;!&ndash;            <p class="text_primary">590-GT</p>&ndash;&gt;-->
+        <!--          &lt;!&ndash;            <i class="i_a11ybus"></i>&ndash;&gt;-->
+        <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
+        <!--        </div>-->
       </div>
+      <p class="text_info">更新時間 {{ updateTime }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import {BUS_URL_V2, sendRequest} from "../utils/https";
+import {RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
+import {getCurrentDateTime} from "../utils/date";
+
 export default {
   name: "EstimatedTimeOfArrival",
+  data() {
+    return {
+      goList: [],
+      backList: [],
+      isGoListActive: true,
+      updateTime: getCurrentDateTime()
+    }
+  },
   mounted() {
-    console.log(this.$route.params.city);
-    console.log(this.$route.params.routeName);
+    this.getList();
+    //TODO Start interval
+    // setInterval(() => {
+    //   this.getList()
+    // }, 15000);
+  },
+  methods: {
+    getList() {
+      const city = this.$route.params.city;
+      const routeName = this.$route.params.routeName;
+      sendRequest('get', `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`)
+          .then(res => {
+            console.log(res);
+            this.goList = res.data.filter(data => data.Direction == 0).sort((stop1, stop2) => stop1.StopID - stop2.StopID);
+            this.backList = res.data.filter(data => data.Direction == 1).sort((stop1, stop2) => stop1.StopID - stop2.StopID);
+            this.updateTime = getCurrentDateTime();
+          }).catch(err => {
+        //TODO Change to popup
+        window.alert('Get EstimatedTimeOfArrival occurs error：' + err);
+      })
+    }
+  },
+  computed: {
+    activeList: {
+      // eslint-disable-next-line
+      get() {
+        if (this.isGoListActive) {
+          return this.goList;
+        } else {
+          return this.backList;
+        }
+      },
+      // eslint-disable-next-line
+      set(value) {
+
+      }
+    }
+  },
+  watch: {
+    isGoListActive: function (newVal, oldVal) {
+      if (newVal && !oldVal) {
+        this.activeList = this.goList;
+      } else {
+        this.activeList = this.backList;
+      }
+    }
   }
 }
 </script>
