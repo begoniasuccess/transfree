@@ -91,7 +91,7 @@ export default {
 p {
   margin-block-start: auto;
   margin-block-end: auto;
-  margin:auto!important;
+  margin:0!important;
 }
 
 /* ---底版位置設定--- */
@@ -100,8 +100,8 @@ p {
   width: calc(100vw - 48px);
   max-width: 1392px;
   max-height: 1392px;
-  height: calc(100vh - 96px);
-  margin: 48px 24px;
+  height: calc(100vh - 48px);
+  margin: 24px;
 
   background-color: #2398A1;
   border-radius: 24px;
@@ -166,7 +166,7 @@ p {
 
   width: calc(100vw - 200px);
   max-width: 1220px;
-  height: calc(100vh - 96px);
+  height: calc(100vh - 48px);
   padding: 36px;
 
   background-color: #FFFFFF;

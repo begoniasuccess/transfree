@@ -20,7 +20,6 @@
 
 
     <div class="list_bottom flex_col">
-      <div></div>
       <div class="select_scrollbar">
 
         <div class="list_inner">
@@ -44,9 +43,8 @@
             <i class="i_a11ybus"></i>
           </div>
         </div>
-
-
       </div>
+      <p class="text_info">更新時間 yyyy/mm/dd hh/mm/ss</p>
     </div>
   </div>
 </template>

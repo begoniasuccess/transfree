@@ -9,13 +9,6 @@
         <div class="block_primary flex_col">
           <p class="title_txt">公車搜尋</p>
 
-          <!-- 位置-select -->
-          <!--          <div class="inner_group flex_row_cb">-->
-          <!--            <div class="select_inner">-->
-          <!--              <div>當前預設位置</div>-->
-          <!--              </div>-->
-          <!--              <i class="i_down"></i>-->
-          <!--            </div>-->
 
           <div class="custom-select" @blur="open = false">
             <div class="selected" :class="{ open: open }" @click="open = !open">
@@ -41,10 +34,46 @@
         </div>
 
         <!--次要列表-->
-        <div class="block_sec flex_col">
+        <div class="block_sec flex_col select_scrollbar">
+          <p class="title_txt">公車相關資訊</p>
+
+          <!--卡片式資訊-->
+          <div class="content_card">
+            <p class="title_card_txt">票價</p>
+            <div class="flex_row_cb">
+              <p>營運業者</p>
+              <p>連絡電話</p>
+            </div>
+            <div class="flex_row_cb">
+              <p>收費方式</p>
+              <p>兩段式</p>
+            </div>
+            <div class="flex_row_cb">
+              <p>分段緩衝</p>
+              <p>民權松江路口-銘傳大學</p>
+            </div>
+          </div>
+
+          <!--卡片式資訊-->
+          <div class="content_card">
+            <p class="title_card_txt">票價</p>
+            <div class="flex_row_cb">
+              <p>營運業者</p>
+              <p>連絡電話</p>
+            </div>
+            <div class="flex_row_cb">
+              <p>收費方式</p>
+              <p>兩段式</p>
+            </div>
+            <div class="flex_row_cb">
+              <p>分段緩衝</p>
+              <p>民權松江路口-銘傳大學</p>
+            </div>
+          </div>
         </div>
       </div>
 
+      <!--右側列表-->
       <!--block_list:白箱狀態-->
       <!--      <div class="block_list">-->
       <!--        <div class="content_list">-->
