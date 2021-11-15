@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="25px" height="33px" viewBox="0 0 25 33" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <title>Rectangle</title>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="List/Tab_s" transform="translate(-16.000000, 0.000000)" fill="#FFB13E">
-            <path d="M16,0 L41,0 L41,20.5 C41,27.4035594 35.4035594,33 28.5,33 C21.5964406,33 16,27.4035594 16,20.5 L16,0 L16,0 Z" id="Rectangle"></path>
-        </g>
-    </g>
-</svg>

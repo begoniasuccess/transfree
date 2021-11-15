@@ -35,7 +35,7 @@
 
         <!--友善專區-->
         <div class="btn_a11y">
-          <div>切換友善專區</div>
+          <p>切換友善專區</p>
           <i class="i_a11y"> </i>
         </div>
 
@@ -91,7 +91,7 @@ export default {
 p {
   margin-block-start: auto;
   margin-block-end: auto;
-  margin:auto!important;
+  margin-bottom: 0;
 }
 
 /* ---底版位置設定--- */
@@ -159,6 +159,8 @@ p {
   color: #FFB13E;
 }
 
+
+
 .search {
   position: absolute;
   top: 0;
@@ -180,13 +182,10 @@ p {
 }
 
 .btn_a11y {
-
   display: flex;
   flex-direction: row;
-  align-items:flex-end!important;
-  justify-content: flex-end!important;
-  width:100%;
-  margin-bottom: 16px;
+  align-items: center;
+  justify-content: flex-end;
   font-weight: bold;
 }
 
@@ -259,7 +258,7 @@ p {
   background-image: url("./assets/images/icon/i_a11y.svg");
   background-repeat: no-repeat;
   background-size: 24px;
-  margin-left: 4px;
+  margin: 0 0 16px 4px;
   /*background-position: center;*/
 }
 
@@ -306,5 +305,4 @@ p {
 .menu_btn.active .menu_i_set {
   background-image: url("./assets/images/icon/i_set_menu_s.svg");
 }
-
 </style>
