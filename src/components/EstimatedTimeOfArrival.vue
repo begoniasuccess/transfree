@@ -27,10 +27,10 @@
             <span v-if="data.StopStatus == 0">
               <label class="bus_status1"><span>{{ parseInt(data.EstimateTime / 60) }}</span>分</label>
             </span>
-            <span v-if="data.StopStatus == 1"><label class="bus_status1">尚未發車</label> </span>
-            <span v-if="data.StopStatus == 2"><label class="bus_status1">交管不停靠</label></span>
-            <span v-if="data.StopStatus == 3"><label class="bus_status1">末班車已過</label></span>
-            <span v-if="data.StopStatus == 4"><label class="bus_status1">今日未營運</label></span>
+            <span v-if="data.StopStatus == 1"><label class="bus_status0">尚未發車</label> </span>
+            <span v-if="data.StopStatus == 2"><label class="bus_status0">交管不停靠</label></span>
+            <span v-if="data.StopStatus == 3"><label class="bus_status0">末班車已過</label></span>
+            <span v-if="data.StopStatus == 4"><label class="bus_status0">今日未營運</label></span>
             <p>{{ data.StopName.Zh_tw }}</p>
           </div>
           <div class="flex_row_ce">

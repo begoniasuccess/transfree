@@ -13,7 +13,30 @@
     height: calc(100% - 233px);
     background-color: #E9F4F5;
     border-radius: 20px;
+    padding: 24px 40px;
     box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
+}
+
+.content_card{
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: #FFFFFF;
+    background-image: url("../images/icon/i_card.svg");
+    background-position: 0 12px;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    box-shadow: 0px 2px 8px 2px rgba(145, 145, 145, 0.3);
+}
+
+.content_card div{
+    padding-top: 12px;
+    padding-bottom: 4px;
+    border-top: 1px solid #D9D9D9;
+}
+
+.content_card div:first-of-type{
+    border-top: 1px solid transparent;
 }
 
 .block_list{
@@ -133,6 +156,12 @@
     font-weight: bold;
     color: #2398A1;
     margin-bottom: 16px!important;
+}
+.title_card_txt{
+    width: 100%;
+    text-align: left;
+    font-size: 1.125em;
+    font-weight: bold;
 }
 
 .text_info{
@@ -316,6 +345,12 @@ input:focus{
 
 /* --  列表滾軸--- */
 .list_bottom .select_scrollbar{
+    max-height: 540px;
+    margin-right: 4px;
+}
+
+/* --  列表滾軸--- */
+.block_sec.select_scrollbar{
     max-height: 590px;
     margin-right: 4px;
 }
