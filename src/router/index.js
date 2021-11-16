@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from 'vue-router'
 import SearchBus from "../components/SearchBus";
+import SearchBus from "../components/Settings";
 import EstimatedTimeOfArrival from "../components/EstimatedTimeOfArrival";
 
 Vue.use(VueRouter);
@@ -22,6 +23,11 @@ export default new VueRouter({
                     component: EstimatedTimeOfArrival
                 }
             ]
+        },
+        {
+            path: '/settings',
+            name: 'Settings',
+            component: Settings
         }
     ]
 })
