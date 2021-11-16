@@ -23,10 +23,10 @@
             <div class="menu_btn_txt">常用公車</div>
           </div>
 
-          <div class="menu_btn">
+          <router-link to="/settings" class="menu_btn" active-class="active">
             <i class="menu_i_set"></i>
             <div class="menu_btn_txt">設定</div>
-          </div>
+          </router-link>
         </div>
       </div>
 
