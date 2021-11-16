@@ -1,26 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="52px" height="60px" viewBox="0 0 52 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="44px" height="52px" viewBox="0 0 44 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Group</title>
-    <defs>
-        <path d="M0,0 L44,0 L44,30 C44,42.1502645 34.1502645,52 22,52 C9.8497355,52 1.48797825e-15,42.1502645 0,30 L0,0 L0,0 Z" id="path-1"></path>
-        <filter x="-15.9%" y="-9.6%" width="131.8%" height="126.9%" filterUnits="objectBoundingBox" id="filter-2">
-            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-            <feColorMatrix values="0 0 0 0 0.568627451   0 0 0 0 0.568627451   0 0 0 0 0.568627451  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-        </filter>
-    </defs>
     <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Block3/Map" transform="translate(-44.000000, -22.000000)">
+        <g id="Block3/Map" transform="translate(-48.000000, -24.000000)">
             <g id="Group" transform="translate(48.000000, 24.000000)">
-                <g id="Rectangle">
-                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
-                    <use fill="#2398A1" fill-rule="evenodd" xlink:href="#path-1"></use>
-                </g>
-                <g id="Group" transform="translate(10.000000, 12.000000)">
-                    <path d="" id="Combined-Shape" stroke="#FFFFFF"></path>
-                    <rect id="Rectangle" fill="#FFFFFF" x="0" y="0" width="10.9090909" height="10.9090909" rx="1"></rect>
-                    <rect id="Rectangle" stroke="#FFFFFF" x="13.5909091" y="0.5" width="9.90909091" height="9.90909091" rx="1"></rect>
-                    <rect id="Rectangle-Copy" stroke="#FFFFFF" x="0.5" y="13.5909091" width="9.90909091" height="9.90909091" rx="1"></rect>
+                <path d="M0,0 L44,0 L44,30 C44,42.1502645 34.1502645,52 22,52 C9.8497355,52 1.48797825e-15,42.1502645 0,30 L0,0 L0,0 Z" id="Rectangle" fill="#2398A1"></path>
+                <g id="Group" transform="translate(10.000000, 12.000000)" fill="#FFFFFF">
+                    <path d="M22.4090909,20.7272727 C22.6852333,20.7272727 22.9090909,20.9511304 22.9090909,21.2272727 L22.9090909,21.3181818 C22.9090909,21.5943242 22.6852333,21.8181818 22.4090909,21.8181818 L14.6818182,21.8181818 C14.4056758,21.8181818 14.1818182,21.5943242 14.1818182,21.3181818 L14.1818182,21.2272727 C14.1818182,20.9511304 14.4056758,20.7272727 14.6818182,20.7272727 L22.4090909,20.7272727 Z M22.4090909,16.3636364 C22.6852333,16.3636364 22.9090909,16.587494 22.9090909,16.8636364 L22.9090909,16.9545455 C22.9090909,17.2306878 22.6852333,17.4545455 22.4090909,17.4545455 L14.6818182,17.4545455 C14.4056758,17.4545455 14.1818182,17.2306878 14.1818182,16.9545455 L14.1818182,16.8636364 C14.1818182,16.587494 14.4056758,16.3636364 14.6818182,16.3636364 L22.4090909,16.3636364 Z" id="Combined-Shape" fill-rule="nonzero"></path>
+                    <path d="M23,0 C23.5522847,0 24,0.44771525 24,1 L24,9.90909091 C24,10.4613757 23.5522847,10.9090909 23,10.9090909 L14.0909091,10.9090909 C13.5386243,10.9090909 13.0909091,10.4613757 13.0909091,9.90909091 L13.0909091,1 C13.0909091,0.44771525 13.5386243,0 14.0909091,0 L23,0 Z M23,1 L14.0909091,1 L14.0909091,9.90909091 L23,9.90909091 L23,1 Z" id="Rectangle" fill-rule="nonzero"></path>
+                    <path d="M9.90909091,13.0909091 C10.4613757,13.0909091 10.9090909,13.5386243 10.9090909,14.0909091 L10.9090909,23 C10.9090909,23.5522847 10.4613757,24 9.90909091,24 L1,24 C0.44771525,24 0,23.5522847 0,23 L0,14.0909091 C0,13.5386243 0.44771525,13.0909091 1,13.0909091 L9.90909091,13.0909091 Z M9.90909091,14.0909091 L1,14.0909091 L1,23 L9.90909091,23 L9.90909091,14.0909091 Z" id="Rectangle-Copy" fill-rule="nonzero"></path>
+                    <rect id="Rectangle" x="0" y="0" width="10.9090909" height="10.9090909" rx="1"></rect>
                 </g>
             </g>
         </g>

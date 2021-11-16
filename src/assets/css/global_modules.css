@@ -114,6 +114,33 @@
     margin-bottom: 0px;
 }
 
+.map_inner{
+    width: 100%;
+    height: calc(100% - 84px);
+    top:0;
+    left: 0;
+    position: absolute;
+}
+
+.map_inner>.content_card{
+    position: absolute;
+    bottom:16px;
+    left: 16px;
+    max-width: 80%;
+}
+
+/*黑背景設定*/
+.black_overlay{
+    display: none;
+    background-color: rgba(145, 145, 145, 0.3);
+    width: 100%;
+    height: 100%;
+}
+
+.content_card+.black_overlay{
+    display: block;
+}
+
 /*未發車狀態*/
 .bus_status0{
     width: 102px;
@@ -418,7 +445,6 @@ input:focus{
     background-image: url("../images/icon/i_tab.svg");
     background-repeat: no-repeat;
     background-position: 12px 0px;
-
 }
 
 /* ---icon--- */
@@ -482,7 +508,53 @@ input:focus{
     background-position: center;
 }
 
+.i_close{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon/i_close.svg");
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: center;
+}
 
+.i_zoomin{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top:16px;
+    right: 16px;
+    background-image: url("../images/icon/i_zoomin.svg");
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: center;
+    background-color: #FFFFFF;
+    padding: 12px;
+    box-shadow: 0px 1px 6px 1px rgba(145, 145, 145, 0.6);
+    border-radius: 4px;
+}
+
+.i_zoomout{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top:68px;
+    right: 16px;
+    background-image: url("../images/icon/i_zoomout.svg");
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: center;
+    background-color: #FFFFFF;
+    padding: 12px;
+    box-shadow: 0px 1px 6px 1px rgba(145, 145, 145, 0.6);
+    border-radius: 4px;
+}
+
+.i_zoomin.active,.i_zoomout.active{
+    box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
+}
 .i_model_list{
     display: inline-block;
     width: 44px;
