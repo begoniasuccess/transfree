@@ -447,6 +447,80 @@ input:focus{
     background-position: 12px 0px;
 }
 
+/* ---switch按鈕--- */
+/* 按鈕寬度 */
+.switch_open_close {
+    position: relative;
+    width: 55px;
+    height: 28px;
+    margin: 12px 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.switch_open_close input {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.switch_open_close label {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    background: #4A4A4A;
+    border: 1px solid #E3E3E3;
+}
+
+.switch_open_close label div {
+    padding: 2px 4px;
+}
+
+.switch_open_close label div p {
+    font-size: 12px;
+    color: white;
+}
+
+/* 按鈕顏色(選擇後) */
+.switch_open_close input:checked~label {
+    background: #D70C18;
+}
+
+.switch_open_close input:checked~label p:last-child {
+    color: #D70C18;
+}
+
+/* 按鈕 圓球寬高 位置 */
+.switch_open_close input~label i {
+    position: absolute;
+    z-index: 2;
+    top: 3px;
+    left: 3px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    -webkit-transition: left .3s ease;
+    -moz-transition: left .3s ease;
+    -ms-transition: left .3s ease;
+    -o-transition: left .3s ease;
+    transition: left .3s ease;
+    border-radius: inherit;
+    background: #fff;
+    box-shadow: 0px 0px 5px 0px rgba(61, 61, 61, 0.3);
+}
+
+/* 按鈕 圓球選擇後位置 */
+.switch_open_close input:checked~label i {
+    left: 29px;
+    box-shadow: 0px 0px 5px 0px rgba(61, 61, 61, 0.3);
+}
+
 /* ---icon--- */
 .i_down{
     display: inline-block;
