@@ -42,6 +42,7 @@
         <!--功能區塊-->
         <div class="content_function">
           <router-view></router-view>
+
         </div>
 
       </div>
@@ -167,6 +168,7 @@ p {
   width: calc(100vw - 200px);
   max-width: 1220px;
   height: calc(100vh - 48px);
+  max-height: 1392px;
   padding: 36px;
 
   background-color: #FFFFFF;
@@ -205,6 +207,13 @@ p {
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
+}
+
+.flex_row_sb {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: space-between;
 }
 

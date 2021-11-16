@@ -5,7 +5,6 @@
     background-color: #FAF2E6;
     border-radius: 20px;
     box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
-    margin-bottom: 36px;
 }
 
 .block_sec{
@@ -15,6 +14,7 @@
     border-radius: 20px;
     padding: 24px 40px;
     box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
+    margin-top: 36px;
 }
 
 .content_card{
@@ -27,18 +27,25 @@
     background-repeat: no-repeat;
     border-radius: 20px;
     box-shadow: 0px 2px 8px 2px rgba(145, 145, 145, 0.3);
+
 }
 
-.content_card div{
+.content_card label{
     padding-top: 12px;
     padding-bottom: 4px;
     border-top: 1px solid #D9D9D9;
 }
 
-.content_card div:first-of-type{
+.content_card label.flex_row_cb:first-of-type{
     border-top: 1px solid transparent;
 }
 
+.content_card > p:last-child{
+    text-align: right;
+}
+.content_card > .flex_row_sb > div:first-child{
+    margin-right: 16px;
+}
 .block_list{
     display: inline-block;
     width: 100%;
@@ -48,6 +55,7 @@
     background-image: url("../images/img_listbg.png");
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
 
     border-radius: 20px;
     box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
@@ -178,6 +186,7 @@
 
 .text_primary{
     color:#2398A1;
+    white-space: nowrap;
 }
 
 .text_sec{
@@ -345,13 +354,13 @@ input:focus{
 
 /* --  列表滾軸--- */
 .list_bottom .select_scrollbar{
-    max-height: 540px;
+    max-height: calc(100% - 36px);
     margin-right: 4px;
 }
 
 /* --  列表滾軸--- */
 .block_sec.select_scrollbar{
-    max-height: 590px;
+    max-height: calc(100% - 233px);
     margin-right: 4px;
 }
 
@@ -411,15 +420,6 @@ input:focus{
     background-position: 12px 0px;
 
 }
-
-/*.bookmark_container .active:first-child {*/
-/*    border-radius: 9px 0px 0px 9px;*/
-/*}*/
-
-/*.bookmark_container .active:last-child {*/
-/*    border-radius: 0px 9px 9px 0px;*/
-/*}*/
-
 
 /* ---icon--- */
 .i_down{
@@ -514,4 +514,40 @@ input:focus{
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
+}
+
+/* ---全站共用media設定--- */
+/* @group [長度控制 min-width: 1440px] (以上) ----------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 1280px) {
+
+    /* @icon [公車相關資訊] ---------------------------------------------------------------------------------------------*/
+    .list_top .flex_row_ce .i_info{
+        display: none;
+    }
+    /* End [content_function] ----------------------------------------------------------------------------------------*/
+}
+
+/* @group [長度控制 max-width: 1440px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 1280px) {
+
+    /* @group [content_function] --------------------------------------------------------------------------------------*/
+    .content_function .flex_row_cb.w_100.h_100{
+        display: flex;
+        flex-direction:column;
+    }
+
+    .block_list{
+       min-height: calc(100% - 233px - 36px);
+        margin:36px 0;
+    }
+
+    .search{
+        overflow-y: scroll;
+    }
+
+    .block_sec{
+        display: none;
+    }
+
+    /* End [content_function] ----------------------------------------------------------------------------------------*/
 }
