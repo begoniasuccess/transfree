@@ -42,7 +42,6 @@
         <!--功能區塊-->
         <div class="content_function">
           <router-view></router-view>
-
         </div>
 
       </div>
