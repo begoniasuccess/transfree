@@ -25,7 +25,12 @@
         <div v-for="(data, i) in activeList" :key="i" class="list_inner">
           <div class="flex_row">
             <span v-if="data.StopStatus == 0">
-              <label class="bus_status1"><span>{{ parseInt(data.EstimateTime / 60) }}</span>分</label>
+              <label class="bus_status1" v-if="(data.EstimateTime / 60) >= 2">
+                <span>{{ parseInt(data.EstimateTime / 60) }}</span>分
+              </label>
+              <label class="bus_status2" v-if="(data.EstimateTime / 60) < 2">
+                <span>進站中</span>
+              </label>
             </span>
             <span v-if="data.StopStatus == 1"><label class="bus_status0">尚未發車</label> </span>
             <span v-if="data.StopStatus == 2"><label class="bus_status0">交管不停靠</label></span>
