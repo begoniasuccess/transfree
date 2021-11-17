@@ -174,6 +174,7 @@ import {CITIES} from "../constant/city";
 import {BUS_URL_V2, sendRequest} from "../utils/https";
 import BusInfo from "./BusInfo";
 import DynamicKeyboard from "./DynamicKeyboard";
+import {getCurrentLocationInfo} from "../utils/location";
 
 export default {
   name: "SearchBus",
@@ -183,16 +184,23 @@ export default {
       cities: CITIES,
       selected: CITIES[0],
       open: false,
-      isDynamicKeyboardShow: true,
+      isDynamicKeyboardShow: false,
       isBusInfoShow: false
     }
   },
-  //TODO need to remove(for testing axios)
+  //TODO need to remove(for testing axios and location)
   mounted() {
     sendRequest('get', `${BUS_URL_V2}/RealTimeByFrequency/Streaming/City/Hsinchu?$top=30&$format=JSON`)
         .then(res => {
           console.log(res);
         })
+
+    getCurrentLocationInfo()
+        .then(res => {
+          console.log(res)
+        }).catch(err => {
+          console.log(err);
+    })
   },
   methods: {
     clickKeyboard(value) {
