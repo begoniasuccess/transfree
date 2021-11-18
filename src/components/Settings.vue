@@ -10,12 +10,25 @@
           <p class="title_txt">個人設定</p>
 
           <!--字體大小-->
-          <div class="custom-select">
-            <div class="selected">字體 正常</div>
-            <div class="items flex_col" style="display: none">
+          <div class="custom-select" @blur="isFontSizeOpen = false">
+            <div class="selected" :class="{ open: isFontSizeOpen }" @click="isFontSizeOpen = !isFontSizeOpen">
+              {{ selectedFontSizeText }}
+            </div>
+
+            <div class="items flex_col" :class="{ selectHide: !isFontSizeOpen }">
               <p class="option_title">請選擇字體大小</p>
               <div class="select_scrollbar">
-                <div class="select_option">
+                <div class="select_option"
+                     @click="selectedFontSizeText=fontSizeTextSmall; selectedFontSizeValue=fontSizeSmall;isFontSizeOpen=false">{{fontSizeTextSmall}}
+                </div>
+                <div class="select_option"
+                     @click="selectedFontSizeText=fontSizeTextNormal; selectedFontSizeValue=fontSizeNormal;isFontSizeOpen=false">{{fontSizeTextNormal}}
+                </div>
+                <div class="select_option"
+                     @click="selectedFontSizeText=fontSizeTextBig; selectedFontSizeValue=fontSizeBig;isFontSizeOpen=false">{{fontSizeTextBig}}
+                </div>
+                <div class="select_option"
+                     @click="selectedFontSizeText=fontSizeTextBigger; selectedFontSizeValue=fontSizeBigger;isFontSizeOpen=false">{{fontSizeTextBigger}}
                 </div>
               </div>
             </div>
@@ -113,8 +126,68 @@
 </template>
 
 <script>
+import {
+  GLOBAL_FONT_SIZE_BIG,
+  GLOBAL_FONT_SIZE_BIGGER,
+  GLOBAL_FONT_SIZE_NORMAL,
+  GLOBAL_FONT_SIZE_SMALL,
+  GLOBAL_FONT_SIZE_TEXT_BIG,
+  GLOBAL_FONT_SIZE_TEXT_BIGGER,
+  GLOBAL_FONT_SIZE_TEXT_NORMAL,
+  GLOBAL_FONT_SIZE_TEXT_SMALL
+} from '../constant/common';
+
 export default {
-  name: "Settings.vue"
+  name: "Settings.vue",
+  data() {
+    return {
+      fontSizeSmall: GLOBAL_FONT_SIZE_SMALL,
+      fontSizeNormal: GLOBAL_FONT_SIZE_NORMAL,
+      fontSizeBig: GLOBAL_FONT_SIZE_BIG,
+      fontSizeBigger: GLOBAL_FONT_SIZE_BIGGER,
+      fontSizeTextSmall: GLOBAL_FONT_SIZE_TEXT_SMALL,
+      fontSizeTextNormal: GLOBAL_FONT_SIZE_TEXT_NORMAL,
+      fontSizeTextBig: GLOBAL_FONT_SIZE_TEXT_BIG,
+      fontSizeTextBigger: GLOBAL_FONT_SIZE_TEXT_BIGGER,
+      isFontSizeOpen: false,
+      selectedFontSizeValue: this.globalFontSize
+    }
+  },
+  props: {
+    globalFontSize: Number
+  },
+  computed: {
+    selectedFontSizeText: {
+      get() {
+        return this.getFontSizeText(this.selectedFontSizeValue);
+      },
+      // eslint-disable-next-line
+      set(value) {
+
+      }
+    }
+  },
+  watch: {
+    // eslint-disable-next-line
+    selectedFontSizeValue: function (newValue, oldValue) {
+      this.$emit('changeFontSize', newValue);
+    }
+  },
+  methods: {
+    getFontSizeText(fontSize) {
+      switch (fontSize) {
+        case 0.75:
+          return this.fontSizeTextSmall;
+        case 1:
+          return this.fontSizeTextNormal;
+        case 1.25:
+          return this.fontSizeTextBig;
+        case 1.5:
+          return this.fontSizeTextBigger;
+      }
+    }
+  }
+
 }
 </script>
 

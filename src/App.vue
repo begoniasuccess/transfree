@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{fontSize: globalFontSize + 'em'}">
 
     <div class="content">
 
@@ -41,7 +41,7 @@
 
         <!--功能區塊-->
         <div class="content_function">
-          <router-view></router-view>
+          <router-view @changeFontSize="changeFontSize" :globalFontSize="globalFontSize"></router-view>
         </div>
 
       </div>
@@ -54,12 +54,24 @@
 // import Test from "./components/Test.vue";
 // import HelloWorld from "./components/HelloWorld.vue";
 
+import {GLOBAL_FONT_SIZE_NORMAL} from "./constant/common";
+
 export default {
   name: "App",
   components: {
     // HelloWorld,
     // Test
   },
+  data() {
+    return {
+      globalFontSize: GLOBAL_FONT_SIZE_NORMAL
+    }
+  },
+  methods: {
+    changeFontSize(fontSize) {
+      this.globalFontSize = fontSize;
+    }
+  }
 };
 </script>
 
