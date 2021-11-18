@@ -5,7 +5,7 @@
       <i class="i_model_map"></i>
       <p>搜尋清單</p>
       <div class="flex_row_ce">
-        <i class="i_update" @click="getList"></i>
+        <i class="i_update" @click="resetData"></i>
         <i class="i_info"></i>
       </div>
     </div>
@@ -39,8 +39,8 @@
             <p>{{ data.StopName.Zh_tw }}</p>
           </div>
           <div class="flex_row_ce">
-            <p class="text_primary">590-GT</p>
-            <i class="i_a11ybus"></i>
+            <p class="text_primary">{{ getBusNearByStop(data.StopName.Zh_tw, data.Direction) }}</p>
+            <i class="i_a11ybus" v-if="isBarrierFree(getBusNearByStop(data.StopName.Zh_tw, data.Direction))"></i>
           </div>
         </div>
 
@@ -105,18 +105,36 @@ export default {
       goList: [],
       backList: [],
       isGoListActive: true,
-      updateTime: getCurrentDateTime()
+      updateTime: getCurrentDateTime(),
+      busList: [],
+      allBusInCity: []
     }
   },
   mounted() {
-    this.getList();
+    this.getAllBusInCity();
+    this.getStopList();
+    this.getBusList();
     //TODO Start interval
     // setInterval(() => {
-    //   this.getList()
+    //   this.getStopList()
     // }, 15000);
   },
   methods: {
-    getList() {
+    resetData() {
+      this.getStopList();
+      this.getBusList();
+    },
+    getAllBusInCity() {
+      const city = this.$route.params.city;
+      sendRequest('get', `${BUS_URL_V2}/Vehicle/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`)
+          .then(res => {
+            this.allBusInCity = res.data;
+          }).catch(err => {
+        //TODO Change to popup
+        window.alert('Get AllBusInCity occurs error：' + err);
+      })
+    },
+    getStopList() {
       const city = this.$route.params.city;
       const routeName = this.$route.params.routeName;
       sendRequest('get', `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`)
@@ -129,6 +147,33 @@ export default {
         //TODO Change to popup
         window.alert('Get EstimatedTimeOfArrival occurs error：' + err);
       })
+    },
+    getBusList() {
+      const city = this.$route.params.city;
+      const routeName = this.$route.params.routeName;
+      sendRequest('get', `${BUS_URL_V2}/RealTimeNearStop/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`)
+          .then(res => {
+            this.busList = res.data;
+          }).catch(err => {
+        //TODO Change to popup
+        window.alert('Get RealTimeNearStop occurs error：' + err);
+      })
+    },
+    getBusNearByStop(stopName, direction) {
+      const nearBy = this.busList.filter(data => data.StopName.Zh_tw === stopName && data.Direction === direction);
+      if (nearBy.length === 0) {
+        return '';
+      } else {
+        return nearBy[0].PlateNumb;
+      }
+    },
+    isBarrierFree(plateNumb) {
+      if (plateNumb !== '') {
+        const bus = this.allBusInCity.filter(data => data.PlateNumb === plateNumb);
+        return bus.length !== 0 && bus[0].VehicleType === 1
+      } else {
+        return false;
+      }
     }
   },
   computed: {
