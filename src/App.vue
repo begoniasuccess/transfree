@@ -209,13 +209,12 @@ p {
   justify-content: space-between;
 }
 
-.flex_row_sb {
+
+.flex_row_c {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
 }
-
 
 .flex_row_cc {
   display: flex;

@@ -23,7 +23,7 @@
       <div class="select_scrollbar">
 
         <div v-for="(data, i) in activeList" :key="i" class="list_inner">
-          <div class="flex_row">
+          <div class="flex_row_c">
             <span v-if="data.StopStatus == 0">
               <label class="bus_status1" v-if="(data.EstimateTime / 60) >= 2">
                 <span>{{ parseInt(data.EstimateTime / 60) }}</span>分
@@ -36,11 +36,17 @@
             <span v-if="data.StopStatus == 2"><label class="bus_status0">交管不停靠</label></span>
             <span v-if="data.StopStatus == 3"><label class="bus_status0">末班車已過</label></span>
             <span v-if="data.StopStatus == 4"><label class="bus_status0">今日未營運</label></span>
-            <p>{{ data.StopName.Zh_tw }}</p>
+            <div>{{ data.StopName.Zh_tw }}</div>
           </div>
-          <div class="flex_row_ce">
-            <p class="text_primary">{{ getBusNearByStop(data.StopName.Zh_tw, data.Direction) }}</p>
-            <i class="i_a11ybus" v-if="isBarrierFree(getBusNearByStop(data.StopName.Zh_tw, data.Direction))"></i>
+<!--          <div class="flex_row_ce">-->
+<!--            <p class="text_primary">{{ getBusNearByStop(data.StopName.Zh_tw, data.Direction) }}</p>-->
+<!--            <i class="i_a11ybus" v-if="isBarrierFree(getBusNearByStop(data.StopName.Zh_tw, data.Direction))"></i>-->
+<!--          </div>-->
+          <div class="flex_col">
+            <div v-for="(bus, i) in getBusNearByStop(data.StopName.Zh_tw, data.Direction)" :key="i" class="flex_row_ce">
+              <p class="text_primary">{{bus.PlateNumb}}</p>
+              <i class="i_a11ybus" v-if="isBarrierFree(bus.PlateNumb)"></i>
+            </div>
           </div>
         </div>
 
@@ -164,7 +170,7 @@ export default {
       if (nearBy.length === 0) {
         return '';
       } else {
-        return nearBy[0].PlateNumb;
+        return nearBy;
       }
     },
     isBarrierFree(plateNumb) {

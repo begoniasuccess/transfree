@@ -123,6 +123,9 @@
 .list_inner>p{
     margin-bottom: 0px;
 }
+.list_inner >.flex_row_ce{
+    white-space: nowrap;
+}
 
 .map_inner{
     width: 100%;
