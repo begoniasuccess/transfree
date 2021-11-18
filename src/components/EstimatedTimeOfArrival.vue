@@ -14,8 +14,8 @@
 
 
     <div class="bookmark_container">
-      <button :class="{active : isGoListActive}" @click="isGoListActive = true">去</button>
-      <button :class="{active : !isGoListActive}" @click="isGoListActive = false">返</button>
+      <button :class="{active : isGoListActive}" @click="isGoListActive = true; resetData()">去</button>
+      <button :class="{active : !isGoListActive}" @click="isGoListActive = false; resetData()">返</button>
     </div>
 
 
