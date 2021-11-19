@@ -40,7 +40,7 @@
             <DynamicKeyboard @clickKeyboard="clickKeyboard"></DynamicKeyboard>
           </span>
           <span v-if="isBusInfoShow">
-            <BusInfo></BusInfo>
+            <BusInfo :city="$route.params.city" :routeName="$route.params.routeName"></BusInfo>
           </span>
         </div>
       </div>
@@ -185,7 +185,7 @@ export default {
       selected: CITIES[0],
       open: false,
       isDynamicKeyboardShow: false,
-      isBusInfoShow: false
+      isBusInfoShow: true
     }
   },
   //TODO need to remove(for testing axios and location)
