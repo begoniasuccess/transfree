@@ -3,7 +3,7 @@
     <div class="list_top flex_row_cb">
       <!--模式切換-->
       <i class="i_model_map"></i>
-      <p>搜尋清單</p>
+      <p>{{$route.params.routeName}}</p>
       <div class="flex_row_ce">
         <i class="i_update" @click="resetData"></i>
         <i class="i_info"></i>
