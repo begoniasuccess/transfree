@@ -12,30 +12,46 @@
 
     <!-- tab -->
 
-
     <div class="bookmark_container">
-      <button :class="{active : isGoListActive}" @click="isGoListActive = true">去</button>
-      <button :class="{active : !isGoListActive}" @click="isGoListActive = false">返</button>
+      <button
+        :class="{ active: isGoListActive }"
+        @click="isGoListActive = true"
+      >
+        去
+      </button>
+      <button
+        :class="{ active: !isGoListActive }"
+        @click="isGoListActive = false"
+      >
+        返
+      </button>
     </div>
-
 
     <div class="list_bottom flex_col">
       <div class="select_scrollbar">
-
         <div v-for="(data, i) in activeList" :key="i" class="list_inner">
           <div class="flex_row">
             <span v-if="data.StopStatus == 0">
-              <label class="bus_status1" v-if="(data.EstimateTime / 60) >= 2">
-                <span>{{ parseInt(data.EstimateTime / 60) }}</span>分
+              <label class="bus_status1" v-if="data.EstimateTime / 60 >= 2">
+                <span>{{ parseInt(data.EstimateTime / 60) }}</span
+                >分
               </label>
-              <label class="bus_status2" v-if="(data.EstimateTime / 60) < 2">
+              <label class="bus_status2" v-if="data.EstimateTime / 60 < 2">
                 <span>進站中</span>
               </label>
             </span>
-            <span v-if="data.StopStatus == 1"><label class="bus_status0">尚未發車</label> </span>
-            <span v-if="data.StopStatus == 2"><label class="bus_status0">交管不停靠</label></span>
-            <span v-if="data.StopStatus == 3"><label class="bus_status0">末班車已過</label></span>
-            <span v-if="data.StopStatus == 4"><label class="bus_status0">今日未營運</label></span>
+            <span v-if="data.StopStatus == 1"
+              ><label class="bus_status0">尚未發車</label>
+            </span>
+            <span v-if="data.StopStatus == 2"
+              ><label class="bus_status0">交管不停靠</label></span
+            >
+            <span v-if="data.StopStatus == 3"
+              ><label class="bus_status0">末班車已過</label></span
+            >
+            <span v-if="data.StopStatus == 4"
+              ><label class="bus_status0">今日未營運</label></span
+            >
             <p>{{ data.StopName.Zh_tw }}</p>
           </div>
           <div class="flex_row_ce">
@@ -94,9 +110,9 @@
 </template>
 
 <script>
-import {BUS_URL_V2, sendRequest} from "../utils/https";
-import {RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
-import {getCurrentDateTime} from "../utils/date";
+import { BUS_URL_V2, sendRequest } from "../utils/https";
+import { RESPONSE_DATA_FORMAT_JSON } from "../constant/common";
+import { getCurrentDateTime } from "../utils/date";
 
 export default {
   name: "EstimatedTimeOfArrival",
@@ -105,8 +121,8 @@ export default {
       goList: [],
       backList: [],
       isGoListActive: true,
-      updateTime: getCurrentDateTime()
-    }
+      updateTime: getCurrentDateTime(),
+    };
   },
   mounted() {
     this.getList();
@@ -119,17 +135,25 @@ export default {
     getList() {
       const city = this.$route.params.city;
       const routeName = this.$route.params.routeName;
-      sendRequest('get', `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`)
-          .then(res => {
-            console.log(res);
-            this.goList = res.data.filter(data => data.Direction == 0).sort((stop1, stop2) => stop1.StopID - stop2.StopID);
-            this.backList = res.data.filter(data => data.Direction == 1).sort((stop1, stop2) => stop1.StopID - stop2.StopID);
-            this.updateTime = getCurrentDateTime();
-          }).catch(err => {
-        //TODO Change to popup
-        window.alert('Get EstimatedTimeOfArrival occurs error：' + err);
-      })
-    }
+      sendRequest(
+        "get",
+        `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+      )
+        .then((res) => {
+          console.log(res);
+          this.goList = res.data
+            .filter((data) => data.Direction == 0)
+            .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
+          this.backList = res.data
+            .filter((data) => data.Direction == 1)
+            .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
+          this.updateTime = getCurrentDateTime();
+        })
+        .catch((err) => {
+          //TODO Change to popup
+          window.alert("Get EstimatedTimeOfArrival occurs error：" + err);
+        });
+    },
   },
   computed: {
     activeList: {
@@ -142,10 +166,8 @@ export default {
         }
       },
       // eslint-disable-next-line
-      set(value) {
-
-      }
-    }
+      set(value) {},
+    },
   },
   watch: {
     isGoListActive: function (newVal, oldVal) {
@@ -154,11 +176,10 @@ export default {
       } else {
         this.activeList = this.backList;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 </style>
