@@ -150,7 +150,7 @@ export default {
       fontSizeTextBig: GLOBAL_FONT_SIZE_TEXT_BIG,
       fontSizeTextBigger: GLOBAL_FONT_SIZE_TEXT_BIGGER,
       isFontSizeOpen: false,
-      selectedFontSizeValue: this.globalFontSize
+      selectedFontSizeValue: this.$store.getters.getFontSize
     }
   },
   props: {
@@ -170,7 +170,7 @@ export default {
   watch: {
     // eslint-disable-next-line
     selectedFontSizeValue: function (newValue, oldValue) {
-      this.$emit('changeFontSize', newValue);
+      this.$store.dispatch('setFontSize', newValue);
     }
   },
   methods: {
