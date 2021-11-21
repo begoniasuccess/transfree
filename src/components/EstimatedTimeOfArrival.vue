@@ -5,7 +5,7 @@
       <i class="i_model_map"></i>
       <p>{{$route.params.routeName}}</p>
       <div class="flex_row_ce">
-        <i class="i_update" @click="resetData"></i>
+        <i class="i_update" @click="clickUpdateData"></i>
         <i class="i_info"></i>
       </div>
     </div>
@@ -25,10 +25,10 @@
         <div v-for="(data, i) in activeList" :key="i" class="list_inner">
           <div class="flex_row_c">
             <span v-if="data.StopStatus == 0">
-              <label class="bus_status1" v-if="(data.EstimateTime / 60) >= 2">
+              <label class="bus_status1" v-if="(data.EstimateTime / 60) >= 1">
                 <span>{{ parseInt(data.EstimateTime / 60) }}</span>分
               </label>
-              <label class="bus_status2" v-if="(data.EstimateTime / 60) < 2">
+              <label class="bus_status2" v-if="(data.EstimateTime / 60) < 1">
                 <span>進站中</span>
               </label>
             </span>
@@ -186,6 +186,15 @@ export default {
       } else {
         return false;
       }
+    },
+    clickUpdateData() {
+      this.resetData();
+      //TODO Start interval
+      // clearInterval(this.interval);
+      // const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+      // this.interval = setInterval(() => {
+      //   this.resetData();
+      // }, updateSecond);
     }
   },
   computed: {
