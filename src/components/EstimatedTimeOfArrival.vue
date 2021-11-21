@@ -122,10 +122,10 @@ export default {
     this.getStopList();
     this.getBusList();
     //TODO Start interval
-    const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
-    this.interval = setInterval(() => {
-      this.getStopList()
-    }, updateSecond);
+    // const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+    // this.interval = setInterval(() => {
+    //   this.resetData();
+    // }, updateSecond);
   },
   beforeDestroy() {
     console.log('clearInterval')
