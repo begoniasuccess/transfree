@@ -16,3 +16,10 @@ export const GLOBAL_FONT_SIZE_TEXT_SMALL = '字體 較小';
 export const GLOBAL_FONT_SIZE_TEXT_NORMAL = '字體 正常';
 export const GLOBAL_FONT_SIZE_TEXT_BIG = '字體 較大';
 export const GLOBAL_FONT_SIZE_TEXT_BIGGER = '字體 更大';
+
+//Global update frequency
+export const GLOBAL_UPDATE_FREQUENCY_FASTER = 10;
+export const GLOBAL_UPDATE_FREQUENCY_FAST = 15;
+export const GLOBAL_UPDATE_FREQUENCY_MEDIAN = 20;
+export const GLOBAL_UPDATE_FREQUENCY_SLOW = 25;
+export const GLOBAL_UPDATE_FREQUENCY_SLOWER = 30;

@@ -113,7 +113,8 @@ export default {
       isGoListActive: true,
       updateTime: getCurrentDateTime(),
       busList: [],
-      allBusInCity: []
+      allBusInCity: [],
+      interval: ''
     }
   },
   mounted() {
@@ -121,9 +122,14 @@ export default {
     this.getStopList();
     this.getBusList();
     //TODO Start interval
-    // setInterval(() => {
-    //   this.getStopList()
-    // }, 15000);
+    // const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+    // this.interval = setInterval(() => {
+    //   this.resetData();
+    // }, updateSecond);
+  },
+  beforeDestroy() {
+    console.log('clearInterval')
+    clearInterval(this.interval);
   },
   methods: {
     resetData() {
