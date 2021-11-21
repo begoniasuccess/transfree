@@ -5,7 +5,7 @@
       <i class="i_model_map"></i>
       <p>{{$route.params.routeName}}</p>
       <div class="flex_row_ce">
-        <i class="i_update" @click="resetData"></i>
+        <i class="i_update" @click="clickUpdateData"></i>
         <i class="i_info"></i>
       </div>
     </div>
@@ -186,6 +186,15 @@ export default {
       } else {
         return false;
       }
+    },
+    clickUpdateData() {
+      this.resetData();
+      //TODO Start interval
+      // clearInterval(this.interval);
+      // const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+      // this.interval = setInterval(() => {
+      //   this.resetData();
+      // }, updateSecond);
     }
   },
   computed: {
