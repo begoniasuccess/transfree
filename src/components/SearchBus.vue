@@ -185,7 +185,7 @@ export default {
       selected: CITIES[0],
       open: false,
       isDynamicKeyboardShow: false,
-      isBusInfoShow: true
+      isBusInfoShow: false
     }
   },
   //TODO need to remove(for testing axios and location)

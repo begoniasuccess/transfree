@@ -19,16 +19,20 @@
               <p class="option_title">請選擇字體大小</p>
               <div class="select_scrollbar">
                 <div class="select_option"
-                     @click="selectedFontSizeText=fontSizeTextSmall; selectedFontSizeValue=fontSizeSmall;isFontSizeOpen=false">{{fontSizeTextSmall}}
+                     @click="selectedFontSizeText=fontSizeTextSmall; selectedFontSizeValue=fontSizeSmall;isFontSizeOpen=false">
+                  {{ fontSizeTextSmall }}
                 </div>
                 <div class="select_option"
-                     @click="selectedFontSizeText=fontSizeTextNormal; selectedFontSizeValue=fontSizeNormal;isFontSizeOpen=false">{{fontSizeTextNormal}}
+                     @click="selectedFontSizeText=fontSizeTextNormal; selectedFontSizeValue=fontSizeNormal;isFontSizeOpen=false">
+                  {{ fontSizeTextNormal }}
                 </div>
                 <div class="select_option"
-                     @click="selectedFontSizeText=fontSizeTextBig; selectedFontSizeValue=fontSizeBig;isFontSizeOpen=false">{{fontSizeTextBig}}
+                     @click="selectedFontSizeText=fontSizeTextBig; selectedFontSizeValue=fontSizeBig;isFontSizeOpen=false">
+                  {{ fontSizeTextBig }}
                 </div>
                 <div class="select_option"
-                     @click="selectedFontSizeText=fontSizeTextBigger; selectedFontSizeValue=fontSizeBigger;isFontSizeOpen=false">{{fontSizeTextBigger}}
+                     @click="selectedFontSizeText=fontSizeTextBigger; selectedFontSizeValue=fontSizeBigger;isFontSizeOpen=false">
+                  {{ fontSizeTextBigger }}
                 </div>
               </div>
             </div>
@@ -70,14 +74,35 @@
 
 
           <!--更新頻率-->
-          <div class="custom-select">
-            <div class="selected">到站時間更新頻率 15秒</div>
+          <div class="custom-select" @blur="isUpdateFrequencyOpen = false">
+            <div class="selected" :class="{ open: isUpdateFrequencyOpen }"
+                 @click="isUpdateFrequencyOpen = !isUpdateFrequencyOpen">
+              到站時間更新頻率{{ selectUpdateFrequency }}秒
+            </div>
 
-            <div class="items flex_col" style="display: none;">
+            <div class="items flex_col" :class="{ selectHide: !isUpdateFrequencyOpen }">
 
               <p class="option_title">請選擇到站時間更新頻率</p>
               <div class="select_scrollbar">
-                <div class="select_option">
+                <div class="select_option"
+                     @click="selectUpdateFrequency=updateFrequencyFaster;isUpdateFrequencyOpen=false">
+                  到站時間更新頻率{{ updateFrequencyFaster }}秒
+                </div>
+                <div class="select_option"
+                     @click="selectUpdateFrequency=updateFrequencyFast;isUpdateFrequencyOpen=false">
+                  到站時間更新頻率{{ updateFrequencyFast }}秒
+                </div>
+                <div class="select_option"
+                     @click="selectUpdateFrequency=updateFrequencyMedian;isUpdateFrequencyOpen=false">
+                  到站時間更新頻率{{ updateFrequencyMedian }}秒
+                </div>
+                <div class="select_option"
+                     @click="selectUpdateFrequency=updateFrequencySlow;isUpdateFrequencyOpen=false">
+                  到站時間更新頻率{{ updateFrequencySlow }}秒
+                </div>
+                <div class="select_option"
+                     @click="selectUpdateFrequency=updateFrequencySlower;isUpdateFrequencyOpen=false">
+                  到站時間更新頻率{{ updateFrequencySlower }}秒
                 </div>
               </div>
             </div>
@@ -134,7 +159,10 @@ import {
   GLOBAL_FONT_SIZE_TEXT_BIG,
   GLOBAL_FONT_SIZE_TEXT_BIGGER,
   GLOBAL_FONT_SIZE_TEXT_NORMAL,
-  GLOBAL_FONT_SIZE_TEXT_SMALL
+  GLOBAL_FONT_SIZE_TEXT_SMALL,
+  GLOBAL_UPDATE_FREQUENCY_FAST,
+  GLOBAL_UPDATE_FREQUENCY_FASTER,
+  GLOBAL_UPDATE_FREQUENCY_MEDIAN, GLOBAL_UPDATE_FREQUENCY_SLOW, GLOBAL_UPDATE_FREQUENCY_SLOWER
 } from '../constant/common';
 
 export default {
@@ -150,7 +178,14 @@ export default {
       fontSizeTextBig: GLOBAL_FONT_SIZE_TEXT_BIG,
       fontSizeTextBigger: GLOBAL_FONT_SIZE_TEXT_BIGGER,
       isFontSizeOpen: false,
-      selectedFontSizeValue: this.$store.getters.getFontSize
+      selectedFontSizeValue: this.$store.getters.getFontSize,
+      updateFrequencyFaster: GLOBAL_UPDATE_FREQUENCY_FASTER,
+      updateFrequencyFast: GLOBAL_UPDATE_FREQUENCY_FAST,
+      updateFrequencyMedian: GLOBAL_UPDATE_FREQUENCY_MEDIAN,
+      updateFrequencySlow: GLOBAL_UPDATE_FREQUENCY_SLOW,
+      updateFrequencySlower: GLOBAL_UPDATE_FREQUENCY_SLOWER,
+      isUpdateFrequencyOpen: false,
+      selectUpdateFrequency: this.$store.getters.getUpdateFrequency
     }
   },
   props: {
@@ -171,6 +206,10 @@ export default {
     // eslint-disable-next-line
     selectedFontSizeValue: function (newValue, oldValue) {
       this.$store.dispatch('setFontSize', newValue);
+    },
+    // eslint-disable-next-line
+    selectUpdateFrequency: function (newValue, oldValue) {
+      this.$store.dispatch('setUpdateFrequency', newValue);
     }
   },
   methods: {
