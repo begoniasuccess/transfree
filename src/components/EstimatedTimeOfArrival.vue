@@ -3,7 +3,7 @@
     <div class="list_top flex_row_cb">
       <!--模式切換-->
       <i class="i_model_map"></i>
-      <p>{{$route.params.routeName}}</p>
+      <p>{{ $route.params.routeName }}</p>
       <div class="flex_row_ce">
         <i class="i_update" @click="clickUpdateData"></i>
         <i class="i_info"></i>
@@ -38,13 +38,13 @@
             <span v-if="data.StopStatus == 4"><label class="bus_status0">今日未營運</label></span>
             <div>{{ data.StopName.Zh_tw }}</div>
           </div>
-<!--          <div class="flex_row_ce">-->
-<!--            <p class="text_primary">{{ getBusNearByStop(data.StopName.Zh_tw, data.Direction) }}</p>-->
-<!--            <i class="i_a11ybus" v-if="isBarrierFree(getBusNearByStop(data.StopName.Zh_tw, data.Direction))"></i>-->
-<!--          </div>-->
+          <!--          <div class="flex_row_ce">-->
+          <!--            <p class="text_primary">{{ getBusNearByStop(data.StopName.Zh_tw, data.Direction) }}</p>-->
+          <!--            <i class="i_a11ybus" v-if="isBarrierFree(getBusNearByStop(data.StopName.Zh_tw, data.Direction))"></i>-->
+          <!--          </div>-->
           <div class="flex_col">
             <div v-for="(bus, i) in getBusNearByStop(data.StopName.Zh_tw, data.Direction)" :key="i" class="flex_row_ce">
-              <p class="text_primary">{{bus.PlateNumb}}</p>
+              <p class="text_primary">{{ bus.PlateNumb }}</p>
               <i class="i_a11ybus" v-if="isBarrierFree(bus.PlateNumb)"></i>
             </div>
           </div>
@@ -122,10 +122,12 @@ export default {
     this.getStopList();
     this.getBusList();
     //TODO Start interval
-    // const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
-    // this.interval = setInterval(() => {
-    //   this.resetData();
-    // }, updateSecond);
+    if (this.$store.getters.getIsAutoUpdate) {
+      const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+      this.interval = setInterval(() => {
+        this.resetData();
+      }, updateSecond);
+    }
   },
   beforeDestroy() {
     console.log('clearInterval')
@@ -190,11 +192,13 @@ export default {
     clickUpdateData() {
       this.resetData();
       //TODO Start interval
-      // clearInterval(this.interval);
-      // const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
-      // this.interval = setInterval(() => {
-      //   this.resetData();
-      // }, updateSecond);
+      if (this.$store.getters.getIsAutoUpdate) {
+        clearInterval(this.interval);
+        const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+        this.interval = setInterval(() => {
+          this.resetData();
+        }, updateSecond);
+      }
     }
   },
   computed: {
