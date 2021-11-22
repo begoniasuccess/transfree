@@ -17,6 +17,10 @@
               公車搜尋
             </div>
           </router-link>
+          <div class="menu_btn">
+            <i class="menu_i_stop"></i>
+            <div class="menu_btn_txt">附近站牌</div>
+          </div>
 
           <div class="menu_btn">
             <i class="menu_i_favoraite"></i>
@@ -138,7 +142,7 @@ p {
   justify-content: center;
   align-items: center;
   width: 76px;
-  margin: 24px 48px 24px 36px;
+  margin:  24px 48px 0px 36px;
   text-decoration:none;
 }
 
@@ -258,14 +262,14 @@ p {
 /* ---images--- */
 .img_logo {
   display: inline-block;
-  width: 48px;
-  height: 48px;
-  background-image: url("./assets/images/logo.png");
+  width: 105px;
+  height: 69px;
+  background-image: url("./assets/images/img_logo.svg");
   background-repeat: no-repeat;
-  background-size: 48px;
+  background-size: 105px;
   position: absolute;
   top: 36px;
-  left: 48px;
+  left: 24px;
 }
 
 /* ---icon--- */
@@ -311,6 +315,16 @@ p {
   background-position: center;
 }
 
+.menu_i_stop {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  background-image: url("./assets/images/icon/i_stop_menu.svg");
+  background-repeat: no-repeat;
+  background-size: 48px;
+  background-position: center;
+}
+
 /*menu-icon-active 設定*/
 .menu_btn.active .menu_i_search {
   background-image: url("./assets/images/icon/i_search_menu_s.svg");
@@ -322,6 +336,9 @@ p {
 
 .menu_btn.active .menu_i_set {
   background-image: url("./assets/images/icon/i_set_menu_s.svg");
+}
+.menu_btn.active .menu_i_stop {
+  background-image: url("./assets/images/icon/i_stop_menu_s.svg");
 }
 
 </style>
