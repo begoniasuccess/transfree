@@ -122,12 +122,12 @@ export default {
     this.getStopList();
     this.getBusList();
     //TODO Start interval
-    if (this.$store.getters.getIsAutoUpdate) {
-      const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
-      this.interval = setInterval(() => {
-        this.resetData();
-      }, updateSecond);
-    }
+    // if (this.$store.getters.getIsAutoUpdate) {
+    //   const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+    //   this.interval = setInterval(() => {
+    //     this.resetData();
+    //   }, updateSecond);
+    // }
   },
   beforeDestroy() {
     console.log('clearInterval')
@@ -192,13 +192,13 @@ export default {
     clickUpdateData() {
       this.resetData();
       //TODO Start interval
-      if (this.$store.getters.getIsAutoUpdate) {
-        clearInterval(this.interval);
-        const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
-        this.interval = setInterval(() => {
-          this.resetData();
-        }, updateSecond);
-      }
+      // if (this.$store.getters.getIsAutoUpdate) {
+      //   clearInterval(this.interval);
+      //   const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+      //   this.interval = setInterval(() => {
+      //     this.resetData();
+      //   }, updateSecond);
+      // }
     }
   },
   computed: {
