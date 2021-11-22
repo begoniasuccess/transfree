@@ -61,7 +61,7 @@
           <div class="custom-switch">
             <div class="selected">路線資料自動更新</div>
             <div class="switch_open_close">
-              <input type="checkbox" id="toggle">
+              <input type="checkbox" id="toggle" v-model="selectedIsAutoUpdate">
               <label for="toggle">
                 <i></i>
                 <div class="flex_row_cb">
@@ -185,7 +185,8 @@ export default {
       updateFrequencySlow: GLOBAL_UPDATE_FREQUENCY_SLOW,
       updateFrequencySlower: GLOBAL_UPDATE_FREQUENCY_SLOWER,
       isUpdateFrequencyOpen: false,
-      selectUpdateFrequency: this.$store.getters.getUpdateFrequency
+      selectUpdateFrequency: this.$store.getters.getUpdateFrequency,
+      selectedIsAutoUpdate: this.$store.getters.getIsAutoUpdate
     }
   },
   props: {
@@ -206,6 +207,10 @@ export default {
     // eslint-disable-next-line
     selectedFontSizeValue: function (newValue, oldValue) {
       this.$store.dispatch('setFontSize', newValue);
+    },
+    // eslint-disable-next-line
+    selectedIsAutoUpdate: function (newValue, oldValue) {
+      this.$store.dispatch('setIsAutoUpdate', newValue);
     },
     // eslint-disable-next-line
     selectUpdateFrequency: function (newValue, oldValue) {
