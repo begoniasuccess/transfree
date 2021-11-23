@@ -35,15 +35,16 @@
               公車搜尋
             </div>
           </router-link>
+
           <div class="menu_btn">
             <i class="menu_i_stop"></i>
             <div class="menu_btn_txt">附近站牌</div>
           </div>
 
-          <div class="menu_btn">
+          <router-link to="/commonly-used-bus" class="menu_btn" active-class="active">
             <i class="menu_i_favoraite"></i>
             <div class="menu_btn_txt">常用公車</div>
-          </div>
+          </router-link>
 
           <router-link to="/settings" class="menu_btn" active-class="active">
             <i class="menu_i_set"></i>
@@ -88,7 +89,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.fontSize' : function() {
+    '$store.state.fontSize': function () {
       this.globalFontSize = this.$store.getters.getFontSize
     }
   }
@@ -123,7 +124,7 @@ export default {
 p {
   margin-block-start: auto;
   margin-block-end: auto;
-  margin:0!important;
+  margin: 0 !important;
 }
 
 /* ---底版位置設定--- */
@@ -160,8 +161,8 @@ p {
   justify-content: center;
   align-items: center;
   width: 76px;
-  margin:  24px 48px 0px 36px;
-  text-decoration:none;
+  margin: 24px 48px 0px 36px;
+  text-decoration: none;
 }
 
 /* ---menu按鈕-底下文字--- */
@@ -182,12 +183,12 @@ p {
 }
 
 /* ---menu按鈕-hover--- */
-.menu_btn:hover{
+.menu_btn:hover {
   transition: .3s;
   transform: scale(1.1);
 }
 
-.menu_btn:hover > .menu_btn_txt{
+.menu_btn:hover > .menu_btn_txt {
   color: #FFB13E;
 }
 
@@ -215,9 +216,9 @@ p {
 .btn_a11y {
   display: flex;
   flex-direction: row;
-  align-items:flex-end!important;
-  justify-content: flex-end!important;
-  width:100%;
+  align-items: flex-end !important;
+  justify-content: flex-end !important;
+  width: 100%;
   margin-top: 16px;
   margin-bottom: 16px;
   padding-right: 36px;
@@ -364,6 +365,7 @@ p {
 .menu_btn.active .menu_i_set {
   background-image: url("./assets/images/icon/i_set_menu_s.svg");
 }
+
 .menu_btn.active .menu_i_stop {
   background-image: url("./assets/images/icon/i_stop_menu_s.svg");
 }

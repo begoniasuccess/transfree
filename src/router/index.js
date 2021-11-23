@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import SearchBus from "../components/SearchBus";
 import Settings from "../components/Settings";
 import EstimatedTimeOfArrival from "../components/EstimatedTimeOfArrival";
+import CommonlyUsedBus from "../components/CommonlyUsedBus";
 
 Vue.use(VueRouter);
 
@@ -23,6 +24,11 @@ export default new VueRouter({
                     component: EstimatedTimeOfArrival
                 }
             ]
+        },
+        {
+          path: '/commonly-used-bus',
+          name: 'CommonlyUsedBus',
+          component: CommonlyUsedBus
         },
         {
             path: '/settings',
