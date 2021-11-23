@@ -1,48 +1,33 @@
 import Vue from "vue";
-import VueRouter from "vue-router";
-// import Home from "../views/Home.vue";
-import Search from "../views/Search.vue";
-import Favorite from "../views/Favorite.vue";
-import Setting from "../views/Setting.vue";
+import VueRouter from 'vue-router';
+import SearchBus from "../components/SearchBus";
+import Settings from "../components/Settings";
+import EstimatedTimeOfArrival from "../components/EstimatedTimeOfArrival";
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
-    path: "/",
-    name: "Search",
-    component: Search,
-  },
-  {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue"),
-  },
-  {
-    path: "/search",
-    name: "Search",
-    component: Search,
-  },
-  {
-    path: "/favorite",
-    name: "Favorite",
-    component: Favorite,
-  },
-  {
-    path: "/setting",
-    name: "Setting",
-    component: Setting,
-  },
-];
-
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes,
-});
-
-export default router;
+export default new VueRouter({
+    routes: [
+        {
+            path: '/',
+            redirect: '/search-bus'
+        },
+        {
+            path: '/search-bus',
+            name: 'SearchBus',
+            component: SearchBus,
+            children: [
+                {
+                    path: 'estimated-time-of-arrival/:city/:routeName',
+                    name: 'EstimatedTimeOfArrival',
+                    component: EstimatedTimeOfArrival
+                }
+            ]
+        },
+        {
+            path: '/settings',
+            name: 'Settings',
+            component: Settings
+        }
+    ]
+})

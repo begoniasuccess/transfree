@@ -1,0 +1,889 @@
+.block_primary {
+    width: 100%;
+    /*height:233px;*/
+    padding: 24px 40px;
+    background-color: #FAF2E6;
+    border-radius: 20px;
+    box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
+}
+.block_set{
+    /*height: calc(100% - 233px);*/
+    overflow-y: scroll;
+}
+
+.block_primary + .block_primary {
+    margin-bottom: 36px;
+    margin-top: 36px;
+}
+
+.block_primary + .block_primary:last-child {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.block_sec {
+    width: 100%;
+    height: calc(100% - 233px);
+    background-color: #E9F4F5;
+    border-radius: 20px;
+    padding: 24px 40px;
+    box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
+    margin-top: 36px;
+}
+
+.block_sec.img_frist {
+    background-color: transparent;
+    box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0);
+}
+
+.content_card {
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: #FFFFFF;
+    background-image: url("../images/icon/i_card.svg");
+    background-position: 0 12px;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    box-shadow: 0px 2px 8px 2px rgba(145, 145, 145, 0.3);
+}
+
+.content_card label {
+    padding-top: 12px;
+    padding-bottom: 4px;
+    border-top: 1px solid #D9D9D9;
+}
+
+.content_card label.flex_row_cb:first-of-type {
+    border-top: 1px solid transparent;
+}
+
+.content_card > p:last-child {
+    text-align: right;
+}
+
+.content_card > .flex_row_sb > div:first-child {
+    margin-right: 16px;
+}
+
+.content_popup {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    z-index: 9999;
+    width: 439px;
+    min-width: 300px;
+    padding: 16px;
+    margin-bottom: 16px;
+    background-color: #FFFFFF;
+    background-image: url("../images/icon/i_card.svg");
+    background-position: 0 12px;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+    box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
+}
+
+.content_popup > .flex_row_cc {
+    margin-top: 24px;
+}
+
+.block_list {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding: 24px;
+
+    background-image: url("../images/img_listbg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 20px;
+    box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
+    margin-left: 36px;
+}
+
+.content_list {
+    width: 100%;
+    height: 100%;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
+}
+
+.list_top {
+    width: 100%;
+    height: 60px;
+    padding-left: 24px;
+    padding-right: 16px;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 1px 10px 0px rgba(217, 217, 217, 1);
+    border-radius: 20px 20px 0 0;
+}
+
+.flex_row_ce > i {
+    margin-left: 16px;
+}
+
+/*.list_top .flex_row_ce >i:last-child-child{*/
+/*    margin-left:0px;*/
+/*}*/
+
+.list_bottom {
+    width: 100%;
+    height: calc(100% - 60px);
+    position: relative;
+    right: 0;
+    left: 0;
+    padding: 0 4px 60px 4px;
+}
+
+.list_inner {
+    width: 100%;
+    padding: 12px 12px 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #D9D9D9
+}
+
+.list_bottom .list_inner:first-child {
+    border-top: 1px solid transparent;
+}
+
+.list_inner > p {
+    margin-bottom: 0px;
+}
+
+.list_inner > .flex_row_ce {
+    white-space: nowrap;
+}
+
+.map_inner {
+    width: 100%;
+    height: calc(100% - 84px);
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.map_inner > .content_card {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    max-width: 80%;
+}
+
+/*黑背景設定*/
+.black_overlay {
+    display: none;
+    background-color: rgba(145, 145, 145, 0.3);
+    width: 100%;
+    height: 100%;
+}
+
+.content_card + .black_overlay {
+    display: block;
+}
+
+/*未發車狀態*/
+.bus_status0 {
+    width: 102px;
+    height: 36px;
+    background-color: #D9D9D9;
+    text-align: center;
+    color: #919191;
+    font-weight: bold;
+    border-radius: 20px;
+    padding-top: 6px;
+    margin-right: 16px;
+}
+
+/*預計到站時間*/
+.bus_status1 {
+    width: 102px;
+    height: 36px;
+    background-color: #2398A1;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-radius: 20px;
+    padding-top: 6px;
+    margin-right: 16px;
+}
+
+.bus_status1 > span {
+    font-size: 1.375em;
+    padding-right: 4px;
+}
+
+button.bus_status1,
+button.bus_status2 {
+    border-color: transparent;
+    margin: 0 8px 0 8px;
+}
+
+/*進站中*/
+.bus_status2 {
+    width: 102px;
+    height: 36px;
+    background-color: #FFB13E;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    border-radius: 20px;
+    padding-top: 6px;
+    margin-right: 16px;
+}
+
+.title_txt {
+    width: 100%;
+    text-align: left;
+    font-size: 1.375em;
+    font-weight: bold;
+    color: #2398A1;
+    margin-bottom: 16px !important;
+}
+
+.block_setting {
+    width: 100%;
+    height: 200px;
+    background-color: #E9F4F5;
+    border-radius: 20px;
+    padding: 24px 40px;
+    box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
+    margin: 0px 0px 36px 36px;
+    justify-content: center;
+    align-items: center;
+}
+
+.block_setting:last-child {
+    /*margin-left: 0px;*/
+}
+
+.block_setting:hover {
+    box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
+    transition: .3s;
+    transform: scale(1.1);
+}
+
+
+.title_card_txt {
+    width: 100%;
+    text-align: left;
+    font-size: 1.125em;
+    font-weight: bold;
+}
+
+.text_info {
+    font-size: 0.875em;
+    text-align: right;
+    width: 100%;
+}
+
+.list_bottom .text_info {
+    position: absolute;
+    bottom: 60px;
+    right: 16px;
+}
+
+.text_primary {
+    color: #2398A1;
+    white-space: nowrap;
+}
+
+.text_sec {
+    color: #919191;
+}
+
+.text_b {
+    font-weight: bold;
+}
+
+input {
+    padding: 8px 0px 8px 16px;
+    /* ---input 游標樣式--- */
+    caret-color: #4A4A4A;
+}
+
+/* ---input inner背景樣式--- */
+.inner_group {
+    background-color: #ffffff;
+    border-radius: 20px;
+    border-color: transparent;
+    box-shadow: 0px 0px 8px 0px rgba(145, 145, 145, 0.3);
+    padding-right: 16px;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 16px;
+}
+
+input::placeholder {
+    color: #919191;
+}
+
+input:focus {
+    border-color: transparent;
+    box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
+    outline: 0 none;
+}
+
+/* -- input Type: 錯誤狀態 -- */
+/* ---原為隱藏--- */
+.input_text_alert {
+    display: none;
+}
+
+/* ---input_錯誤文字樣式 --- */
+.active_error .input_text_alert {
+    background-image: url("../images/icon/i_a11y.svg");
+    background-repeat: no-repeat;
+    background-position: right;
+    color: #FFB13E;
+
+    display: inline-block;
+    width: 100%;
+    padding: 8px 28px 12px 0px;
+    text-align: right;
+    /* justify-content: flex-end; */
+}
+
+/* ---有active_error時，Input下錯誤顯示--- */
+.active_error .input_default {
+    border: 1px solid #FFB13E;
+}
+
+.active_error .inner_group {
+    border: 1px solid #FFB13E;
+}
+
+/* -- input Type: select -- */
+.custom-switch {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 16px;
+
+    background-color: #ffffff;
+    border-radius: 20px;
+    border-color: transparent;
+    box-shadow: 0px 0px 8px 0px rgba(145, 145, 145, 0.3);
+
+    text-align: left;
+    font-weight: bold;
+}
+
+.custom-select {
+    position: relative;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 16px;
+    outline: none;
+
+    text-align: left;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+/* -- select下拉選單 -- */
+.custom-select .selected {
+    cursor: pointer;
+    user-select: none;
+    width: 100%;
+    height: 40px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-bottom: 16px;
+
+    background-color: #ffffff;
+    border-radius: 20px;
+    border-color: transparent;
+    box-shadow: 0px 0px 8px 0px rgba(145, 145, 145, 0.3);
+}
+
+.custom-select .selected.open {
+    border-color: transparent;
+    box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
+}
+
+.custom-select .selected:after {
+    position: absolute;
+    content: "";
+    top: 9px;
+    right: 16px;
+
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon/i_down.svg");
+    background-repeat: no-repeat;
+    background-size: 20px;
+}
+
+.custom-select .selected.open:after {
+    background-image: url("../images/icon/i_up.svg");
+}
+
+.option_title {
+    width: 100%;
+    height: 48px;
+    border-bottom: 1px solid #D9D9D9;
+    margin-bottom-bottom: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.custom-select .items {
+    position: relative;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+
+    width: 100%;
+    padding: 0 4px 12px 4px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
+}
+
+.custom-select .items .select_option {
+    cursor: pointer;
+    user-select: none;
+    height: 48px;
+    font-weight: normal;
+    text-align: center;
+}
+
+.custom-select .items .select_option:hover {
+    color: #2398A1;
+}
+
+.selectHide {
+    display: none;
+}
+
+/* --  下拉滾軸--- */
+.select_scrollbar {
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*padding-right: 12px;*/
+    max-height: 340px;
+}
+
+/* --  列表滾軸--- */
+.list_bottom .select_scrollbar {
+    max-height: calc(100% - 36px);
+    margin-right: 4px;
+}
+
+/* --  列表滾軸--- */
+.block_sec.select_scrollbar {
+    max-height: calc(100% - 233px);
+    margin-right: 4px;
+}
+.content_function.select_scrollbar{
+    max-height: calc(100% - 56px);
+    overflow-y: scroll;
+}
+/* ---捲軸底色--- */
+.select_scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+    display: none;
+}
+
+/* ---捲軸寬度--- */
+.select_scrollbar::-webkit-scrollbar {
+    position: relative;
+    width: 6px;
+    background-color: transparent;
+}
+
+/* ---捲軸本體顏色--- */
+.select_scrollbar::-webkit-scrollbar-thumb {
+    background-color: #D9D9D9;
+    border-radius: 10px;
+}
+
+/* -- 元件 Type: 頁籤 -- */
+/* ---頁籤--- */
+.bookmark_container {
+    width: 100%;
+    height: 48px;
+
+    display: flex;
+    justify-self: center;
+    text-align: center;
+    vertical-align: middle;
+
+    background-color: transparent;
+    border: transparent;
+    outline: 0;
+
+}
+
+.bookmark_container button {
+    width: 100%;
+    text-align: center;
+    padding: 8px;
+    font-weight: bold;
+    color: #4A4A4A;
+    background-color: transparent;
+    border: transparent;
+    border-bottom: 2px solid #D9D9D9;
+}
+
+/* ---預設選擇樣式--- */
+.bookmark_container .active {
+    border-bottom: 2px solid #FFB13E;
+    color: #2398A1;
+    background-color: rgba(255, 177, 62, 0.1);
+    background-image: url("../images/icon/i_tab.svg");
+    background-repeat: no-repeat;
+    background-position: 12px 0px;
+}
+
+/* ---switch按鈕--- */
+/* 按鈕寬度 */
+.switch_open_close {
+    position: relative;
+    width: 55px;
+    height: 28px;
+    margin: 12px 0;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.switch_open_close input {
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.switch_open_close label {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    background: #4A4A4A;
+    border: 1px solid #E3E3E3;
+}
+
+.switch_open_close label div {
+    padding: 2px 4px;
+}
+
+.switch_open_close label div p {
+    font-size: 12px;
+    color: white;
+}
+
+/* 按鈕顏色(選擇後) */
+.switch_open_close input:checked ~ label {
+    background: #2398A1;
+}
+
+.switch_open_close input:checked ~ label p:last-child {
+    color: #2398A1;
+}
+
+/* 按鈕 圓球寬高 位置 */
+.switch_open_close input ~ label i {
+    position: absolute;
+    z-index: 2;
+    top: 3px;
+    left: 3px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    -webkit-transition: left .3s ease;
+    -moz-transition: left .3s ease;
+    -ms-transition: left .3s ease;
+    -o-transition: left .3s ease;
+    transition: left .3s ease;
+    border-radius: inherit;
+    background: #fff;
+    box-shadow: 0px 0px 5px 0px rgba(61, 61, 61, 0.3);
+}
+
+/* 按鈕 圓球選擇後位置 */
+.switch_open_close input:checked ~ label i {
+    left: 29px;
+    box-shadow: 0px 0px 5px 0px rgba(61, 61, 61, 0.3);
+}
+
+/* ---icon--- */
+
+i:hover {
+    transition: .3s;
+    transform: scale(1.1);
+}
+
+.i_down {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon/i_down.svg");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+
+.i_next {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon/i_next.svg");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+
+.i_love {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon/i_love.svg");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+
+.i_love.active {
+    background-image: url("../images/icon/i_love_s.svg");
+}
+
+.i_update {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon/i_update.svg");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+
+.i_info {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon/i_info.svg");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+
+.i_a11ybus {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon/i_a11ybus.svg");
+    background-repeat: no-repeat;
+    background-size: 20px;
+    background-position: center;
+}
+
+.i_close {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../images/icon/i_close.svg");
+    background-repeat: no-repeat;
+    background-size: 16px;
+    background-position: center;
+}
+
+.i_zoomin {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background-image: url("../images/icon/i_zoomin.svg");
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: center;
+    background-color: #FFFFFF;
+    padding: 12px;
+    box-shadow: 0px 1px 6px 1px rgba(145, 145, 145, 0.6);
+    border-radius: 4px;
+}
+
+.i_zoomout {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 68px;
+    right: 16px;
+    background-image: url("../images/icon/i_zoomout.svg");
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-position: center;
+    background-color: #FFFFFF;
+    padding: 12px;
+    box-shadow: 0px 1px 6px 1px rgba(145, 145, 145, 0.6);
+    border-radius: 4px;
+}
+
+.i_zoomin.active, .i_zoomout.active {
+    box-shadow: 0px 1px 6px 1px rgba(35, 152, 161, 1);
+}
+
+.i_model_list {
+    display: inline-block;
+    width: 44px;
+    height: 52px;
+    background-image: url("../images/icon/i_model_list.svg");
+    background-repeat: no-repeat;
+    background-size: 44px;
+    background-position: center;
+    margin-top: -15px;
+}
+
+.i_model_map {
+    display: inline-block;
+    width: 44px;
+    height: 52px;
+    background-image: url("../images/icon/i_model_map.svg");
+    background-repeat: no-repeat;
+    background-size: 44px;
+    background-position: center;
+    margin-top: -15px;
+}
+
+.i_contact {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-image: url("../images/icon/i_contact.svg");
+    background-repeat: no-repeat;
+    background-size: 48px;
+    background-position: center;
+    margin-bottom: 8px;
+}
+
+.i_reset {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-image: url("../images/icon/i_reset.svg");
+    background-repeat: no-repeat;
+    background-size: 48px;
+    background-position: center;
+    margin-bottom: 8px;
+}
+
+/* ---images--- */
+.img_box {
+    display: inline-block;
+    width: 167px;
+    height: 131px;
+    background-image: url("../images/img_box.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+.img_01 {
+    display: inline-block;
+    width: 400px;
+    height: 340px;
+    background-image: url("../images/img_01.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+.img_02 {
+    display: inline-block;
+    width: 400px;
+    height: 311px;
+    background-image: url("../images/img_02.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+.img_03 {
+    display: inline-block;
+    width: 400px;
+    height: 251px;
+    background-image: url("../images/img_03.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+}
+
+.img_04 {
+    display: inline-block;
+    width: 400px;
+    height: 289px;
+    background-image: url("../images/img_04.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: absolute;
+    right: 36px;
+    bottom: 36px;
+}
+
+
+/* ---全站共用media設定--- */
+/* @group [長度控制 min-width: 1440px] (以上) ----------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 1280px) {
+
+    /* @icon [公車相關資訊] ---------------------------------------------------------------------------------------------*/
+    .list_top .flex_row_ce .i_info {
+        display: none;
+    }
+
+    /* End [content_function] ----------------------------------------------------------------------------------------*/
+}
+
+/* @group [長度控制 max-width: 1440px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 1280px) {
+
+    /* @group [content_function] --------------------------------------------------------------------------------------*/
+    .content_function .flex_row_cb.w_100.h_100 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .block_setting {
+        margin: 36px 0 36px 0;
+    }
+
+    .block_setting:last-child {
+        margin-left: 36px;
+    }
+
+
+    .block_list {
+        min-height: calc(100% - 233px - 36px);
+        margin: 36px 0;
+    }
+
+    .search {
+        overflow-y: scroll;
+    }
+
+    .block_sec {
+        display: none;
+    }
+
+    .img_04 {
+        display: none;
+    }
+
+    /* End [content_function] ----------------------------------------------------------------------------------------*/
+}
