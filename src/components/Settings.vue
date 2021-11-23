@@ -1,24 +1,5 @@
 <template>
   <div class="h_100 w_100">
-<!--POPUP-->
-<!--    <div class="content_popup">-->
-<!--      &lt;!&ndash;版本資訊&ndash;&gt;-->
-<!--      <div class="flex_row_cb">-->
-<!--        <p class="title_card_txt">提醒您</p>-->
-<!--        <i class="i_close"></i>-->
-<!--      </div>-->
-
-<!--      <div class="flex_row_cc">-->
-<!--        <p>請問您要重設常用公車紀錄嗎？</p>-->
-<!--      </div>-->
-
-<!--      <div class="flex_row_cc">-->
-<!--        <button class="bus_status2" type="button">取消</button>-->
-<!--        <button class="bus_status1" type="button">確定</button>-->
-<!--      </div>-->
-<!--      &lt;!&ndash;  <div class="black_overlay "></div>&ndash;&gt;-->
-<!--    </div>-->
-
 
     <div class="flex_row_cb w_100 h_100">
       <!--左側列表設定-->
@@ -148,7 +129,7 @@
       </div>
 
       <!--右側列表功能-->
-      <div class="flex_row  w_100 h_100">
+      <div class="flex_row  w_100 h_100 margin_top">
         <div class="block_setting">
           <div class="flex_col_cc h_100">
             <i class="i_reset"></i>
