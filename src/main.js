@@ -23,7 +23,6 @@ Vue.component("l-icon", LIcon);
 
 // 設定預設 icon
 import { Icon } from "leaflet";
-import router from "./router";
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
   iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
@@ -36,6 +35,5 @@ Vue.config.productionTip = false;
 new Vue({
   router,
   render: (h) => h(App),
-  router,
   store
 }).$mount("#app");

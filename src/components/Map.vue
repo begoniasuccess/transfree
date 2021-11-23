@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="map">
     <!-- 初始化地圖設定 -->
     <l-map
       ref="myMap"
@@ -39,7 +39,7 @@
 
 <script>
 export default {
-  name: "App",
+  name: "Map",
   data() {
     return {
       // 模擬資料
@@ -93,5 +93,9 @@ html,
 body {
   padding: 0;
   margin: 0;
+}
+#map{
+  overflow: hidden;
+  max-height:100%;
 }
 </style>

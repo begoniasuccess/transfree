@@ -95,6 +95,9 @@
 
         <!--block_list:動態公車列表模式-->
         <div class="block_list">
+          <router-link to="/search-bus/map" class="" active-class="active">
+              <div class="">Map</div>
+          </router-link>
           <router-view></router-view>
         </div>
 

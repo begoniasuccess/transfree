@@ -17,6 +17,7 @@
               公車搜尋
             </div>
           </router-link>
+
           <div class="menu_btn">
             <i class="menu_i_stop"></i>
             <div class="menu_btn_txt">附近站牌</div>
@@ -47,22 +48,26 @@
         <div class="content_function select_scrollbar">
           <router-view></router-view>
         </div>
+        
 
       </div>
 
     </div>
+
   </div>
 </template>
 
 <script>
 // import Test from "./components/Test.vue";
 // import HelloWorld from "./components/HelloWorld.vue";
+// import Map from "./components/Map.vue";
 
 export default {
   name: "App",
   components: {
     // HelloWorld,
-    // Test
+    // Test,
+    // Map
   },
   data() {
     return {
@@ -152,22 +157,6 @@ p {
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-<<<<<<< HEAD
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-=======
   color: #FFFFFF;
   overflow-y: hidden;
   white-space: nowrap;
@@ -275,7 +264,6 @@ p {
 
 .w_100 {
   width: 100%;
->>>>>>> master
 }
 
 /* ---images--- */
