@@ -30,7 +30,7 @@
 
           <!--字體大小-->
           <div class="custom-select" @blur="isFontSizeOpen = false">
-            <div class="selected" :class="{ open: isFontSizeOpen }" @click="isFontSizeOpen = !isFontSizeOpen">
+            <div class="selected" :class="{ open: isFontSizeOpen }" @click="isFontSizeOpen = !isFontSizeOpen; isMultilingualOpen = false; isUpdateFrequencyOpen = false">
               {{ selectedFontSizeText }}
             </div>
 
@@ -95,7 +95,7 @@
           <!--更新頻率-->
           <div class="custom-select" @blur="isUpdateFrequencyOpen = false">
             <div class="selected" :class="{ open: isUpdateFrequencyOpen }"
-                 @click="isUpdateFrequencyOpen = !isUpdateFrequencyOpen">
+                 @click="isUpdateFrequencyOpen = !isUpdateFrequencyOpen; isFontSizeOpen = false; isMultilingualOpen = false">
               到站時間更新頻率{{ selectUpdateFrequency }}秒
             </div>
 
@@ -195,6 +195,8 @@ export default {
   name: "Settings.vue",
   data() {
     return {
+      programVersion: PROGRAM_VERSION,
+      routeVersion: ROUTE_VERSION,
       fontSizeSmall: GLOBAL_FONT_SIZE_SMALL,
       fontSizeNormal: GLOBAL_FONT_SIZE_NORMAL,
       fontSizeBig: GLOBAL_FONT_SIZE_BIG,
@@ -213,8 +215,7 @@ export default {
       isUpdateFrequencyOpen: false,
       selectUpdateFrequency: this.$store.getters.getUpdateFrequency,
       selectedIsAutoUpdate: this.$store.getters.getIsAutoUpdate,
-      programVersion: PROGRAM_VERSION,
-      routeVersion: ROUTE_VERSION
+      isMultilingualOpen: false
     }
   },
   props: {
