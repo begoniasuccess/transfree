@@ -1,5 +1,5 @@
 <template>
-  <div class="h_100 w_100">
+  <div class="h_100 w_100 ">
 <!--POPUP-->
 <!--    <div class="content_popup">-->
 <!--      &lt;!&ndash;版本資訊&ndash;&gt;-->

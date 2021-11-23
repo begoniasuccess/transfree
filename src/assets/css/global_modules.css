@@ -6,6 +6,10 @@
     border-radius: 20px;
     box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
 }
+.block_set{
+    /*height: calc(100% - 233px);*/
+    overflow-y: scroll;
+}
 
 .block_primary + .block_primary {
     margin-bottom: 36px;
@@ -482,7 +486,10 @@ input:focus {
     max-height: calc(100% - 233px);
     margin-right: 4px;
 }
-
+.content_function.select_scrollbar{
+    max-height: calc(100% - 56px);
+    overflow-y: scroll;
+}
 /* ---捲軸底色--- */
 .select_scrollbar::-webkit-scrollbar-track {
     background-color: transparent;
