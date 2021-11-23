@@ -182,7 +182,6 @@ p {
   max-width: 1220px;
   height: calc(100vh - 48px);
   max-height: 1392px;
-  padding-right: 36px;
 
   background-color: #FFFFFF;
   border-radius: 24px;
@@ -196,7 +195,6 @@ p {
 }
 
 .btn_a11y {
-
   display: flex;
   flex-direction: row;
   align-items:flex-end!important;
@@ -204,6 +202,7 @@ p {
   width:100%;
   margin-top: 16px;
   margin-bottom: 16px;
+  padding-right: 36px;
   font-weight: bold;
 }
 
