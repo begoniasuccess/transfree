@@ -1,5 +1,5 @@
 <template>
-  <div class="h_100 w_100 ">
+  <div class="h_100 w_100">
 <!--POPUP-->
 <!--    <div class="content_popup">-->
 <!--      &lt;!&ndash;版本資訊&ndash;&gt;-->
@@ -22,7 +22,7 @@
 
     <div class="flex_row_cb w_100 h_100">
       <!--左側列表設定-->
-      <div class="flex_col w_100 h_100">
+      <div class="flex_col w_100">
 
         <!--個人設定-->
         <div class="block_primary flex_col">
