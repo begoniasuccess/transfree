@@ -1,5 +1,23 @@
 <template>
   <div id="app" :style="{fontSize: globalFontSize + 'em'}">
+<!--    popup-->
+<!--    <div class="content_popup">-->
+<!--      &lt;!&ndash;版本資訊&ndash;&gt;-->
+<!--      <div class="flex_row_cb">-->
+<!--        <p class="title_card_txt">提醒您</p>-->
+<!--        <i class="i_close"></i>-->
+<!--      </div>-->
+
+<!--      <div class="flex_row_cc">-->
+<!--        <p>請問您要重設常用公車紀錄嗎？</p>-->
+<!--      </div>-->
+
+<!--      <div class="flex_row_cc">-->
+<!--        <button class="bus_status2" type="button">取消</button>-->
+<!--        <button class="bus_status1" type="button">確定</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="black_overlay"></div>-->
 
     <div class="content">
 
@@ -224,6 +242,14 @@ p {
   align-items: center;
   justify-content: space-between;
 }
+
+.flex_row_sb{
+  display: flex;
+  flex-direction: row;
+  align-items:flex-start;
+  justify-content: space-between;
+}
+
 
 
 .flex_row_c {

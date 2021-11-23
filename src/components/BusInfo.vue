@@ -54,7 +54,7 @@
     <div class="content_card">
       <p class="title_card_txt">假日發車</p>
       <div class="flex_row_sb">
-        <div class="w_100">
+        <div class="flex_col w_100">
           <label class="flex_row_cb">
             <p>首班車</p>
             <p>{{holidayFirstBusTime}}</p>
@@ -65,7 +65,7 @@
           </label>
         </div>
 
-        <div class="w_100">
+        <div class="flex_col w_100">
           <label class="flex_row_cb">
             <p>末班車</p>
             <p>{{holidayLastBusTime}}</p>
