@@ -44,7 +44,7 @@
         </div>
 
         <!--功能區塊-->
-        <div class="content_function">
+        <div class="content_function select_scrollbar">
           <router-view></router-view>
         </div>
 
@@ -182,7 +182,6 @@ p {
   max-width: 1220px;
   height: calc(100vh - 48px);
   max-height: 1392px;
-  padding: 36px;
 
   background-color: #FFFFFF;
   border-radius: 24px;
@@ -191,17 +190,19 @@ p {
 
 .content_function {
   width: 100%;
-  height: calc(100% - 36px);
+  height: calc(100% - 56px);
+  padding: 36px;
 }
 
 .btn_a11y {
-
   display: flex;
   flex-direction: row;
   align-items:flex-end!important;
   justify-content: flex-end!important;
   width:100%;
+  margin-top: 16px;
   margin-bottom: 16px;
+  padding-right: 36px;
   font-weight: bold;
 }
 

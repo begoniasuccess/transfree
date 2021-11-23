@@ -22,7 +22,7 @@
 
     <div class="flex_row_cb w_100 h_100">
       <!--左側列表設定-->
-      <div class="flex_col w_100 h_100">
+      <div class="flex_col w_100">
 
         <!--個人設定-->
         <div class="block_primary flex_col">
