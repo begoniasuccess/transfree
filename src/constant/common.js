@@ -1,3 +1,9 @@
+//程式版本
+export const PROGRAM_VERSION = 'V1.1.1';
+
+//路線版本
+export const ROUTE_VERSION = 'V2';
+
 //預設查詢筆數
 export const DEFAULT_NUMBER_OF_QUERY_RECORDS = 30;
 

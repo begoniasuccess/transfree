@@ -137,11 +137,11 @@
             <p class="title_card_txt">票價</p>
             <label class="flex_row_cb">
               <p>程式版本</p>
-              <p>V1.1.1</p>
+              <p>{{programVersion}}</p>
             </label>
             <label class="flex_row_cb">
               <p>路線版本</p>
-              <p>V2</p>
+              <p>{{routeVersion}}</p>
             </label>
           </div>
         </div>
@@ -184,7 +184,11 @@ import {
   GLOBAL_FONT_SIZE_TEXT_SMALL,
   GLOBAL_UPDATE_FREQUENCY_FAST,
   GLOBAL_UPDATE_FREQUENCY_FASTER,
-  GLOBAL_UPDATE_FREQUENCY_MEDIAN, GLOBAL_UPDATE_FREQUENCY_SLOW, GLOBAL_UPDATE_FREQUENCY_SLOWER
+  GLOBAL_UPDATE_FREQUENCY_MEDIAN,
+  GLOBAL_UPDATE_FREQUENCY_SLOW,
+  GLOBAL_UPDATE_FREQUENCY_SLOWER,
+  PROGRAM_VERSION,
+  ROUTE_VERSION
 } from '../constant/common';
 
 export default {
@@ -208,7 +212,9 @@ export default {
       updateFrequencySlower: GLOBAL_UPDATE_FREQUENCY_SLOWER,
       isUpdateFrequencyOpen: false,
       selectUpdateFrequency: this.$store.getters.getUpdateFrequency,
-      selectedIsAutoUpdate: this.$store.getters.getIsAutoUpdate
+      selectedIsAutoUpdate: this.$store.getters.getIsAutoUpdate,
+      programVersion: PROGRAM_VERSION,
+      routeVersion: ROUTE_VERSION
     }
   },
   props: {
