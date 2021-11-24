@@ -5,10 +5,12 @@
     background-color: #FAF2E6;
     border-radius: 20px;
     box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
+    z-index: 99;
 }
 .block_set{
     /*height: calc(100% - 233px);*/
     overflow-y: scroll;
+    z-index: 99;
 }
 
 .block_primary + .block_primary {
@@ -29,9 +31,13 @@
     padding: 24px 40px;
     box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
     margin-top: 36px;
+    z-index: 99;
+    background-color: #E9F4F5;
+    box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
+
 }
 
-.block_sec.img_frist {
+.block_sec.img_first{
     background-color: transparent;
     box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0);
 }
@@ -101,6 +107,7 @@
     border-radius: 20px;
     box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
     margin-left: 36px;
+    z-index: 99;
 }
 
 .content_list {
@@ -126,9 +133,6 @@
     margin-left: 16px;
 }
 
-/*.list_top .flex_row_ce >i:last-child-child{*/
-/*    margin-left:0px;*/
-/*}*/
 
 .list_bottom {
     width: 100%;
@@ -193,6 +197,10 @@
 }
 .content_card + .black_overlay {
     display: block;
+}
+
+.margin_top{
+    margin-top: auto;
 }
 
 /*未發車狀態*/
@@ -264,6 +272,7 @@ button.bus_status2 {
     margin: 0px 0px 36px 36px;
     justify-content: center;
     align-items: center;
+    z-index: 99;
 }
 
 .block_setting:last-child {
@@ -813,8 +822,9 @@ i:hover {
     height: 340px;
     background-image: url("../images/img_01.png");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: contain;
     background-position: center;
+    z-index: 9;
 }
 
 .img_02 {
@@ -823,8 +833,9 @@ i:hover {
     height: 311px;
     background-image: url("../images/img_02.png");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: contain;
     background-position: center;
+    z-index: 9;
 }
 
 .img_03 {
@@ -833,8 +844,9 @@ i:hover {
     height: 251px;
     background-image: url("../images/img_03.png");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: contain;
     background-position: center;
+    z-index: 9;
 }
 
 .img_04 {
@@ -843,10 +855,11 @@ i:hover {
     height: 289px;
     background-image: url("../images/img_04.png");
     background-repeat: no-repeat;
-    background-size: 100%;
+    background-size: contain;
     position: absolute;
     right: 36px;
     bottom: 36px;
+    z-index: 9;
 }
 
 
@@ -876,7 +889,8 @@ i:hover {
     }
 
     .margin_top{
-        margin-top: 36px;
+        margin-top: 260px!important;
+        height: auto;
     }
 
     .block_setting:last-child {
