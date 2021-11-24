@@ -140,7 +140,13 @@
         <div class="block_setting">
           <div class="flex_col_cc h_100">
             <i class="i_contact"></i>
-            <p class="text_b">聯絡我們</p>
+            <address>
+              <p class="text_b">
+                <a href="mailto:transfree@gmail.com">
+                  聯絡我們
+                </a>
+              </p>
+            </address>
           </div>
         </div>
       </div>
