@@ -11,7 +11,8 @@
 
           <!--字體大小-->
           <div class="custom-select" @blur="isFontSizeOpen = false">
-            <div class="selected" :class="{ open: isFontSizeOpen }" @click="isFontSizeOpen = !isFontSizeOpen; isMultilingualOpen = false; isUpdateFrequencyOpen = false">
+            <div class="selected" :class="{ open: isFontSizeOpen }"
+                 @click="isFontSizeOpen = !isFontSizeOpen; isMultilingualOpen = false; isUpdateFrequencyOpen = false">
               {{ selectedFontSizeText }}
             </div>
 
@@ -118,11 +119,11 @@
             <p class="title_card_txt">票價</p>
             <label class="flex_row_cb">
               <p>程式版本</p>
-              <p>{{programVersion}}</p>
+              <p>{{ programVersion }}</p>
             </label>
             <label class="flex_row_cb">
               <p>路線版本</p>
-              <p>{{routeVersion}}</p>
+              <p>{{ routeVersion }}</p>
             </label>
           </div>
         </div>
@@ -137,18 +138,16 @@
           </div>
         </div>
 
-        <div class="block_setting">
-          <div class="flex_col_cc h_100">
-            <i class="i_contact"></i>
-            <address>
+        <address class="block_setting">
+          <a href="mailto:transfree@gmail.com">
+            <div class="flex_col_cc h_100">
+              <i class="i_contact"></i>
               <p class="text_b">
-                <a href="mailto:transfree@gmail.com">
-                  聯絡我們
-                </a>
+                聯絡我們
               </p>
-            </address>
-          </div>
-        </div>
+            </div>
+          </a>
+        </address>
       </div>
 
       <!--初始圖-->
