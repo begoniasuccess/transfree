@@ -1,7 +1,7 @@
 <template>
-  <div class="h_100 w_100">
+  <div class="w_100">
 
-    <div class="flex_row_cb w_100 h_100">
+    <div class="flex_row_sb w_100 h_100">
       <!--左側列表設定-->
       <div class="flex_col w_100 h_100">
 
@@ -129,7 +129,7 @@
       </div>
 
       <!--右側列表功能-->
-      <div class="flex_row w_100 h_100 margin_top">
+      <div class="flex_row w_100 margin_top">
         <div class="block_setting">
           <div class="flex_col_cc h_100">
             <i class="i_reset"></i>
