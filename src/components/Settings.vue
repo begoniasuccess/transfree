@@ -129,7 +129,7 @@
       </div>
 
       <!--右側列表功能-->
-      <div class="flex_row  w_100 h_100 margin_top">
+      <div class="flex_row w_100 h_100 margin_top">
         <div class="block_setting">
           <div class="flex_col_cc h_100">
             <i class="i_reset"></i>
