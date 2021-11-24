@@ -127,6 +127,11 @@ p {
   margin: 0 !important;
 }
 
+a{
+  color: #4A4A4A!important;
+  text-decoration: none!important;
+}
+
 /* ---底版位置設定--- */
 .content {
   position: fixed;
