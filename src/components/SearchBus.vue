@@ -35,7 +35,7 @@
         </div>
 
         <!--次要列表-->
-        <div class="block_sec flex_col select_scrollbar">
+        <div class="block_sec flex_col select_scrollbar" v-if="isDynamicKeyboardShow == true || isBusInfoShow == true">
           <span v-if="isDynamicKeyboardShow">
             <DynamicKeyboard @clickKeyboard="clickKeyboard"></DynamicKeyboard>
           </span>
@@ -63,9 +63,9 @@
         </div>
 
         <!--初始圖-->
-<!--        <div class="block_sec img_first flex_col">-->
-<!--          <div class="img_01"></div>-->
-<!--        </div>-->
+        <div class="block_sec img_first flex_col" v-else>
+          <div class="img_01"></div>
+        </div>
       </div>
 
 
