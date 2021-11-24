@@ -81,64 +81,35 @@
       <!--            </div>-->
 
       <!--block_list:搜尋列表-->
-      <!--            <div class="block_list">-->
-      <!--              <div class="content_list">-->
-      <!--                <div class="list_top flex_row_cc">搜尋清單</div>-->
-      <!--                <div class="list_bottom flex_col">-->
-      <!--                  <div class="select_scrollbar">-->
-      <!--                    <div class="list_inner">-->
-      <!--                      <div class="flex_col">-->
-      <!--                        <p class="text_b">公車號碼</p>-->
-      <!--                        <p class="text_sec">行車方向</p>-->
-      <!--                      </div>-->
-      <!--                      <div class="flex_row_ce">-->
-      <!--                        <i class="i_love active"></i>-->
-      <!--                        <i class="i_next"></i>-->
-      <!--                      </div>-->
-      <!--                    </div>-->
-      <!--                    <div class="list_inner">-->
-      <!--                      <div class="flex_col">-->
-      <!--                        <p class="text_b">公車號碼</p>-->
-      <!--                        <p class="text_sec">行車方向</p>-->
-      <!--                      </div>-->
-      <!--                      <div class="flex_row_ce">-->
-      <!--                        <i class="i_love"></i>-->
-      <!--                        <i class="i_next"></i>-->
-      <!--                      </div>-->
-      <!--                    </div>-->
-      <!--                  </div>-->
-      <!--                </div>-->
-      <!--              </div>-->
-      <!--            </div>-->
-      <!--            <div class="block_list">-->
-      <!--              <div class="content_list">-->
-      <!--                <div class="list_top flex_row_cc">搜尋清單</div>-->
-      <!--                <div class="list_bottom flex_col">-->
-      <!--                  <div class="select_scrollbar">-->
-      <!--                    <div class="list_inner">-->
-      <!--                      <div class="flex_col">-->
-      <!--                        <p class="text_b">公車號碼</p>-->
-      <!--                        <p class="text_sec">行車方向</p>-->
-      <!--                      </div>-->
-      <!--                      <div class="flex_row_ce">-->
-      <!--                        <i class="i_love active"></i>-->
-      <!--                        <i class="i_next"></i>-->
-      <!--                      </div>-->
-      <!--                    </div>-->
-      <!--                    <div class="list_inner">-->
-      <!--                      <div class="flex_col">-->
-      <!--                        <p class="text_b">公車號碼</p>-->
-      <!--                        <p class="text_sec">行車方向</p>-->
-      <!--                      </div>-->
-      <!--                      <div class="flex_row_ce">-->
-      <!--                        <i class="i_love"></i>-->
-      <!--                        <i class="i_next"></i>-->
-      <!--                      </div>-->
-      <!--                    </div>-->
-      <!--                  </div>-->
-      <!--                </div>-->
-      <!--              </div>-->
-      <!--            </div>-->
+<!--      <div class="block_list">-->
+<!--        <div class="content_list">-->
+<!--          <div class="list_top flex_row_cc">搜尋清單</div>-->
+<!--          <div class="list_bottom flex_col">-->
+<!--            <div class="select_scrollbar">-->
+<!--              <div class="list_inner">-->
+<!--                <div class="flex_col">-->
+<!--                  <p class="text_b">公車號碼</p>-->
+<!--                  <p class="text_sec">行車方向</p>-->
+<!--                </div>-->
+<!--                <div class="flex_row_ce">-->
+<!--                  <i class="i_love active"></i>-->
+<!--                  <i class="i_next"></i>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="list_inner">-->
+<!--                <div class="flex_col">-->
+<!--                  <p class="text_b">公車號碼</p>-->
+<!--                  <p class="text_sec">行車方向</p>-->
+<!--                </div>-->
+<!--                <div class="flex_row_ce">-->
+<!--                  <i class="i_love"></i>-->
+<!--                  <i class="i_next"></i>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
 
 
       <!--block_list:動態公車列表模式-->

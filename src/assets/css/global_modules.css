@@ -198,10 +198,6 @@
     display: block;
 }
 
-.margin_top{
-    margin-top: auto;
-}
-
 /*未發車狀態*/
 .bus_status0 {
     width: 102px;
@@ -860,7 +856,6 @@ i:hover {
     z-index: 9;
 }
 
-
 /* ---全站共用media設定--- */
 /* @group [長度控制 min-width: 1440px] (以上) ----------------------------------------------------------------------------------------*/
 @media only screen and (min-width: 1280px) {
@@ -877,7 +872,7 @@ i:hover {
 @media only screen and (max-width: 1280px) {
 
     /* @group [content_function] --------------------------------------------------------------------------------------*/
-    .content_function .flex_row_cb.w_100.h_100 {
+    .content_function .flex_row_sb.w_100.h_100 {
         display: flex;
         flex-direction: column;
     }
@@ -887,7 +882,7 @@ i:hover {
     }
 
     .margin_top{
-        margin-top: 260px!important;
+        margin-top: 36px;
         height: auto;
     }
 
