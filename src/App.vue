@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :style="{fontSize: globalFontSize + 'em'}">
+  <div id="app" :style="{fontSize: globalFontSize + 'em'}" :class="{a11y : isA11y}">
 <!--    popup-->
 <!--    <div class="content_popup">-->
 <!--      &lt;!&ndash;版本資訊&ndash;&gt;-->
@@ -57,7 +57,7 @@
       <div class="search">
 
         <!--友善專區-->
-        <div class="btn_a11y">
+        <div class="btn_a11y" @click="isA11y = !isA11y">
           <div>切換友善專區</div>
           <i class="i_a11y"> </i>
         </div>
@@ -85,7 +85,8 @@ export default {
   },
   data() {
     return {
-      globalFontSize: this.$store.getters.getFontSize
+      globalFontSize: this.$store.getters.getFontSize,
+      isA11y: false
     }
   },
   watch: {
