@@ -32,7 +32,8 @@
           <router-link to="/search-bus" class="menu_btn" active-class="active">
             <i class="menu_i_search"></i>
             <div class="menu_btn_txt">
-              公車搜尋
+              <!--              公車搜尋-->
+              {{ $t("searchBus") }}
             </div>
           </router-link>
 
@@ -48,7 +49,9 @@
 
           <router-link to="/settings" class="menu_btn" active-class="active">
             <i class="menu_i_set"></i>
-            <div class="menu_btn_txt">設定</div>
+            <div class="menu_btn_txt">
+              {{ $t("settings") }}
+            </div>
           </router-link>
         </div>
       </div>
@@ -66,10 +69,10 @@
         <div class="header_mobile flex_row_cb">
           <i class="i_menu"></i>
           <i class="img_logo_mobile"></i>
-            <div class="btn_a11y" @click="isA11y = !isA11y">
-              <div>友善專區</div>
-              <i class="i_a11y"> </i>
-            </div>
+          <div class="btn_a11y" @click="isA11y = !isA11y">
+            <div>友善專區</div>
+            <i class="i_a11y"> </i>
+          </div>
         </div>
 
         <!--功能區塊-->
@@ -229,7 +232,7 @@ a {
   padding: 36px;
 }
 
-.header_mobile{
+.header_mobile {
   position: fixed;
   top: 0;
   left: 0;

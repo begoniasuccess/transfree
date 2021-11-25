@@ -40,12 +40,19 @@
           </div>
 
           <!--語系-->
-          <div class="custom-select">
-            <div class="selected">中文</div>
-            <div class="items flex_col" style="display: none">>
+          <div class="custom-select" @blur="isMultilingualOpen = false">
+            <div class="selected" :class="{ open: isMultilingualOpen }"
+                 @click="isMultilingualOpen = !isMultilingualOpen; isFontSizeOpen = false; isUpdateFrequencyOpen = false">
+              {{ selectedMultilingualText }}
+            </div>
+            <div class="items flex_col" :class="{ selectHide: !isMultilingualOpen }">
               <p class="option_title">請選擇語言</p>
               <div class="select_scrollbar">
-                <div class="select_option">
+                <div class="select_option" @click="selectedMultilingualText=multilingualTextChinese; selectedMultilingualValue=multilingualChinese; isMultilingualOpen=false">
+                  {{ multilingualTextChinese }}
+                </div>
+                <div class="select_option" @click="selectedMultilingualText=multilingualTextEnglish; selectedMultilingualValue=multilingualEnglish; isMultilingualOpen=false">
+                  {{ multilingualTextEnglish }}
                 </div>
               </div>
             </div>
@@ -168,6 +175,9 @@ import {
   GLOBAL_FONT_SIZE_TEXT_BIGGER,
   GLOBAL_FONT_SIZE_TEXT_NORMAL,
   GLOBAL_FONT_SIZE_TEXT_SMALL,
+  GLOBAL_MULTILINGUAL_CHINESE,
+  GLOBAL_MULTILINGUAL_ENGLISH, GLOBAL_MULTILINGUAL_TEXT_CHINESE,
+  GLOBAL_MULTILINGUAL_TEXT_ENGLISH,
   GLOBAL_UPDATE_FREQUENCY_FAST,
   GLOBAL_UPDATE_FREQUENCY_FASTER,
   GLOBAL_UPDATE_FREQUENCY_MEDIAN,
@@ -201,7 +211,12 @@ export default {
       isUpdateFrequencyOpen: false,
       selectUpdateFrequency: this.$store.getters.getUpdateFrequency,
       selectedIsAutoUpdate: this.$store.getters.getIsAutoUpdate,
-      isMultilingualOpen: false
+      isMultilingualOpen: false,
+      selectedMultilingualValue: this.$store.getters.getMultilingual,
+      multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
+      multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
+      multilingualTextChinese: GLOBAL_MULTILINGUAL_TEXT_CHINESE,
+      multilingualTextEnglish: GLOBAL_MULTILINGUAL_TEXT_ENGLISH
     }
   },
   props: {
@@ -216,12 +231,25 @@ export default {
       set(value) {
 
       }
+    },
+    selectedMultilingualText: {
+      get() {
+        return this.getMultilingualText(this.selectedMultilingualValue);
+      },
+      // eslint-disable-next-line
+      set(value) {
+
+      }
     }
   },
   watch: {
     // eslint-disable-next-line
     selectedFontSizeValue: function (newValue, oldValue) {
       this.$store.dispatch('setFontSize', newValue);
+    },
+    // eslint-disable-next-line
+    selectedMultilingualValue: function (newValue, oldValue) {
+      this.$store.dispatch('setMultilingual', newValue);
     },
     // eslint-disable-next-line
     selectedIsAutoUpdate: function (newValue, oldValue) {
@@ -243,6 +271,14 @@ export default {
           return this.fontSizeTextBig;
         case 1.5:
           return this.fontSizeTextBigger;
+      }
+    },
+    getMultilingualText(multilingual) {
+      switch (multilingual) {
+        case 'tw':
+          return this.multilingualTextChinese;
+        case 'en':
+          return this.multilingualTextEnglish;
       }
     }
   }
