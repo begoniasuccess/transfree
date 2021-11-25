@@ -38,18 +38,18 @@
 export default {
   name: "DynamicKeyboard",
   data() {
-    return {
-
-    }
+    return {};
   },
   methods: {
     clickKeyboard(event) {
-      this.$emit('clickKeyboard', event.currentTarget.getAttribute('data-value'));
-    }
-  }
-}
+      this.$emit(
+        "clickKeyboard",
+        event.currentTarget.getAttribute("data-value")
+      );
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 </style>
