@@ -3,8 +3,8 @@
     <div class="flex_row_sb w_100 h_100">
       <div class="flex_col w_100 h_100">
         <Search
-          v-on:getSearchCity="getSearchCity"
-          v-on:getInputValuee="getInputValuee"
+            v-on:getSearchCity="getSearchCity"
+            v-on:getInputValuee="getInputValuee"
         ></Search>
 
         <!--次要列表-->
@@ -28,7 +28,7 @@
       <div class="block_list" v-if="busList.length >= 1">
         <div class="content_list">
           <div class="list_top flex_row_cc">搜尋清單</div>
-          <div class="list_bottom flex_col">
+          <div class="list_bottom h_100 flex_col">
             <div class="select_scrollbar">
               <div class="list_inner" v-for="(bus, i) in busList" :key="i">
                 <div class="flex_col" @click="getThisBus(bus.zh_tw)">
@@ -54,12 +54,12 @@
 
 <script>
 // const LOCALSTORAGE_KEY = "TRANSFREE_COMMONLY_USED_BUS"; , addBus, removeBus
-import { getAllBus } from "../utils/commonly-used-bus.js";
+import {getAllBus} from "../utils/commonly-used-bus.js";
 import Search from "./Search";
 
 export default {
   name: "CommonlyUsedBus",
-  components: { Search },
+  components: {Search},
   data() {
     return {
       open: false,
