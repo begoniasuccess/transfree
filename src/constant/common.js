@@ -23,6 +23,14 @@ export const GLOBAL_FONT_SIZE_TEXT_NORMAL = '字體 正常';
 export const GLOBAL_FONT_SIZE_TEXT_BIG = '字體 較大';
 export const GLOBAL_FONT_SIZE_TEXT_BIGGER = '字體 更大';
 
+//Global multilingual
+export const GLOBAL_MULTILINGUAL_CHINESE = 'tw';
+export const GLOBAL_MULTILINGUAL_ENGLISH = 'en';
+
+//Global multilingual text
+export const GLOBAL_MULTILINGUAL_TEXT_CHINESE = '中文';
+export const GLOBAL_MULTILINGUAL_TEXT_ENGLISH = '英文';
+
 //Global update frequency
 export const GLOBAL_UPDATE_FREQUENCY_FASTER = 10;
 export const GLOBAL_UPDATE_FREQUENCY_FAST = 15;
