@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import {app} from '../main';
 import {
     GLOBAL_FONT_SIZE_NORMAL, GLOBAL_MULTILINGUAL_CHINESE,
     GLOBAL_UPDATE_FREQUENCY_FAST,
@@ -20,6 +21,7 @@ const store = new Vuex.Store({
         },
         setMultilingual(state, multilingual) {
             state.multilingual = multilingual;
+            app.$i18n.locale = multilingual;
         },
         setIsAutoUpdate(state, isAutoUpdate) {
             state.isAutoUpdate = isAutoUpdate;
