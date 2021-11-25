@@ -6,7 +6,7 @@
         <div class="block_list">
           <div class="content_list">
             <div class="list_top flex_row_cc">搜尋清單</div>
-            <div class="list_bottom flex_col">
+            <div class="list_bottom h_100 flex_col">
               <div class="select_scrollbar">
                 <div
                   class="list_inner"
@@ -153,4 +153,5 @@ export default {
 </script>
 
 <style src="../assets/css/global_modules.css"></style>
-<style scoped></style>
+<style scoped>
+</style>
