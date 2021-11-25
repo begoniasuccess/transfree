@@ -1,23 +1,23 @@
 <template>
   <div id="app" :style="{fontSize: globalFontSize + 'em'}" :class="{a11y : isA11y}">
-<!--    popup-->
-<!--    <div class="content_popup">-->
-<!--      &lt;!&ndash;版本資訊&ndash;&gt;-->
-<!--      <div class="flex_row_cb">-->
-<!--        <p class="title_card_txt">提醒您</p>-->
-<!--        <i class="i_close"></i>-->
-<!--      </div>-->
+    <!--    popup-->
+    <!--    <div class="content_popup">-->
+    <!--      &lt;!&ndash;版本資訊&ndash;&gt;-->
+    <!--      <div class="flex_row_cb">-->
+    <!--        <p class="title_card_txt">提醒您</p>-->
+    <!--        <i class="i_close"></i>-->
+    <!--      </div>-->
 
-<!--      <div class="flex_row_cc">-->
-<!--        <p>請問您要重設常用公車紀錄嗎？</p>-->
-<!--      </div>-->
+    <!--      <div class="flex_row_cc">-->
+    <!--        <p>請問您要重設常用公車紀錄嗎？</p>-->
+    <!--      </div>-->
 
-<!--      <div class="flex_row_cc">-->
-<!--        <button class="bus_status2" type="button">取消</button>-->
-<!--        <button class="bus_status1" type="button">確定</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--    <div class="black_overlay"></div>-->
+    <!--      <div class="flex_row_cc">-->
+    <!--        <button class="bus_status2" type="button">取消</button>-->
+    <!--        <button class="bus_status1" type="button">確定</button>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <!--    <div class="black_overlay"></div>-->
 
     <div class="content">
 
@@ -53,6 +53,7 @@
         </div>
       </div>
 
+
       <!--右側顯示區塊-->
       <div class="search">
 
@@ -60,6 +61,15 @@
         <div class="btn_a11y" @click="isA11y = !isA11y">
           <div>切換友善專區</div>
           <i class="i_a11y"> </i>
+        </div>
+
+        <div class="header_mobile flex_row_cb">
+          <i class="i_menu"></i>
+          <i class="img_logo_mobile"></i>
+            <div class="btn_a11y" @click="isA11y = !isA11y">
+              <div>友善專區</div>
+              <i class="i_a11y"> </i>
+            </div>
         </div>
 
         <!--功能區塊-->
@@ -128,9 +138,9 @@ p {
   margin: 0 !important;
 }
 
-a{
-  color: #4A4A4A!important;
-  text-decoration: none!important;
+a {
+  color: #4A4A4A !important;
+  text-decoration: none !important;
 }
 
 /* ---底版位置設定--- */
@@ -219,6 +229,18 @@ a{
   padding: 36px;
 }
 
+.header_mobile{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 42px;
+  font-weight: bold;
+  padding: 16px;
+  z-index: 999;
+  background-color: white;
+}
+
 .btn_a11y {
   display: flex;
   flex-direction: row;
@@ -249,13 +271,12 @@ a{
   justify-content: space-between;
 }
 
-.flex_row_sb{
+.flex_row_sb {
   display: flex;
   flex-direction: row;
-  align-items:flex-start;
+  align-items: flex-start;
   justify-content: space-between;
 }
-
 
 
 .flex_row_c {
@@ -306,12 +327,35 @@ a{
   left: 24px;
 }
 
+.img_logo_mobile {
+  display: flex;
+  width: 138px;
+  height: 22px;
+  background-image: url("./assets/images/img_logo_mobile.svg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  top: 10px;
+  left: calc(50% - 80px);
+}
+
 /* ---icon--- */
 .i_a11y {
   display: inline-block;
   width: 24px;
   height: 24px;
   background-image: url("./assets/images/icon/i_a11y.svg");
+  background-repeat: no-repeat;
+  background-size: 24px;
+  margin-left: 4px;
+  /*background-position: center;*/
+}
+
+.i_menu {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("./assets/images/icon/i_menu.svg");
   background-repeat: no-repeat;
   background-size: 24px;
   margin-left: 4px;
