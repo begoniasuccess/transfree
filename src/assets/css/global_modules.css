@@ -94,7 +94,7 @@
 
 .block_list {
     display: inline-block;
-    width: 100%;
+    width: calc(100% - 36px);
     height: 100%;
     padding: 24px;
 
@@ -135,11 +135,11 @@
 
 .list_bottom {
     width: 100%;
-    height: calc(100% - 60px);
+    height: 100%;
     position: relative;
     right: 0;
     left: 0;
-    padding: 0 4px 60px 4px;
+    padding: 0 4px 50px 4px;
 }
 
 .list_inner {
