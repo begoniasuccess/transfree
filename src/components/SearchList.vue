@@ -13,7 +13,7 @@
                   v-for="(bus, i) in searchBusList"
                   :key="i"
                 >
-                  <div class="flex_col" @click="getThisBus(bus.zh_tw)">
+                  <div class="flex_col" @click="getThisBus(bus.routeUID)">
                     <p class="text_b">{{ bus.zh_tw }}</p>
                     <p class="text_sec">
                       {{ bus.departureStopNameZh }}-{{
@@ -27,7 +27,7 @@
                       :class="{ 'i_love active': bus.isLove }"
                       @click="setLoveList(bus)"
                     ></i>
-                    <i class="i_next" @click="getThisBus(bus.zh_tw)"></i>
+                    <i class="i_next" @click="getThisBus(bus.routeUID)"></i>
                   </div>
                 </div>
               </div>
@@ -100,6 +100,7 @@ export default {
       this.cityBusList = [];
       res.data.forEach((element) => {
         const item = new BusObj(
+          element.RouteUID,
           element.RouteName.Zh_tw,
           element.RouteName.En,
           element.DepartureStopNameZh,
@@ -127,7 +128,7 @@ export default {
     setLoveList(bus) {
       console.log("setLoveList bus=", bus);
       this.cityBusList.forEach((element) => {
-        if (element.zh_tw == bus.zh_tw) {
+        if (element.routeUID == bus.routeUID) {
           element.isLove = !bus.isLove;
         }
       });
