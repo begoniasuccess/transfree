@@ -39,12 +39,16 @@
 
           <div class="menu_btn">
             <i class="menu_i_stop"></i>
-            <div class="menu_btn_txt">附近站牌</div>
+            <div class="menu_btn_txt">
+              {{ $t("nearbyStop") }}
+            </div>
           </div>
 
           <router-link to="/commonly-used-bus" class="menu_btn" active-class="active">
             <i class="menu_i_favoraite"></i>
-            <div class="menu_btn_txt">常用公車</div>
+            <div class="menu_btn_txt">
+              {{ $t("commonlyUsed") }}
+            </div>
           </router-link>
 
           <router-link to="/settings" class="menu_btn" active-class="active">
@@ -62,7 +66,7 @@
 
         <!--友善專區-->
         <div class="btn_a11y" @click="isA11y = !isA11y">
-          <div>切換友善專區</div>
+          <div>{{ $t("switchToFriendlyArea") }}</div>
           <i class="i_a11y"> </i>
         </div>
 
@@ -264,6 +268,7 @@ a {
   padding-right: 36px;
   font-weight: bold;
 }
+
 /* End [position] ---------------------------------------------------------------------------------------- */
 
 /* group [flex] ---------------------------------------------------------------------------------------- */

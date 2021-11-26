@@ -1,4 +1,29 @@
 {
   "searchBus": "Search Bus",
-  "settings": "Settings"
+  "nearbyStop": "Nearby Stop",
+  "commonlyUsed": "Common Bus",
+  "settings": "Settings",
+
+  "switchToFriendlyArea": "Switch To Friendly Area",
+
+  "personalSettings": "Personal Settings",
+  "updateSettings": "Update Settings",
+  "versionInfo": "Version Information",
+  "resetCommonBus": "Reset Common Bus",
+  "contactUs": "Contact Us",
+  "fare": "Fare",
+  "programVersion": "Program Version",
+  "routeVersion": "Route Version",
+  "autoUpdateRoute": "Update Route Information Automatically",
+  "selectFontSize": "Please Select Font Size",
+  "selectMultilingual": "Please Select Language",
+  "selectUpdateFrequency": "Please Select Arrival Time Update Frequency",
+  "arrivalTimeUpdateFrequency": "The arrival time update frequency is",
+  "seconds": "seconds",
+  "tw": "Chinese",
+  "en": "English",
+  "fontSmall": "Font Small",
+  "fontNormal": "Font Normal",
+  "fontBig": "Font Big",
+  "fontBigger": "Font Bigger"
 }

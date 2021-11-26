@@ -1,4 +1,29 @@
 {
   "searchBus": "公車搜尋",
-  "settings": "設定"
+  "nearbyStop": "附近站牌",
+  "commonlyUsed": "常用公車",
+  "settings": "設定",
+
+  "switchToFriendlyArea": "切換友善專區",
+
+  "personalSettings": "個人設定",
+  "updateSettings": "更新設定",
+  "versionInfo": "版本資訊",
+  "resetCommonBus": "重設常用公車",
+  "contactUs": "聯絡我們",
+  "fare": "票價",
+  "programVersion": "程式版本",
+  "routeVersion": "路線版本",
+  "autoUpdateRoute": "路線資料自動更新",
+  "selectFontSize": "請選擇字體大小",
+  "selectMultilingual": "請選擇語言",
+  "selectUpdateFrequency": "請選擇到站時間更新頻率",
+  "arrivalTimeUpdateFrequency": "到站時間更新頻率",
+  "seconds": "秒",
+  "tw": "中文",
+  "en": "英文",
+  "fontSmall": "字體 較小",
+  "fontNormal": "字體 正常",
+  "fontBig": "字體 較大",
+  "fontBigger": "字體 更大"
 }

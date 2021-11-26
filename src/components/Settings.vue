@@ -7,33 +7,33 @@
 
         <!--個人設定-->
         <div class="block_primary flex_col">
-          <p class="title_txt">個人設定</p>
+          <p class="title_txt">{{ $t("personalSettings") }}</p>
 
           <!--字體大小-->
           <div class="custom-select" @blur="isFontSizeOpen = false">
             <div class="selected" :class="{ open: isFontSizeOpen }"
                  @click="isFontSizeOpen = !isFontSizeOpen; isMultilingualOpen = false; isUpdateFrequencyOpen = false">
-              {{ selectedFontSizeText }}
+              {{ $t(selectedFontSizeText) }}
             </div>
 
             <div class="items flex_col" :class="{ selectHide: !isFontSizeOpen }">
-              <p class="option_title">請選擇字體大小</p>
+              <p class="option_title">{{ $t("selectFontSize") }}</p>
               <div class="select_scrollbar">
                 <div class="select_option"
-                     @click="selectedFontSizeText=fontSizeTextSmall; selectedFontSizeValue=fontSizeSmall;isFontSizeOpen=false">
-                  {{ fontSizeTextSmall }}
+                     @click="selectedFontSizeValue=fontSizeSmall;isFontSizeOpen=false">
+                  {{ $t("fontSmall") }}
                 </div>
                 <div class="select_option"
-                     @click="selectedFontSizeText=fontSizeTextNormal; selectedFontSizeValue=fontSizeNormal;isFontSizeOpen=false">
-                  {{ fontSizeTextNormal }}
+                     @click="selectedFontSizeValue=fontSizeNormal;isFontSizeOpen=false">
+                  {{ $t("fontNormal") }}
                 </div>
                 <div class="select_option"
-                     @click="selectedFontSizeText=fontSizeTextBig; selectedFontSizeValue=fontSizeBig;isFontSizeOpen=false">
-                  {{ fontSizeTextBig }}
+                     @click="selectedFontSizeValue=fontSizeBig;isFontSizeOpen=false">
+                  {{ $t("fontBig") }}
                 </div>
                 <div class="select_option"
-                     @click="selectedFontSizeText=fontSizeTextBigger; selectedFontSizeValue=fontSizeBigger;isFontSizeOpen=false">
-                  {{ fontSizeTextBigger }}
+                     @click="selectedFontSizeValue=fontSizeBigger;isFontSizeOpen=false">
+                  {{ $t("fontBigger") }}
                 </div>
               </div>
             </div>
@@ -43,16 +43,18 @@
           <div class="custom-select" @blur="isMultilingualOpen = false">
             <div class="selected" :class="{ open: isMultilingualOpen }"
                  @click="isMultilingualOpen = !isMultilingualOpen; isFontSizeOpen = false; isUpdateFrequencyOpen = false">
-              {{ selectedMultilingualText }}
+              {{ $t(selectedMultilingualText) }}
             </div>
             <div class="items flex_col" :class="{ selectHide: !isMultilingualOpen }">
-              <p class="option_title">請選擇語言</p>
+              <p class="option_title">{{ $t("selectMultilingual") }}</p>
               <div class="select_scrollbar">
-                <div class="select_option" @click="selectedMultilingualText=multilingualTextChinese; selectedMultilingualValue=multilingualChinese; isMultilingualOpen=false">
-                  {{ multilingualTextChinese }}
+                <div class="select_option"
+                     @click="selectedMultilingualValue=multilingualChinese; isMultilingualOpen=false">
+                  {{ $t("tw") }}
                 </div>
-                <div class="select_option" @click="selectedMultilingualText=multilingualTextEnglish; selectedMultilingualValue=multilingualEnglish; isMultilingualOpen=false">
-                  {{ multilingualTextEnglish }}
+                <div class="select_option"
+                     @click="selectedMultilingualValue=multilingualEnglish; isMultilingualOpen=false">
+                  {{ $t("en") }}
                 </div>
               </div>
             </div>
@@ -62,12 +64,12 @@
 
         <!--更新設定-->
         <div class="block_primary flex_col">
-          <p class="title_txt">更新設定</p>
+          <p class="title_txt">{{ $t("updateSettings") }}</p>
 
           <!--自動更新-->
           <!-- switch -->
           <div class="custom-switch">
-            <div class="selected">路線資料自動更新</div>
+            <div class="selected">{{ $t("autoUpdateRoute") }}</div>
             <div class="switch_open_close">
               <input type="checkbox" id="toggle" v-model="selectedIsAutoUpdate">
               <label for="toggle">
@@ -85,32 +87,32 @@
           <div class="custom-select" @blur="isUpdateFrequencyOpen = false">
             <div class="selected" :class="{ open: isUpdateFrequencyOpen }"
                  @click="isUpdateFrequencyOpen = !isUpdateFrequencyOpen; isFontSizeOpen = false; isMultilingualOpen = false">
-              到站時間更新頻率{{ selectUpdateFrequency }}秒
+              {{ $t("arrivalTimeUpdateFrequency") }} {{ selectUpdateFrequency }} {{ $t("seconds") }}
             </div>
 
             <div class="items flex_col" :class="{ selectHide: !isUpdateFrequencyOpen }">
 
-              <p class="option_title">請選擇到站時間更新頻率</p>
+              <p class="option_title">{{ $t("selectUpdateFrequency") }}</p>
               <div class="select_scrollbar">
                 <div class="select_option"
                      @click="selectUpdateFrequency=updateFrequencyFaster;isUpdateFrequencyOpen=false">
-                  到站時間更新頻率{{ updateFrequencyFaster }}秒
+                  {{ $t("arrivalTimeUpdateFrequency") }} {{ updateFrequencyFaster }} {{ $t("seconds") }}
                 </div>
                 <div class="select_option"
                      @click="selectUpdateFrequency=updateFrequencyFast;isUpdateFrequencyOpen=false">
-                  到站時間更新頻率{{ updateFrequencyFast }}秒
+                  {{ $t("arrivalTimeUpdateFrequency") }} {{ updateFrequencyFast }} {{ $t("seconds") }}
                 </div>
                 <div class="select_option"
                      @click="selectUpdateFrequency=updateFrequencyMedian;isUpdateFrequencyOpen=false">
-                  到站時間更新頻率{{ updateFrequencyMedian }}秒
+                  {{ $t("arrivalTimeUpdateFrequency") }} {{ updateFrequencyMedian }} {{ $t("seconds") }}
                 </div>
                 <div class="select_option"
                      @click="selectUpdateFrequency=updateFrequencySlow;isUpdateFrequencyOpen=false">
-                  到站時間更新頻率{{ updateFrequencySlow }}秒
+                  {{ $t("arrivalTimeUpdateFrequency") }} {{ updateFrequencySlow }} {{ $t("seconds") }}
                 </div>
                 <div class="select_option"
                      @click="selectUpdateFrequency=updateFrequencySlower;isUpdateFrequencyOpen=false">
-                  到站時間更新頻率{{ updateFrequencySlower }}秒
+                  {{ $t("arrivalTimeUpdateFrequency") }} {{ updateFrequencySlower }} {{ $t("seconds") }}
                 </div>
               </div>
             </div>
@@ -119,17 +121,17 @@
 
         <!--版本資訊-->
         <div class="block_primary flex_col">
-          <p class="title_txt">版本資訊</p>
+          <p class="title_txt">{{ $t("versionInfo") }}</p>
 
           <!--版本資訊-->
           <div class="content_card">
-            <p class="title_card_txt">票價</p>
+            <p class="title_card_txt">{{ $t("fare") }}</p>
             <label class="flex_row_cb">
-              <p>程式版本</p>
+              <p>{{ $t("programVersion") }}</p>
               <p>{{ programVersion }}</p>
             </label>
             <label class="flex_row_cb">
-              <p>路線版本</p>
+              <p>{{ $t("routeVersion") }}</p>
               <p>{{ routeVersion }}</p>
             </label>
           </div>
@@ -141,7 +143,7 @@
         <div class="block_setting">
           <div class="flex_col_cc h_100">
             <i class="i_reset"></i>
-            <p class="text_b">重設常用公車</p>
+            <p class="text_b">{{ $t("resetCommonBus") }}</p>
           </div>
         </div>
 
@@ -149,9 +151,7 @@
           <a href="mailto:transfree@gmail.com">
             <div class="flex_col_cc h_100">
               <i class="i_contact"></i>
-              <p class="text_b">
-                聯絡我們
-              </p>
+              <p class="text_b">{{ $t("contactUs") }}</p>
             </div>
           </a>
         </address>
@@ -171,13 +171,8 @@ import {
   GLOBAL_FONT_SIZE_BIGGER,
   GLOBAL_FONT_SIZE_NORMAL,
   GLOBAL_FONT_SIZE_SMALL,
-  GLOBAL_FONT_SIZE_TEXT_BIG,
-  GLOBAL_FONT_SIZE_TEXT_BIGGER,
-  GLOBAL_FONT_SIZE_TEXT_NORMAL,
-  GLOBAL_FONT_SIZE_TEXT_SMALL,
   GLOBAL_MULTILINGUAL_CHINESE,
-  GLOBAL_MULTILINGUAL_ENGLISH, GLOBAL_MULTILINGUAL_TEXT_CHINESE,
-  GLOBAL_MULTILINGUAL_TEXT_ENGLISH,
+  GLOBAL_MULTILINGUAL_ENGLISH,
   GLOBAL_UPDATE_FREQUENCY_FAST,
   GLOBAL_UPDATE_FREQUENCY_FASTER,
   GLOBAL_UPDATE_FREQUENCY_MEDIAN,
@@ -197,10 +192,6 @@ export default {
       fontSizeNormal: GLOBAL_FONT_SIZE_NORMAL,
       fontSizeBig: GLOBAL_FONT_SIZE_BIG,
       fontSizeBigger: GLOBAL_FONT_SIZE_BIGGER,
-      fontSizeTextSmall: GLOBAL_FONT_SIZE_TEXT_SMALL,
-      fontSizeTextNormal: GLOBAL_FONT_SIZE_TEXT_NORMAL,
-      fontSizeTextBig: GLOBAL_FONT_SIZE_TEXT_BIG,
-      fontSizeTextBigger: GLOBAL_FONT_SIZE_TEXT_BIGGER,
       isFontSizeOpen: false,
       selectedFontSizeValue: this.$store.getters.getFontSize,
       updateFrequencyFaster: GLOBAL_UPDATE_FREQUENCY_FASTER,
@@ -214,9 +205,7 @@ export default {
       isMultilingualOpen: false,
       selectedMultilingualValue: this.$store.getters.getMultilingual,
       multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
-      multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
-      multilingualTextChinese: GLOBAL_MULTILINGUAL_TEXT_CHINESE,
-      multilingualTextEnglish: GLOBAL_MULTILINGUAL_TEXT_ENGLISH
+      multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH
     }
   },
   props: {
@@ -234,7 +223,8 @@ export default {
     },
     selectedMultilingualText: {
       get() {
-        return this.getMultilingualText(this.selectedMultilingualValue);
+        // return this.getMultilingualText(this.selectedMultilingualValue);
+        return this.selectedMultilingualValue;
       },
       // eslint-disable-next-line
       set(value) {
@@ -264,21 +254,13 @@ export default {
     getFontSizeText(fontSize) {
       switch (fontSize) {
         case 0.75:
-          return this.fontSizeTextSmall;
+          return "fontSmall";
         case 1:
-          return this.fontSizeTextNormal;
+          return "fontNormal";
         case 1.25:
-          return this.fontSizeTextBig;
+          return "fontBig";
         case 1.5:
-          return this.fontSizeTextBigger;
-      }
-    },
-    getMultilingualText(multilingual) {
-      switch (multilingual) {
-        case 'tw':
-          return this.multilingualTextChinese;
-        case 'en':
-          return this.multilingualTextEnglish;
+          return "fontBigger";
       }
     }
   }
