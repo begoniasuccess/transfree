@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="flex_row_cb">
+      <p class="title_txt">動態鍵盤</p>
+      <i class="i_close"></i>
+    </div>
     <button data-value="1" @click="clickKeyboard">1</button>
     <button data-value="2" @click="clickKeyboard">2</button>
     <button data-value="3" @click="clickKeyboard">3</button>
@@ -43,8 +47,8 @@ export default {
   methods: {
     clickKeyboard(event) {
       this.$emit(
-        "clickKeyboard",
-        event.currentTarget.getAttribute("data-value")
+          "clickKeyboard",
+          event.currentTarget.getAttribute("data-value")
       );
     },
   },
