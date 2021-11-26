@@ -1,21 +1,24 @@
 <template>
   <div>
-    <p class="title_txt">公車相關資訊</p>
+    <div class="flex_row_cb">
+      <p class="title_txt">公車相關資訊</p>
+      <i class="i_close"></i>
+    </div>
 
     <!--卡片式資訊-->
     <div class="content_card">
       <p class="title_card_txt">票價</p>
       <label class="flex_row_cb">
-        <p>{{operatorName}}</p>
-        <p>{{operatorPhoneNumber}}</p>
+        <p>{{ operatorName }}</p>
+        <p>{{ operatorPhoneNumber }}</p>
       </label>
       <label class="flex_row_cb">
         <p>收費方式</p>
-        <p>{{ticketPriceDescription}}</p>
+        <p>{{ ticketPriceDescription }}</p>
       </label>
       <label class="flex_row_cb">
         <p>分段緩衝</p>
-        <p>{{fareBufferZoneDescription}}</p>
+        <p>{{ fareBufferZoneDescription }}</p>
       </label>
     </div>
 
@@ -26,7 +29,7 @@
         <div class="w_100">
           <label class="flex_row_cb">
             <p>首班車</p>
-            <p>{{firstBusTime}}</p>
+            <p>{{ firstBusTime }}</p>
           </label>
           <label class="flex_row_cb">
             <p>尖峰班距</p>
@@ -37,7 +40,7 @@
         <div class="w_100">
           <label class="flex_row_cb">
             <p>末班車</p>
-            <p>{{lastBusTime}}</p>
+            <p>{{ lastBusTime }}</p>
           </label>
           <label class="flex_row_cb">
             <p>離峰班距</p>
@@ -57,7 +60,7 @@
         <div class="flex_col w_100">
           <label class="flex_row_cb">
             <p>首班車</p>
-            <p>{{holidayFirstBusTime}}</p>
+            <p>{{ holidayFirstBusTime }}</p>
           </label>
           <label class="flex_row_cb">
             <p>尖峰班距</p>
@@ -68,7 +71,7 @@
         <div class="flex_col w_100">
           <label class="flex_row_cb">
             <p>末班車</p>
-            <p>{{holidayLastBusTime}}</p>
+            <p>{{ holidayLastBusTime }}</p>
           </label>
           <label class="flex_row_cb">
             <p>離峰班距</p>
@@ -119,9 +122,9 @@ export default {
           this.holidayLastBusTime = formatTimeStamp(data[0].SubRoutes[0].HolidayLastBusTime);
 
           sendRequest('get', `${BUS_URL_V2}/Operator/City/${this.city}?format=${RESPONSE_DATA_FORMAT_JSON}`)
-            .then(res => {
-              this.operatorPhoneNumber = res.data.filter(d => d.OperatorNo === data[0].Operators[0].OperatorNo)[0].OperatorPhone;
-            })
+              .then(res => {
+                this.operatorPhoneNumber = res.data.filter(d => d.OperatorNo === data[0].Operators[0].OperatorNo)[0].OperatorPhone;
+              })
         }).catch(err => {
       //TODO change to popup
       console.log(err);

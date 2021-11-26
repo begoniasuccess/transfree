@@ -1,23 +1,23 @@
 <template>
   <div id="app" :style="{fontSize: globalFontSize + 'em'}" :class="{a11y : isA11y}">
-    <!--    popup-->
-    <!--    <div class="content_popup">-->
-    <!--      &lt;!&ndash;版本資訊&ndash;&gt;-->
-    <!--      <div class="flex_row_cb">-->
-    <!--        <p class="title_card_txt">提醒您</p>-->
-    <!--        <i class="i_close"></i>-->
-    <!--      </div>-->
+    <!--        popup-->
+    <!--        <div class="content_popup">-->
+    <!--          &lt;!&ndash;版本資訊&ndash;&gt;-->
+    <!--          <div class="flex_row_cb">-->
+    <!--            <p class="title_card_txt">提醒您</p>-->
+    <!--            <i class="i_close"></i>-->
+    <!--          </div>-->
 
-    <!--      <div class="flex_row_cc">-->
-    <!--        <p>請問您要重設常用公車紀錄嗎？</p>-->
-    <!--      </div>-->
+    <!--          <div class="flex_row_cc">-->
+    <!--            <p>請問您要重設常用公車紀錄嗎？</p>-->
+    <!--          </div>-->
 
-    <!--      <div class="flex_row_cc">-->
-    <!--        <button class="bus_status2" type="button">取消</button>-->
-    <!--        <button class="bus_status1" type="button">確定</button>-->
-    <!--      </div>-->
-    <!--    </div>-->
-    <!--    <div class="black_overlay"></div>-->
+    <!--          <div class="flex_row_cc">-->
+    <!--            <button class="bus_status2" type="button">取消</button>-->
+    <!--            <button class="bus_status1" type="button">確定</button>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--        <div class="black_overlay"></div>-->
 
     <div class="content">
 
@@ -67,13 +67,14 @@
         </div>
 
         <div class="header_mobile flex_row_cb">
-          <i class="i_menu"></i>
+          <i class="i_menu"> </i>
           <i class="img_logo_mobile"></i>
           <div class="btn_a11y" @click="isA11y = !isA11y">
             <div>友善專區</div>
             <i class="i_a11y"> </i>
           </div>
         </div>
+        <div class="black_overlay"></div>
 
         <!--功能區塊-->
         <div class="content_function select_scrollbar">
@@ -111,7 +112,8 @@ export default {
 </script>
 
 <style>
-/* ---預設設定--- */
+
+/* group [default] ---------------------------------------------------------------------------------------- */
 #app {
   font-family: 'Noto Sans CJK TC', 'Microsoft JhengHei';
   font-size: 16px;
@@ -146,6 +148,9 @@ a {
   text-decoration: none !important;
 }
 
+/* End [default] ---------------------------------------------------------------------------------------- */
+
+/* group [position] ---------------------------------------------------------------------------------------- */
 /* ---底版位置設定--- */
 .content {
   position: fixed;
@@ -211,6 +216,7 @@ a {
   color: #FFB13E;
 }
 
+/* ---右側列表設定--- */
 .search {
   position: absolute;
   top: 0;
@@ -232,6 +238,7 @@ a {
   padding: 36px;
 }
 
+/* ---手機版 header--- */
 .header_mobile {
   position: fixed;
   top: 0;
@@ -242,6 +249,8 @@ a {
   padding: 16px;
   z-index: 999;
   background-color: white;
+  box-shadow: 0px 1px 10px 0px rgba(217, 217, 217, 1);
+
 }
 
 .btn_a11y {
@@ -255,8 +264,10 @@ a {
   padding-right: 36px;
   font-weight: bold;
 }
+/* End [position] ---------------------------------------------------------------------------------------- */
 
-/* ---flex排列--- */
+/* group [flex] ---------------------------------------------------------------------------------------- */
+
 .flex_row {
   display: flex;
   flex-direction: row;
@@ -317,6 +328,8 @@ a {
   width: 100%;
 }
 
+/* End [flex] ---------------------------------------------------------------------------------------- */
+
 /* ---images--- */
 .img_logo {
   display: inline-block;
@@ -328,6 +341,7 @@ a {
   position: absolute;
   top: 36px;
   left: 24px;
+  cursor: auto;
 }
 
 .img_logo_mobile {
@@ -340,6 +354,7 @@ a {
   position: absolute;
   top: 10px;
   left: calc(50% - 80px);
+  cursor: auto;
 }
 
 /* ---icon--- */
