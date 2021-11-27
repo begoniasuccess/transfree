@@ -153,6 +153,6 @@ export default {
 };
 </script>
 
-<style src="../assets/css/global_modules.css"></style>
+<style src="../assets/css/global_all.css"></style>
 <style scoped>
 </style>
