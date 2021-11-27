@@ -1,26 +1,86 @@
 /*英文版本 元件*/
+/* @group [長度控制 max-width: 768px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 768px) {
+    .en p {
+        font-size: 0.875em;
+        letter-spacing: -0.5px;
+        line-height: inherit;
+    }
 
-.en .inner_group {
-   font-size: 0.875em;
-   letter-spacing: -0.5px;
+    .en .title_txt {
+        font-size: 1.25em;
+    }
+
+    .en .menu_btn_txt {
+        width: 100px;
+    }
+
+    .en .inner_group {
+        font-size: 0.875em;
+        letter-spacing: -0.6px;
+    }
+
+    .en .custom-switch {
+        font-size: 0.75em;
+        line-height: 20px;
+    }
+    .en .bus_status0,
+    .en .bus_status1{
+        font-size: 0.75em;
+        letter-spacing: -0.6px;
+        line-height: 12px;
+    }
+    .en .bus_status2{
+        font-size: 0.75em;
+        letter-spacing: -0.6px;
+        line-height: 24px;
+    }
+
+
+
 }
 
 /* @group [長度控制 max-width: 375px] (以下) ----------------------------------------------------------------------------------------*/
 @media only screen and (max-width: 375px) {
-   .en .custom-select .selected {
-      padding-right: 36px;
-      font-size: 0.875em;
-      letter-spacing: -0.5px;
-   }
-   .en .option_title{
-      font-size: 0.875em;
-      letter-spacing: -0.5px;
-      line-height: 24px;
-   }
-   .en .custom-select .items .select_option{
-      line-height: 20px;
-      padding-top: 8px;
-   }
+    .en .custom-select .selected {
+        line-height: normal;
+        padding: 8px 36px 8px 16px;
+        line-height: 20px;
+        font-size: 0.875em;
+        letter-spacing: -0.5px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .en .option_title {
+        font-size: 0.875em;
+        letter-spacing: -0.6px;
+        line-height: 40px;
+    }
+
+    .en .custom-select .items .select_option {
+        line-height: 24px;
+        margin: 4px 0px;
+    }
+    .en .header_mobile>.btn_a11y {
+        font-size: 0.875em;
+        letter-spacing: -0.6px;
+    }
+
+}
+
+/* @group [長度控制 max-width: 375px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 320px) {
+    .en p {
+        font-size: 0.75em;
+        letter-spacing: -0.6px;
+        line-height: inherit;
+    }
+    .en .img_logo_mobile{
+        background-size: 80%;
+        left: 54px;
+    }
 }
 
 /*英文版本 RWD*/

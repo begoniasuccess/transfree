@@ -3,23 +3,25 @@
     <div class="flex_row_sb w_100 h_100">
       <div class="flex_col w_100 h_100">
         <Search
-          v-on:getSearchCity="getSearchCity"
-          v-on:getInputValue="getInputValue"
-        ></Search>
+            v-on:getSearchCity="getSearchCity"
+            v-on:getInputValue="getInputValue"
+        >
+        </Search>
 
         <!--次要列表-->
         <div
-          class="block_sec flex_col select_scrollbar" :style="[isMobileOpenBusInfo ? {'display' : 'block'} : {'display' : 'none'}]"
-          v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
+            class="block_sec flex_col select_scrollbar"
+            :style="[isMobileOpenBusInfo ? {'display' : 'block'} : {'display' : 'none'}]"
+            v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
         >
           <span v-if="isDynamicKeyboardShow">
             <DynamicKeyboard @clickKeyboard="clickKeyboard" @mobileSwitchBusInfo="mobileSwitchBusInfo"></DynamicKeyboard>
           </span>
           <span v-if="isBusInfoShow">
             <BusInfo
-              :city="$route.params.city"
-              :routeName="$route.params.routeName"
-              @mobileSwitchBusInfo="mobileSwitchBusInfo"
+                :city="$route.params.city"
+                :routeName="$route.params.routeName"
+                @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></BusInfo>
           </span>
 
@@ -58,11 +60,11 @@
       <!--                </div>-->
       <!--              </div>-->
       <!--            </div>-->
-<!--      <SearchList-->
-<!--        :selectedCity="selected"-->
-<!--        :search="inputValue"-->
-<!--        v-on:getBusNum="getBusNum"-->
-<!--      ></SearchList>-->
+      <!--      <SearchList-->
+      <!--        :selectedCity="selected"-->
+      <!--        :search="inputValue"-->
+      <!--        v-on:getBusNum="getBusNum"-->
+      <!--      ></SearchList>-->
 
       <!-- <router-link :to="`/search-bus/search-list/${selected.value}`"
         >555</router-link
@@ -221,18 +223,18 @@
 </template>
 
 <script>
-import { CITIES } from "../constant/city";
-import { BusObj } from "../constant/bus";
+import {CITIES} from "../constant/city";
+import {BusObj} from "../constant/bus";
 // import SearchList from "./SearchList";
 import Search from "./Search";
 // import { BUS_URL_V2, sendRequest } from "../utils/https";
 import BusInfo from "./BusInfo";
 import DynamicKeyboard from "./DynamicKeyboard";
-import { getCurrentLocationInfo } from "../utils/location";
+import {getCurrentLocationInfo} from "../utils/location";
 
 export default {
   name: "SearchBus",
-  components: { DynamicKeyboard, BusInfo, Search },
+  components: {DynamicKeyboard, BusInfo, Search},
   data() {
     return {
       cities: CITIES,
@@ -258,12 +260,12 @@ export default {
     // });
 
     getCurrentLocationInfo()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   },
   methods: {
     clickKeyboard(value) {

@@ -1,8 +1,44 @@
 /*友善專區版本 元件*/
-.a11y .block_primary {
-    background-color: #2d9cdb;
+/*.a11y .block_primary {*/
+/*    background-color: #F0DEC2;*/
+/*}*/
+.a11y .title_txt{
+    color: #1A777E;
 }
 
+.a11y input::placeholder{
+    color: #4A4A4A;
+}
+
+.a11y block_sec{
+    background-color: #1A777E;
+}
+.a11y .text_primary{
+    color: #1A777E;
+}
+
+.a11y .custom-select .items .select_option:hover {
+    color: #1A777E;
+}
+.a11y .bookmark_container .active{
+    color: #1A777E;
+}
+.a11y .switch_open_close input:checked ~ label {
+    background-color: #1A777E;
+}
+.a11y .switch_open_close input:checked ~ label p:last-child {
+    color: #1A777E;
+}
+
+.a11y .bus_status1{
+    background-color:#1A777E;
+}
+.a11y .bus_status2{
+    background-color:#FF8D3A;
+}
+.a11y .bookmark_container .active{
+    border-bottom: 2px solid #FF8D3A;
+}
 
 
 /*友善專區 RWD*/

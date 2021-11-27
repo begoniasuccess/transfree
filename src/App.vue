@@ -111,8 +111,7 @@ export default {
       globalFontSize: this.$store.getters.getFontSize,
       isA11y: false,
       isEn: false,
-      isMobileOpenMenu: true,
-      isPopupShow: false
+      isMobileOpenMenu: true
     }
   },
   watch: {
@@ -178,9 +177,6 @@ a {
   }
 }
 
-#app.en {
-  font-size: 14px;
-}
 
 /* End [default] ---------------------------------------------------------------------------------------- */
 
@@ -210,6 +206,10 @@ a {
   border-radius: 24px;
   background-color: #2398A1;
   z-index: 99;
+}
+.a11y .menu,
+.a11y .content{
+  background-color: #1A777E;
 }
 
 /* ---menu按鈕--- */
@@ -292,16 +292,14 @@ a {
   flex-direction: row;
   align-items: flex-end !important;
   justify-content: flex-end !important;
-  width: 100%;
+  width: auto;
   margin-top: 16px;
   margin-bottom: 16px;
   padding-right: 36px;
   font-weight: bold;
 }
 
-.btn_a11y:hover {
-  transition: .3s;
-  transform: scale(1.1) translate(-24px, 0);
+div.btn_a11y:hover{
   cursor: pointer;
 }
 
@@ -396,8 +394,8 @@ a {
   position: absolute;
   top: 10px;
   left: 60px;
-  cursor: auto !important;
-  transform: none !important;
+  cursor: auto!important;
+  transform:none!important;
 }
 
 /* ---icon--- */
@@ -482,6 +480,7 @@ a {
 .menu_btn.active .menu_i_stop {
   background-image: url("./assets/images/icon/i_stop_menu_s.svg");
 }
+
 
 
 </style>
