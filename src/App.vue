@@ -1,5 +1,5 @@
 <template>
-  <div id="app" :style="{fontSize: globalFontSize + 'em'}" :class="{a11y : isA11y}">
+  <div id="app" :style="{fontSize: globalFontSize + 'em'}" :class="{a11y : isA11y, en: isEn}">
     <!--        popup-->
     <!--        <div class="content_popup">-->
     <!--          &lt;!&ndash;版本資訊&ndash;&gt;-->
@@ -95,6 +95,8 @@
 // import Test from "./components/Test.vue";
 // import HelloWorld from "./components/HelloWorld.vue";
 
+import {GLOBAL_MULTILINGUAL_ENGLISH} from "./constant/common";
+
 export default {
   name: "App",
   components: {
@@ -104,12 +106,20 @@ export default {
   data() {
     return {
       globalFontSize: this.$store.getters.getFontSize,
-      isA11y: false
+      isA11y: false,
+      isEn: false
     }
   },
   watch: {
     '$store.state.fontSize': function () {
       this.globalFontSize = this.$store.getters.getFontSize
+    },
+    '$i18n.locale': function () {
+      if (this.$i18n.locale === GLOBAL_MULTILINGUAL_ENGLISH) {
+        this.isEn = true
+      } else {
+        this.isEn = false;
+      }
     }
   }
 };

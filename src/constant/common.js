@@ -12,10 +12,10 @@ export const RESPONSE_DATA_FORMAT_JSON = 'JSON';
 export const RESPONSE_DATA_FORMAT_XML = 'XML';
 
 //Global font size, the unit is 'em'
-export const GLOBAL_FONT_SIZE_SMALL = 0.75;
+export const GLOBAL_FONT_SIZE_SMALL = 0.875;
 export const GLOBAL_FONT_SIZE_NORMAL = 1;
-export const GLOBAL_FONT_SIZE_BIG = 1.25;
-export const GLOBAL_FONT_SIZE_BIGGER = 1.5;
+export const GLOBAL_FONT_SIZE_BIG = 1.125;
+export const GLOBAL_FONT_SIZE_BIGGER = 1.25;
 
 //Global font size text
 export const GLOBAL_FONT_SIZE_TEXT_SMALL = '字體 較小';
