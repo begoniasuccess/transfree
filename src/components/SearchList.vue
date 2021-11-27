@@ -2,8 +2,18 @@
   <div class="h_100 w_100">
     <div class="flex_row_cb w_100 h_100">
       <div class="flex_col w_100 h_100">
+        <!--右側列表-->
+        <!--block_list:白箱狀態-->
+        <div class="block_list" v-if="searchBusList.length < 1">
+          <div class="content_list">
+            <div class="list_top flex_col_cc">{{ $t("searchList") }}</div>
+            <div class="list_bottom flex_col_cc">
+              <div class="img_box"></div>
+            </div>
+          </div>
+        </div>
         <!--block_list:搜尋列表-->
-        <div class="block_list">
+        <div class="block_list" v-if="searchBusList.length >= 1">
           <div class="content_list">
             <div class="list_top flex_row_cc">{{ $t("searchList") }}</div>
             <div class="list_bottom h_100 flex_col">
