@@ -162,6 +162,15 @@ a {
   color: #4A4A4A !important;
   text-decoration: none !important;
 }
+@media only screen and (max-width: 320px) {
+  #app {
+    font-size: 14px;
+  }
+}
+
+#app.en  {
+  font-size: 14px;
+}
 
 /* End [default] ---------------------------------------------------------------------------------------- */
 
@@ -280,6 +289,13 @@ a {
   font-weight: bold;
 }
 
+.btn_a11y:hover{
+  transition: .3s;
+  transform: scale(1.1) translate(-24px, 0);
+  cursor: pointer;
+}
+
+
 /* End [position] ---------------------------------------------------------------------------------------- */
 
 /* group [flex] ---------------------------------------------------------------------------------------- */
@@ -369,8 +385,9 @@ a {
   background-size: 100%;
   position: absolute;
   top: 10px;
-  left: calc(50% - 80px);
-  cursor: auto;
+  left: 60px;
+  cursor: auto!important;
+  transform:none!important;
 }
 
 /* ---icon--- */
@@ -382,6 +399,8 @@ a {
   background-repeat: no-repeat;
   background-size: 24px;
   margin-left: 4px;
+  cursor: none;
+  transform: none;
   /*background-position: center;*/
 }
 
@@ -453,5 +472,7 @@ a {
 .menu_btn.active .menu_i_stop {
   background-image: url("./assets/images/icon/i_stop_menu_s.svg");
 }
+
+
 
 </style>

@@ -1,0 +1,255 @@
+/* ---全站共用media設定--- */
+@import "global_modules.css";
+/* @group [長度控制 min-width: 1440px] (以上) ----------------------------------------------------------------------------------------*/
+@media only screen and (min-width: 1280px) {
+
+    /* @icon [公車相關資訊] ---------------------------------------------------------------------------------------------*/
+    .list_top .flex_row_ce .i_info {
+        display: none;
+    }
+
+    /* @mobile[header] ---------------------------------------------------------------------------------------------*/
+    .header_mobile {
+        display: none;
+    }
+}
+
+/* @group [長度控制 max-width: 1440px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 1280px) {
+
+    /* @group [content_function] --------------------------------------------------------------------------------------*/
+    .content_function .flex_row_sb.w_100.h_100 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* @group [blcok] --------------------------------------------------------------------------------------*/
+
+    .block_setting {
+        margin: 0px 0 36px 0;
+    }
+
+    .margin_top {
+        margin-top: 36px;
+        height: auto;
+    }
+
+    .block_setting:last-child {
+        margin-left: 36px;
+    }
+
+
+    .block_list {
+        /*min-height: calc(100% - 233px - 36px);*/
+        margin: 36px 0;
+    }
+
+    .search {
+        overflow-y: scroll;
+    }
+
+    .img_04 {
+        display: none;
+    }
+
+    .header_mobile {
+        display: none;
+    }
+
+    .block_sec.select_scrollbar {
+        max-height: calc(50%)
+    }
+
+    .block_sec {
+        width: calc(100% - 200px);
+        display: block;
+        position: fixed;
+        bottom: 0;
+        right: 20px;
+        padding: 16px;
+        z-index: 999;
+        /*transform: translate( 0,100%);*/
+        transition: transform 300ms, -webkit-transform 300ms;
+        border-radius: 24px 24px 0 0;
+        display: none;
+    }
+
+    .block_sec .i_close {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    /* End [content_function] ----------------------------------------------------------------------------------------*/
+}
+/*一般版本 RWD*/
+
+/* @group [長度控制 max-width: 768px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 768px) {
+    .content {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        box-shadow: 0px 2px 20px 0px rgb(145 145 145 / 0%);
+    }
+
+    .menu {
+        border-radius: 0px;
+        display: flex;
+        z-index: 9999;
+        top: 42px;
+        /*transform: translate( -100%,0);*/
+        transition: transform 300ms, -webkit-transform 300ms;
+    }
+
+    .menu > .img_logo {
+        display: none;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .content_function {
+        padding: 16px;
+        height: fit-content;
+    }
+
+    .content_list {
+        box-shadow: 0px 2px 10px 0px rgb(145 145 145 / 60%)
+    }
+
+    .btn_a11y {
+        display: none;
+    }
+
+    .header_mobile {
+        display: flex;
+    }
+
+    .header_mobile > .btn_a11y {
+        display: flex;
+        padding-right: 0;
+    }
+
+    .search {
+        height: 100%;
+        border-radius: 0px;
+        top: 42px;
+    }
+
+    .block_list {
+        padding: 0;
+        background-image: none;
+        box-shadow: none;
+    }
+
+    .block_primary {
+        padding: 16px;
+        box-shadow: 0px 2px 10px 0px rgb(145 145 145 / 60%);
+    }
+
+    .block_setting {
+        padding: 16px;
+        box-shadow: 0px 2px 10px 0px rgb(145 145 145 / 60%);
+        text-align: center;
+    }
+
+    .title_txt {
+        font-size: 1.25em;
+    }
+
+    .list_bottom .text_info {
+        bottom: 10px;
+    }
+
+    .content_popup {
+        width: 300px;
+        left: calc(50vw - 150px);
+    }
+
+    .menu > .flex_col_cc {
+        justify-content: flex-start;
+    }
+
+    .menu_btn {
+        width: auto;
+        margin: 24px 16px;
+        flex-direction: row;
+    }
+
+    .menu_btn_txt {
+        width: 60px;
+        text-align: left;
+    }
+
+    .search > .black_overlay {
+        z-index: 999;
+    }
+
+    .block_sec.select_scrollbar {
+        max-height: calc(50%)
+    }
+
+    .block_sec {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        padding: 16px;
+        z-index: 999;
+        border-radius: 24px 24px 0 0;
+        /*transform: translate( 0,100%);*/
+        transition: transform 300ms, -webkit-transform 300ms;
+        display: none;
+
+    }
+
+    .block_sec .i_close {
+        display: block;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    .list_inner{
+        padding: 12px 4px;
+    }
+    .list_inner .flex_row_ce > i{
+        margin-left: 4px;
+    }
+    .list_inner .flex_row_ce > .text_primary{
+        font-size: 0.875em;
+    }
+
+}
+
+/* @group [長度控制 max-width: 375px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 320px) {
+    .img_logo_mobile {
+        background-size: 90%;
+    }
+    .bus_status0,
+    .bus_status1,
+    .bus_status2{
+        width: 94px;
+        font-size: 0.875em;
+    }
+    .content_function.select_scrollbar{
+        right: 0;
+    }
+    .content_function{
+        padding: 16px 12px;
+    }
+
+}
+
+
+/* @group [長度控制 max-width: 320px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 320px) {
+    .img_logo_mobile {
+        background-size: 90%;
+    }
+
+}
