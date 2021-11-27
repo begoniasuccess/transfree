@@ -24,7 +24,6 @@
     }
 
     /* @group [blcok] --------------------------------------------------------------------------------------*/
-
     .block_setting {
         margin: 0px 0 36px 0;
     }
@@ -83,6 +82,7 @@
 
     /* End [content_function] ----------------------------------------------------------------------------------------*/
 }
+
 /*一般版本 RWD*/
 
 /* @group [長度控制 max-width: 768px] (以下) ----------------------------------------------------------------------------------------*/
@@ -213,34 +213,45 @@
         top: 10px;
         right: 10px;
     }
-    .list_inner{
+
+    .list_inner {
         padding: 12px 4px;
     }
-    .list_inner .flex_row_ce > i{
-        margin-left: 4px;
-    }
-    .list_inner .flex_row_ce > .text_primary{
+
+    .list_inner .flex_row_ce > .text_primary {
         font-size: 0.875em;
     }
+
+    .list_inner .flex_row_ce > i {
+        margin-left: 8px;
+    }
+
 
 }
 
 /* @group [長度控制 max-width: 375px] (以下) ----------------------------------------------------------------------------------------*/
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 375px) {
     .img_logo_mobile {
         background-size: 90%;
     }
+
     .bus_status0,
     .bus_status1,
-    .bus_status2{
+    .bus_status2 {
         width: 94px;
         font-size: 0.875em;
     }
-    .content_function.select_scrollbar{
-        right: 0;
+
+    .content_function.select_scrollbar {
+        right: 0px;
     }
-    .content_function{
+
+    .content_function {
         padding: 16px 12px;
+    }
+
+    .list_inner .flex_row_ce > i {
+        margin-left: 4px;
     }
 
 }

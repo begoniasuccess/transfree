@@ -1,7 +1,26 @@
 /*英文版本 元件*/
 
-#app.en  {
-   font-size: 0.875px;
+.en .inner_group {
+   font-size: 0.875em;
+   letter-spacing: -0.5px;
+}
+
+/* @group [長度控制 max-width: 375px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 375px) {
+   .en .custom-select .selected {
+      padding-right: 36px;
+      font-size: 0.875em;
+      letter-spacing: -0.5px;
+   }
+   .en .option_title{
+      font-size: 0.875em;
+      letter-spacing: -0.5px;
+      line-height: 24px;
+   }
+   .en .custom-select .items .select_option{
+      line-height: 20px;
+      padding-top: 8px;
+   }
 }
 
 /*英文版本 RWD*/
