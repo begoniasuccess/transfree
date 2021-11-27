@@ -9,7 +9,7 @@
 
         <!--次要列表-->
         <div
-          class="block_sec flex_col select_scrollbar"
+          class="block_sec flex_col select_scrollbar" :style="[isMobileOpenBusInfo ? {'display' : 'block'} : {'display' : 'none'}]"
           v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
         >
           <span v-if="isDynamicKeyboardShow">
@@ -19,6 +19,7 @@
             <BusInfo
               :city="$route.params.city"
               :routeName="$route.params.routeName"
+              @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></BusInfo>
           </span>
 
@@ -57,11 +58,11 @@
       <!--                </div>-->
       <!--              </div>-->
       <!--            </div>-->
-      <SearchList
-        :selectedCity="selected"
-        :search="inputValue"
-        v-on:getBusNum="getBusNum"
-      ></SearchList>
+<!--      <SearchList-->
+<!--        :selectedCity="selected"-->
+<!--        :search="inputValue"-->
+<!--        v-on:getBusNum="getBusNum"-->
+<!--      ></SearchList>-->
 
       <!-- <router-link :to="`/search-bus/search-list/${selected.value}`"
         >555</router-link
@@ -99,9 +100,9 @@
       <!--      </div>-->
 
       <!--block_list:動態公車列表模式-->
-      <!-- <div class="block_list">
-        <router-view></router-view>
-      </div> -->
+      <div class="block_list">
+        <router-view @mobileSwitchBusInfo="mobileSwitchBusInfo"></router-view>
+      </div>
 
       <!--block_list:動態公車地圖模式-->
       <!--      <div class="block_list">-->
@@ -222,7 +223,7 @@
 <script>
 import { CITIES } from "../constant/city";
 import { BusObj } from "../constant/bus";
-import SearchList from "./SearchList";
+// import SearchList from "./SearchList";
 import Search from "./Search";
 // import { BUS_URL_V2, sendRequest } from "../utils/https";
 import BusInfo from "./BusInfo";
@@ -231,19 +232,20 @@ import { getCurrentLocationInfo } from "../utils/location";
 
 export default {
   name: "SearchBus",
-  components: { DynamicKeyboard, BusInfo, SearchList, Search },
+  components: { DynamicKeyboard, BusInfo, Search },
   data() {
     return {
       cities: CITIES,
       selected: CITIES[0],
       open: false,
-      isDynamicKeyboardShow: true,
-      isBusInfoShow: false,
+      isDynamicKeyboardShow: false,
+      isBusInfoShow: true,
       searchBusList: new Array(),
       routeName: String, // 路線名稱
       bus: BusObj,
       inputValue: "",
       busNum: "",
+      isMobileOpenBusInfo: false
     };
   },
   //TODO need to remove(for testing axios and location)
@@ -288,6 +290,9 @@ export default {
       console.log("getSearchValue:" + inputValue + "/");
       this.inputValue = inputValue;
     },
+    mobileSwitchBusInfo() {
+      this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
+    }
   },
   watch: {
     busNum: function () {

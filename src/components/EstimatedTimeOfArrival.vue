@@ -6,7 +6,7 @@
       <p>{{ routeName }}</p>
       <div class="flex_row_ce">
         <i class="i_update" @click="clickUpdateData"></i>
-        <i class="i_info"></i>
+        <i class="i_info" @click="mobileSwitchBusInfo"></i>
       </div>
     </div>
 
@@ -260,6 +260,9 @@ export default {
       //   }, updateSecond);
       // }
     },
+    mobileSwitchBusInfo() {
+      this.$emit("mobileSwitchBusInfo")
+    }
   },
   computed: {
     activeList: {

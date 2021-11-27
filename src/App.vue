@@ -22,7 +22,7 @@
     <div class="content">
 
       <!--左側功能menu-->
-      <div class="menu">
+      <div class="menu" :style="[isMobileOpenMenu ? '' : {'transform' : 'translate( -100%,0)'}]">
 
         <!--logo-->
         <div class="img_logo"></div>
@@ -72,7 +72,7 @@
         </div>
 
         <div class="header_mobile flex_row_cb">
-          <i class="i_menu"> </i>
+          <i class="i_menu" @click="mobileSwitchMenu"> </i>
           <i class="img_logo_mobile"></i>
           <div class="btn_a11y">
             <div v-if="!isA11y" @click="isA11y = !isA11y">{{ $t("switchToFriendlyArea") }}</div>
@@ -109,7 +109,8 @@ export default {
     return {
       globalFontSize: this.$store.getters.getFontSize,
       isA11y: false,
-      isEn: false
+      isEn: false,
+      isMobileOpenMenu: true
     }
   },
   watch: {
@@ -122,6 +123,11 @@ export default {
       } else {
         this.isEn = false;
       }
+    }
+  },
+  methods: {
+    mobileSwitchMenu() {
+      this.isMobileOpenMenu = !this.isMobileOpenMenu;
     }
   }
 };
