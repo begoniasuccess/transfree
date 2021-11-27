@@ -14,22 +14,22 @@
 
     <div class="bookmark_container">
       <button
-        :class="{ active: isGoListActive }"
-        @click="
+          :class="{ active: isGoListActive }"
+          @click="
           isGoListActive = true;
           resetData();
         "
       >
-        去
+        {{ $t("go") }}
       </button>
       <button
-        :class="{ active: !isGoListActive }"
-        @click="
+          :class="{ active: !isGoListActive }"
+          @click="
           isGoListActive = false;
           resetData();
         "
       >
-        返
+        {{ $t("back") }}
       </button>
     </div>
 
@@ -40,23 +40,23 @@
             <span v-if="data.StopStatus == 0">
               <label class="bus_status1" v-if="data.EstimateTime / 60 >= 1">
                 <span>{{ parseInt(data.EstimateTime / 60) }}</span
-                >分
+                >{{ $t("minutes") }}
               </label>
               <label class="bus_status2" v-if="data.EstimateTime / 60 < 1">
-                <span>進站中</span>
+                <span>{{ $t("pitting") }}</span>
               </label>
             </span>
             <span v-if="data.StopStatus == 1"
-              ><label class="bus_status0">尚未發車</label>
+            ><label class="bus_status0">{{ $t("hasNotDeparted") }}</label>
             </span>
             <span v-if="data.StopStatus == 2"
-              ><label class="bus_status0">交管不停靠</label></span
+            ><label class="bus_status0">{{ $t("trafficControlDoNotStop") }}</label></span
             >
             <span v-if="data.StopStatus == 3"
-              ><label class="bus_status0">末班車已過</label></span
+            ><label class="bus_status0">{{ $t("lastBusHasPassed") }}</label></span
             >
             <span v-if="data.StopStatus == 4"
-              ><label class="bus_status0">今日未營運</label></span
+            ><label class="bus_status0">{{ $t("notOperatingToday") }}</label></span
             >
             <div>{{ data.StopName.Zh_tw }}</div>
           </div>
@@ -66,12 +66,12 @@
           <!--          </div>-->
           <div class="flex_col">
             <div
-              v-for="(bus, i) in getBusNearByStop(
+                v-for="(bus, i) in getBusNearByStop(
                 data.StopName.Zh_tw,
                 data.Direction
               )"
-              :key="i"
-              class="flex_row_ce"
+                :key="i"
+                class="flex_row_ce"
             >
               <p class="text_primary">{{ bus.PlateNumb }}</p>
               <i class="i_a11ybus" v-if="isBarrierFree(bus.PlateNumb)"></i>
@@ -123,15 +123,15 @@
         <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
         <!--        </div>-->
       </div>
-      <p class="text_info">更新時間 {{ updateTime }}</p>
+      <p class="text_info">{{ $t("updateTimestamp") }} {{ updateTime }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { BUS_URL_V2, sendRequest } from "../utils/https";
-import { RESPONSE_DATA_FORMAT_JSON } from "../constant/common";
-import { getCurrentDateTime } from "../utils/date";
+import {BUS_URL_V2, sendRequest} from "../utils/https";
+import {RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
+import {getCurrentDateTime} from "../utils/date";
 
 export default {
   name: "EstimatedTimeOfArrival",
@@ -170,58 +170,58 @@ export default {
     getAllBusInCity() {
       const city = this.$route.params.city;
       sendRequest(
-        "get",
-        `${BUS_URL_V2}/Vehicle/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+          "get",
+          `${BUS_URL_V2}/Vehicle/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
-        .then((res) => {
-          this.allBusInCity = res.data;
-        })
-        .catch((err) => {
-          //TODO Change to popup
-          window.alert("Get AllBusInCity occurs error：" + err);
-        });
+          .then((res) => {
+            this.allBusInCity = res.data;
+          })
+          .catch((err) => {
+            //TODO Change to popup
+            window.alert("Get AllBusInCity occurs error：" + err);
+          });
     },
     getStopList() {
       const city = this.$route.params.city;
       const routeName = this.$route.params.routeName;
       sendRequest(
-        "get",
-        `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+          "get",
+          `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
-        .then((res) => {
-          console.log(res);
-          this.goList = res.data
-            .filter((data) => data.Direction == 0)
-            .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
-          this.backList = res.data
-            .filter((data) => data.Direction == 1)
-            .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
-          this.updateTime = getCurrentDateTime();
-        })
-        .catch((err) => {
-          //TODO Change to popup
-          window.alert("Get EstimatedTimeOfArrival occurs error：" + err);
-        });
+          .then((res) => {
+            console.log(res);
+            this.goList = res.data
+                .filter((data) => data.Direction == 0)
+                .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
+            this.backList = res.data
+                .filter((data) => data.Direction == 1)
+                .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
+            this.updateTime = getCurrentDateTime();
+          })
+          .catch((err) => {
+            //TODO Change to popup
+            window.alert("Get EstimatedTimeOfArrival occurs error：" + err);
+          });
     },
     getBusList() {
       const city = this.$route.params.city;
       const routeName = this.$route.params.routeName;
       sendRequest(
-        "get",
-        `${BUS_URL_V2}/RealTimeNearStop/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+          "get",
+          `${BUS_URL_V2}/RealTimeNearStop/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
-        .then((res) => {
-          this.busList = res.data;
-        })
-        .catch((err) => {
-          //TODO Change to popup
-          window.alert("Get RealTimeNearStop occurs error：" + err);
-        });
+          .then((res) => {
+            this.busList = res.data;
+          })
+          .catch((err) => {
+            //TODO Change to popup
+            window.alert("Get RealTimeNearStop occurs error：" + err);
+          });
     },
     getBusNearByStop(stopName, direction) {
       const nearBy = this.busList.filter(
-        (data) =>
-          data.StopName.Zh_tw === stopName && data.Direction === direction
+          (data) =>
+              data.StopName.Zh_tw === stopName && data.Direction === direction
       );
       if (nearBy.length === 0) {
         return "";
@@ -232,7 +232,7 @@ export default {
     isBarrierFree(plateNumb) {
       if (plateNumb !== "") {
         const bus = this.allBusInCity.filter(
-          (data) => data.PlateNumb === plateNumb
+            (data) => data.PlateNumb === plateNumb
         );
         return bus.length !== 0 && bus[0].VehicleType === 1;
       } else {
@@ -262,7 +262,8 @@ export default {
         }
       },
       // eslint-disable-next-line
-      set(value) {},
+      set(value) {
+      },
     },
   },
   watch: {

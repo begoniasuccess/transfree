@@ -57,11 +57,11 @@
       <!--                </div>-->
       <!--              </div>-->
       <!--            </div>-->
-      <SearchList
-          :selectedCity="selected.value"
-          :search="inputValue"
-          v-on:getBusNum="getBusNum"
-      ></SearchList>
+<!--      <SearchList-->
+<!--          :selectedCity="selected.value"-->
+<!--          :search="inputValue"-->
+<!--          v-on:getBusNum="getBusNum"-->
+<!--      ></SearchList>-->
 
       <!-- <router-link :to="`/search-bus/search-list/${selected.value}`"
         >555</router-link
@@ -99,9 +99,9 @@
       <!--      </div>-->
 
       <!--block_list:動態公車列表模式-->
-      <!-- <div class="block_list">
+      <div class="block_list">
         <router-view></router-view>
-      </div> -->
+      </div>
 
       <!--block_list:動態公車地圖模式-->
       <!--      <div class="block_list">-->
@@ -222,7 +222,7 @@
 <script>
 import {CITIES} from "../constant/city";
 import {BusObj} from "../constant/bus";
-import SearchList from "./SearchList";
+// import SearchList from "./SearchList";
 import Search from "./Search";
 import {BUS_URL_V2, sendRequest} from "../utils/https";
 import BusInfo from "./BusInfo";
@@ -231,13 +231,13 @@ import {getCurrentLocationInfo} from "../utils/location";
 
 export default {
   name: "SearchBus",
-  components: {DynamicKeyboard, BusInfo, SearchList, Search},
+  components: {DynamicKeyboard, BusInfo, Search},
   data() {
     return {
       cities: CITIES,
       selected: CITIES[0],
       open: false,
-      isDynamicKeyboardShow: false,
+      isDynamicKeyboardShow: true,
       isBusInfoShow: false,
       searchBusList: new Array(),
       routeName: String, // 路線名稱
