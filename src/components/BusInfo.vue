@@ -2,7 +2,7 @@
   <div>
     <div class="flex_row_cb">
       <p class="title_txt">{{ $t("busInfo") }}</p>
-      <i class="i_close"></i>
+      <i class="i_close" @click="mobileSwitchBusInfo"></i>
     </div>
 
     <!--卡片式資訊-->
@@ -113,6 +113,11 @@ export default {
       //TODO change to popup
       console.log(err);
     })
+  },
+  methods: {
+    mobileSwitchBusInfo() {
+      this.$emit("mobileSwitchBusInfo");
+    }
   }
 }
 </script>
