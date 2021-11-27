@@ -4,7 +4,8 @@
   "commonlyUsed": "Common Bus",
   "settings": "Settings",
 
-  "switchToFriendlyArea": "Switch To Friendly Area",
+  "switchToFriendlyArea": "Friendly Area",
+  "switchToNormalArea": "Normal Area",
 
   "personalSettings": "Personal Settings",
   "updateSettings": "Update Settings",
@@ -69,5 +70,28 @@
   "nangangSoftwarePark": "Nangang Software Park",
   "night": "Night",
   "maokong": "Maokong",
-  "wyan": "Wyan"
+  "wyan": "Wyan",
+
+  "Taipei": "Taipei",
+  "NewTaipei": "NewTaipei",
+  "Taoyuan": "Taoyuan",
+  "Taichung": "Taichung",
+  "Tainan": "Tainan",
+  "Kaohsiung": "Kaohsiung",
+  "Keelung": "Keelung",
+  "Hsinchu": "Hsinchu",
+  "HsinchuCounty": "HsinchuCounty",
+  "MiaoliCounty": "MiaoliCounty",
+  "ChanghuaCounty": "ChanghuaCounty",
+  "NantouCounty": "NantouCounty",
+  "YunlinCounty": "YunlinCounty",
+  "ChiayiCounty": "ChiayiCounty",
+  "Chiayi": "Chiayi",
+  "PingtungCounty": "PingtungCounty",
+  "YilanCounty": "YilanCounty",
+  "HualienCounty": "HualienCounty",
+  "TaitungCounty": "TaitungCounty",
+  "KinmenCounty": "KinmenCounty",
+  "PenghuCounty": "PenghuCounty",
+  "LienchiangCounty": "LienchiangCounty"
 }
