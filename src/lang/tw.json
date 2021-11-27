@@ -3,10 +3,8 @@
   "nearbyStop": "附近站牌",
   "commonlyUsed": "常用公車",
   "settings": "設定",
-
   "switchToFriendlyArea": "友善專區",
   "switchToNormalArea": "一般專區",
-
   "personalSettings": "個人設定",
   "updateSettings": "更新設定",
   "versionSettings": "版本設定",
@@ -27,12 +25,10 @@
   "fontNormal": "字體 正常",
   "fontBig": "字體 較大",
   "fontBigger": "字體 更大",
-
   "selectCity": "請選擇縣市",
   "enterRouteName": "請輸入路線、站名",
   "searchTimestamp": "搜尋時間",
   "searchList": "搜尋清單",
-
   "go": "去",
   "back": "返",
   "minutes": "分",
@@ -42,7 +38,6 @@
   "lastBusHasPassed": "末班車已過",
   "notOperatingToday": "今日未營運",
   "updateTimestamp": "更新時間",
-
   "busInfo": "公車相關資訊",
   "fare": "票價",
   "chargingMethod": "收費方式",
@@ -52,7 +47,6 @@
   "lastBus": "末班車",
   "remark": "備註",
   "holidayDeparture": "假日發車",
-
   "dynamicKeyboard": "Dynamic Keyboard",
   "red": "紅",
   "blue": "藍",
@@ -70,5 +64,28 @@
   "nangangSoftwarePark": "南軟",
   "night": "夜間",
   "maokong": "貓空",
-  "wyan": "懷恩"
+  "wyan": "懷恩",
+
+  "Taipei": "臺北市",
+  "NewTaipei": "新北市",
+  "Taoyuan": "桃園市",
+  "Taichung": "臺中市",
+  "Tainan": "臺南市",
+  "Kaohsiung": "高雄市",
+  "Keelung": "基隆市",
+  "Hsinchu": "新竹市",
+  "HsinchuCounty": "新竹縣",
+  "MiaoliCounty": "苗栗縣",
+  "ChanghuaCounty": "彰化縣",
+  "NantouCounty": "南投縣",
+  "YunlinCounty": "雲林縣",
+  "ChiayiCounty": "嘉義縣",
+  "Chiayi": "嘉義市",
+  "PingtungCounty": "屏東縣",
+  "YilanCounty": "宜蘭縣",
+  "HualienCounty": "花蓮縣",
+  "TaitungCounty": "臺東縣",
+  "KinmenCounty": "金門縣",
+  "PenghuCounty": "澎湖縣",
+  "LienchiangCounty": "連江縣"
 }

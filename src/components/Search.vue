@@ -5,7 +5,7 @@
 
     <div class="custom-select" @blur="open = false">
       <div class="selected" :class="{ open: open }" @click="open = !open">
-        {{ selected.text }}
+        {{ $t(selected.value) }}
       </div>
 
       <div class="items flex_col" :class="{ selectHide: !open }">
@@ -20,7 +20,7 @@
               open = false;
             "
           >
-            {{ city.text }}
+            {{ $t(city.value) }}
           </div>
         </div>
       </div>
