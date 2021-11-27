@@ -2,7 +2,7 @@
   <div>
     <div class="flex_row_cb">
       <p class="title_txt">{{ $t("dynamicKeyboard") }}</p>
-      <i class="i_close"></i>
+      <i class="i_close" @click="mobileSwitchBusInfo"></i>
     </div>
     <div class="flex_row_cc">
       <button class="label_red" data-value="紅" @click="clickKeyboard">
@@ -94,6 +94,9 @@ export default {
         event.currentTarget.getAttribute("data-value")
       );
     },
+    mobileSwitchBusInfo() {
+      this.$emit("mobileSwitchBusInfo");
+    }
   },
 };
 </script>
