@@ -1,25 +1,59 @@
 /*英文版本 元件*/
+/* @group [長度控制 max-width: 768px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 768px) {
+   .en p {
+      font-size: 0.875em;
+      letter-spacing: -0.5px;
+      line-height: normal;
+   }
 
-.en .inner_group {
-   font-size: 0.875em;
-   letter-spacing: -0.5px;
+   .en .title_txt {
+      font-size: 1.25em;
+   }
+
+   .en .menu_btn_txt {
+      width: 100px;
+   }
+
+   .en .inner_group {
+      font-size: 0.875em;
+      letter-spacing: -0.6px;
+   }
+   .en .custom-switch{
+      ont-size: 0.875em;
+      line-height: 20px;
+   }
 }
 
 /* @group [長度控制 max-width: 375px] (以下) ----------------------------------------------------------------------------------------*/
 @media only screen and (max-width: 375px) {
    .en .custom-select .selected {
-      padding-right: 36px;
+      line-height: normal;
+      padding: 8px 36px 8px 16px;
+      line-height: 20px;
       font-size: 0.875em;
       letter-spacing: -0.5px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
    }
    .en .option_title{
       font-size: 0.875em;
-      letter-spacing: -0.5px;
-      line-height: 24px;
+      letter-spacing: -0.6px;
+      line-height: 40px;
    }
    .en .custom-select .items .select_option{
-      line-height: 20px;
-      padding-top: 8px;
+      line-height: 24px;
+      margin: 4px 0px;
+   }
+
+}
+/* @group [長度控制 max-width: 375px] (以下) ----------------------------------------------------------------------------------------*/
+@media only screen and (max-width: 320px) {
+   .en p {
+      font-size: 0.75em;
+      letter-spacing: -0.6px;
+      line-height: normal;
    }
 }
 

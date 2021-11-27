@@ -159,6 +159,7 @@ export default {
   overflow: hidden;
 }
 
+
 p {
   margin-block-start: auto;
   margin-block-end: auto;
@@ -175,9 +176,6 @@ a {
   }
 }
 
-#app.en  {
-  font-size: 14px;
-}
 
 /* End [default] ---------------------------------------------------------------------------------------- */
 

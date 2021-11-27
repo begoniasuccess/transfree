@@ -116,7 +116,7 @@
           <!--自動更新-->
           <!-- switch -->
           <div class="custom-switch">
-            <div class="selected">{{ $t("autoUpdateRoute") }}</div>
+            <div class="selected"><p>{{ $t("autoUpdateRoute") }}</p></div>
             <div class="switch_open_close">
               <input
                 type="checkbox"
@@ -135,7 +135,7 @@
 
           <!--更新頻率-->
           <div class="custom-select" @blur="isUpdateFrequencyOpen = false">
-            <div
+    <div
               class="selected"
               :class="{ open: isUpdateFrequencyOpen }"
               @click="
@@ -144,8 +144,11 @@
                 isMultilingualOpen = false;
               "
             >
+             <p class="text_overflow">
               {{ $t("arrivalTimeUpdateFrequency") }}
               {{ selectUpdateFrequency }} {{ $t("seconds") }}
+              </p>
+
             </div>
 
             <div

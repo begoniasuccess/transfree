@@ -109,10 +109,20 @@ button {
   height: 70px;
   box-shadow: 0px 1px 6px 1px rgba(145, 145, 145, 0.6);
   border-radius: 8px;
-  margin: 16px 8px;
+  margin: 16px 4px;
   border-color: transparent;
 }
+.en button {
+  min-width: 80px;
+  min-height:80px;
+  padding: 4px;
+  font-size: 1em;
+  letter-spacing: -1px;
+  white-space: normal;
+  line-height: 24px;
 
+
+}
 .label_primary {
   background-color: #2398a1;
   color: #ffffff;
@@ -156,5 +166,6 @@ button {
     font-size: 1.5em;
     margin: 8px 4px;
   }
+
 }
 </style>
