@@ -69,7 +69,7 @@
           <!--自動更新-->
           <!-- switch -->
           <div class="custom-switch">
-            <div class="selected">{{ $t("autoUpdateRoute") }}</div>
+            <div class="selected"><p>{{ $t("autoUpdateRoute") }}</p></div>
             <div class="switch_open_close">
               <input type="checkbox" id="toggle" v-model="selectedIsAutoUpdate">
               <label for="toggle">
@@ -87,7 +87,8 @@
           <div class="custom-select" @blur="isUpdateFrequencyOpen = false">
             <div class="selected" :class="{ open: isUpdateFrequencyOpen }"
                  @click="isUpdateFrequencyOpen = !isUpdateFrequencyOpen; isFontSizeOpen = false; isMultilingualOpen = false">
-              {{ $t("arrivalTimeUpdateFrequency") }} {{ selectUpdateFrequency }} {{ $t("seconds") }}
+              <p class="text_overflow">
+              {{ $t("arrivalTimeUpdateFrequency") }} {{ selectUpdateFrequency }} {{ $t("seconds") }}</p>
             </div>
 
             <div class="items flex_col" :class="{ selectHide: !isUpdateFrequencyOpen }">

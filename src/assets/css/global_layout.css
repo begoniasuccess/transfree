@@ -113,7 +113,7 @@
 
     .content_function {
         padding: 16px;
-        height: fit-content;
+        height: 100vh;
     }
 
     .content_list {
