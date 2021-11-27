@@ -66,7 +66,8 @@
 
         <!--友善專區-->
         <div class="btn_a11y" @click="isA11y = !isA11y">
-          <div>{{ $t("switchToFriendlyArea") }}</div>
+          <div v-if="!isA11y">{{ $t("switchToFriendlyArea") }}</div>
+          <div v-if="isA11y">{{ $t("switchToNormalArea") }}</div>
           <i class="i_a11y"> </i>
         </div>
 

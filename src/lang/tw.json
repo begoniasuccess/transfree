@@ -4,7 +4,8 @@
   "commonlyUsed": "常用公車",
   "settings": "設定",
 
-  "switchToFriendlyArea": "切換友善專區",
+  "switchToFriendlyArea": "友善專區",
+  "switchToNormalArea": "一般專區",
 
   "personalSettings": "個人設定",
   "updateSettings": "更新設定",

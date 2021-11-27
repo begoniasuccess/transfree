@@ -4,7 +4,8 @@
   "commonlyUsed": "Common Bus",
   "settings": "Settings",
 
-  "switchToFriendlyArea": "Switch To Friendly Area",
+  "switchToFriendlyArea": "Friendly Area",
+  "switchToNormalArea": "Normal Area",
 
   "personalSettings": "Personal Settings",
   "updateSettings": "Update Settings",
