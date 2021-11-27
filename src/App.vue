@@ -65,18 +65,19 @@
       <div class="search">
 
         <!--友善專區-->
-        <div class="btn_a11y" @click="isA11y = !isA11y">
-          <div v-if="!isA11y">{{ $t("switchToFriendlyArea") }}</div>
-          <div v-if="isA11y">{{ $t("switchToNormalArea") }}</div>
-          <i class="i_a11y"> </i>
+        <div class="btn_a11y">
+          <div v-if="!isA11y" @click="isA11y = !isA11y">{{ $t("switchToFriendlyArea") }}</div>
+          <div v-if="isA11y" @click="isA11y = !isA11y">{{ $t("switchToNormalArea") }}</div>
+          <i class="i_a11y" @click="isA11y = !isA11y"></i>
         </div>
 
         <div class="header_mobile flex_row_cb">
           <i class="i_menu"> </i>
           <i class="img_logo_mobile"></i>
-          <div class="btn_a11y" @click="isA11y = !isA11y">
-            <div>友善專區</div>
-            <i class="i_a11y"> </i>
+          <div class="btn_a11y">
+            <div v-if="!isA11y" @click="isA11y = !isA11y">{{ $t("switchToFriendlyArea") }}</div>
+            <div v-if="isA11y" @click="isA11y = !isA11y">{{ $t("switchToNormalArea") }}</div>
+            <i class="i_a11y" @click="isA11y = !isA11y"> </i>
           </div>
         </div>
         <div class="black_overlay"></div>
