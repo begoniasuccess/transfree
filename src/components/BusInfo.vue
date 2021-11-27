@@ -1,86 +1,70 @@
 <template>
   <div>
     <div class="flex_row_cb">
-      <p class="title_txt">公車相關資訊</p>
+      <p class="title_txt">{{ $t("busInfo") }}</p>
       <i class="i_close"></i>
     </div>
 
     <!--卡片式資訊-->
     <div class="content_card">
-      <p class="title_card_txt">票價</p>
+      <p class="title_card_txt">{{ $t("fare") }}</p>
       <label class="flex_row_cb">
         <p>{{ operatorName }}</p>
         <p>{{ operatorPhoneNumber }}</p>
       </label>
       <label class="flex_row_cb">
-        <p>收費方式</p>
+        <p>{{ $t("chargingMethod") }}</p>
         <p>{{ ticketPriceDescription }}</p>
       </label>
       <label class="flex_row_cb">
-        <p>分段緩衝</p>
+        <p>{{ $t("segmentedBuffer") }}</p>
         <p>{{ fareBufferZoneDescription }}</p>
       </label>
     </div>
 
     <!--卡片式資訊-->
     <div class="content_card">
-      <p class="title_card_txt">平日發車</p>
+      <p class="title_card_txt">{{ $t("weekdayDeparture") }}</p>
       <div class="flex_row_sb">
         <div class="w_100">
           <label class="flex_row_cb">
-            <p>首班車</p>
+            <p>{{ $t("firstBus") }}</p>
             <p>{{ firstBusTime }}</p>
-          </label>
-          <label class="flex_row_cb">
-            <p>尖峰班距</p>
-            <p>(4~6分)</p>
           </label>
         </div>
 
         <div class="w_100">
           <label class="flex_row_cb">
-            <p>末班車</p>
+            <p>{{ $t("lastBus") }}</p>
             <p>{{ lastBusTime }}</p>
-          </label>
-          <label class="flex_row_cb">
-            <p>離峰班距</p>
-            <p>(5~10分)</p>
           </label>
         </div>
       </div>
       <label class="w_100">
-        <p>備註</p>
+        <p>{{ $t("remark") }}</p>
       </label>
     </div>
 
     <!--卡片式資訊-->
     <div class="content_card">
-      <p class="title_card_txt">假日發車</p>
+      <p class="title_card_txt">{{ $t("holidayDeparture") }}</p>
       <div class="flex_row_sb">
         <div class="flex_col w_100">
           <label class="flex_row_cb">
-            <p>首班車</p>
+            <p>{{ $t("lastBus") }}</p>
             <p>{{ holidayFirstBusTime }}</p>
-          </label>
-          <label class="flex_row_cb">
-            <p>尖峰班距</p>
-            <p>(4~6分)</p>
           </label>
         </div>
 
         <div class="flex_col w_100">
           <label class="flex_row_cb">
-            <p>末班車</p>
+            <p>{{ $t("lastBus") }}</p>
             <p>{{ holidayLastBusTime }}</p>
-          </label>
-          <label class="flex_row_cb">
-            <p>離峰班距</p>
-            <p>(5~10分)</p>
           </label>
         </div>
       </div>
       <label class="w_100">
-        <p>備註</p>
+        <p>{{ $t("remark") }}</p>
       </label>
     </div>
   </div>
