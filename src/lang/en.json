@@ -27,6 +27,10 @@
   "fontBig": "Font Big",
   "fontBigger": "Font Bigger",
 
+  "selectCity": "Please Select City",
+  "enterRouteName": "Please Enter The Route Name Or Station Name",
+  "searchTimestamp": "Search Timestamp",
+  "searchList": "Search List",
 
   "fare": "Fare"
 }

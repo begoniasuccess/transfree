@@ -5,13 +5,13 @@
         <!--block_list:搜尋列表-->
         <div class="block_list">
           <div class="content_list">
-            <div class="list_top flex_row_cc">搜尋清單</div>
+            <div class="list_top flex_row_cc">{{ $t("searchList") }}</div>
             <div class="list_bottom h_100 flex_col">
               <div class="select_scrollbar">
                 <div
-                  class="list_inner"
-                  v-for="(bus, i) in searchBusList"
-                  :key="i"
+                    class="list_inner"
+                    v-for="(bus, i) in searchBusList"
+                    :key="i"
                 >
                   <div class="flex_col" @click="getThisBus(bus.routeUID)">
                     <p class="text_b">{{ bus.zh_tw }}</p>
@@ -23,9 +23,9 @@
                   </div>
                   <div class="flex_row_ce">
                     <i
-                      class="i_love"
-                      :class="{ 'i_love active': bus.isLove }"
-                      @click="setLoveList(bus)"
+                        class="i_love"
+                        :class="{ 'i_love active': bus.isLove }"
+                        @click="setLoveList(bus)"
                     ></i>
                     <i class="i_next" @click="getThisBus(bus.routeUID)"></i>
                   </div>
@@ -40,14 +40,14 @@
 </template>
 
 <script>
-import { CITIES } from "../constant/city";
+import {CITIES} from "../constant/city";
 import {
   BUS_URL_V2,
   RESPONSE_DATA_FORMAT_JSON,
   sendRequest,
 } from "../utils/https";
-import { BusObj } from "../constant/bus";
-import { addBus, removeBus } from "../utils/commonly-used-bus.js";
+import {BusObj} from "../constant/bus";
+import {addBus, removeBus} from "../utils/commonly-used-bus.js";
 // import { DEFAULT_NUMBER_OF_QUERY_RECORDS } from "../constant/common";
 
 export default {
@@ -80,31 +80,31 @@ export default {
       // const city = this.$route.params.city;
       // const routeName = this.$route.params.routeName;
       sendRequest(
-        "get",
-        `${BUS_URL_V2}/Route/City/${this.selectedCity}?$top=10&$format=${RESPONSE_DATA_FORMAT_JSON}`
+          "get",
+          `${BUS_URL_V2}/Route/City/${this.selectedCity}?$top=10&$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
-        .then((res) => {
-          console.log("SearchList sendRequest this.selected=", this.selected);
-          console.log("res=", res);
-          console.log("this.searchBusList=", this.searchBusList);
-          console.log("search=", this.search);
-          this.searchBus(res);
-        })
-        .catch((err) => {
-          //TODO Change to popup
-          window.alert("Get SearchList occurs error：" + err);
-        });
+          .then((res) => {
+            console.log("SearchList sendRequest this.selected=", this.selected);
+            console.log("res=", res);
+            console.log("this.searchBusList=", this.searchBusList);
+            console.log("search=", this.search);
+            this.searchBus(res);
+          })
+          .catch((err) => {
+            //TODO Change to popup
+            window.alert("Get SearchList occurs error：" + err);
+          });
     },
     searchBus(res) {
       this.searchBusList = [];
       this.cityBusList = [];
       res.data.forEach((element) => {
         const item = new BusObj(
-          element.RouteUID,
-          element.RouteName.Zh_tw,
-          element.RouteName.En,
-          element.DepartureStopNameZh,
-          element.DestinationStopNameZh
+            element.RouteUID,
+            element.RouteName.Zh_tw,
+            element.RouteName.En,
+            element.DepartureStopNameZh,
+            element.DestinationStopNameZh
         );
         this.searchBusList.push(item);
       });

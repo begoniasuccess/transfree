@@ -17,7 +17,7 @@
       <!--block_list:白箱狀態-->
       <div class="block_list" v-if="busList.length < 1">
         <div class="content_list">
-          <div class="list_top flex_col_cc">搜尋清單</div>
+          <div class="list_top flex_col_cc">{{ $t("searchList") }}</div>
           <div class="list_bottom flex_col_cc">
             <div class="img_box"></div>
           </div>
