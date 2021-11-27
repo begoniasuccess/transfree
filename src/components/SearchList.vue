@@ -23,7 +23,7 @@
                   v-for="(bus, i) in searchBusList"
                   :key="i"
                 >
-                  <div class="flex_col" @click="getThisBus(bus.routeUID)">
+                  <div class="flex_col" @click="getThisBus(bus)">
                     <p class="text_b">{{ bus.zh_tw }}</p>
                     <p class="text_sec">
                       {{ bus.departureStopNameZh }}-{{
@@ -37,7 +37,7 @@
                       :class="{ 'i_love active': bus.isLove }"
                       @click="setLoveList(bus)"
                     ></i>
-                    <i class="i_next" @click="getThisBus(bus.routeUID)"></i>
+                    <i class="i_next" @click="getThisBus(bus)"></i>
                   </div>
                 </div>
               </div>
@@ -91,7 +91,7 @@ export default {
       // const routeName = this.$route.params.routeName;
       sendRequest(
         "get",
-        `${BUS_URL_V2}/Route/City/${this.selectedCity.value}?$top=10&$format=${RESPONSE_DATA_FORMAT_JSON}`
+        `${BUS_URL_V2}/Route/City/${this.selectedCity.value}?&$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
         .then((res) => {
           console.log("SearchList sendRequest this.selected=", this.selected);
@@ -134,12 +134,11 @@ export default {
       this.searchBusList = tmplist;
     },
     getThisBus(bus) {
-      this.busNum = bus;
+      this.busNum = bus.zh_tw;
       this.order();
       this.$emit("getBusNum", this.busNum);
     },
     setLoveList(bus) {
-      console.log("setLoveList bus=", bus);
       this.cityBusList.forEach((element) => {
         if (element.routeUID == bus.routeUID) {
           element.isLove = !bus.isLove;
