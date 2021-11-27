@@ -3,22 +3,22 @@
     <div class="flex_row_sb w_100 h_100">
       <div class="flex_col w_100 h_100">
         <Search
-            v-on:getSearchCity="getSearchCity"
-            v-on:getInputValuee="getInputValuee"
+          v-on:getSearchCity="getSearchCity"
+          v-on:getInputValue="getInputValue"
         ></Search>
 
         <!--次要列表-->
         <div
-            class="block_sec flex_col select_scrollbar"
-            v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
+          class="block_sec flex_col select_scrollbar"
+          v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
         >
           <span v-if="isDynamicKeyboardShow">
             <DynamicKeyboard @clickKeyboard="clickKeyboard"></DynamicKeyboard>
           </span>
           <span v-if="isBusInfoShow">
             <BusInfo
-                :city="$route.params.city"
-                :routeName="$route.params.routeName"
+              :city="$route.params.city"
+              :routeName="$route.params.routeName"
             ></BusInfo>
           </span>
 
@@ -57,11 +57,11 @@
       <!--                </div>-->
       <!--              </div>-->
       <!--            </div>-->
-<!--      <SearchList-->
-<!--          :selectedCity="selected.value"-->
-<!--          :search="inputValue"-->
-<!--          v-on:getBusNum="getBusNum"-->
-<!--      ></SearchList>-->
+      <SearchList
+        :selectedCity="selected"
+        :search="inputValue"
+        v-on:getBusNum="getBusNum"
+      ></SearchList>
 
       <!-- <router-link :to="`/search-bus/search-list/${selected.value}`"
         >555</router-link
@@ -99,9 +99,9 @@
       <!--      </div>-->
 
       <!--block_list:動態公車列表模式-->
-      <div class="block_list">
+      <!-- <div class="block_list">
         <router-view></router-view>
-      </div>
+      </div> -->
 
       <!--block_list:動態公車地圖模式-->
       <!--      <div class="block_list">-->
@@ -220,18 +220,18 @@
 </template>
 
 <script>
-import {CITIES} from "../constant/city";
-import {BusObj} from "../constant/bus";
-// import SearchList from "./SearchList";
+import { CITIES } from "../constant/city";
+import { BusObj } from "../constant/bus";
+import SearchList from "./SearchList";
 import Search from "./Search";
-import {BUS_URL_V2, sendRequest} from "../utils/https";
+// import { BUS_URL_V2, sendRequest } from "../utils/https";
 import BusInfo from "./BusInfo";
 import DynamicKeyboard from "./DynamicKeyboard";
-import {getCurrentLocationInfo} from "../utils/location";
+import { getCurrentLocationInfo } from "../utils/location";
 
 export default {
   name: "SearchBus",
-  components: {DynamicKeyboard, BusInfo, Search},
+  components: { DynamicKeyboard, BusInfo, SearchList, Search },
   data() {
     return {
       cities: CITIES,
@@ -248,20 +248,20 @@ export default {
   },
   //TODO need to remove(for testing axios and location)
   mounted() {
-    sendRequest(
-        "get",
-        `${BUS_URL_V2}/RealTimeByFrequency/Streaming/City/Hsinchu?$top=30&$format=JSON`
-    ).then((res) => {
-      console.log(res);
-    });
+    // sendRequest(
+    //   "get",
+    //   `${BUS_URL_V2}/RealTimeByFrequency/Streaming/City/Hsinchu?$top=30&$format=JSON`
+    // ).then((res) => {
+    //   console.log(res);
+    // });
 
     getCurrentLocationInfo()
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   methods: {
     clickKeyboard(value) {
@@ -282,9 +282,9 @@ export default {
     },
     getSearchCity: function (city) {
       console.log("getSearchValue:" + city + "/");
-      this.selected.value = city;
+      this.selected = city;
     },
-    getInputValuee: function (inputValue) {
+    getInputValue: function (inputValue) {
       console.log("getSearchValue:" + inputValue + "/");
       this.inputValue = inputValue;
     },

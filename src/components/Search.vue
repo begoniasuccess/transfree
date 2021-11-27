@@ -12,10 +12,10 @@
         <p class="option_title">{{ $t("selectCity") }}</p>
         <div class="select_scrollbar">
           <div
-              class="select_option"
-              v-for="(city, i) in cities"
-              :key="i"
-              @click="
+            class="select_option"
+            v-for="(city, i) in cities"
+            :key="i"
+            @click="
               selected = city;
               open = false;
             "
@@ -28,10 +28,10 @@
 
     <!-- 路線-input -->
     <input
-        type="text"
-        class="inner_group"
-        :placeholder="$t('enterRouteName')"
-        v-model="inputValue"
+      type="text"
+      class="inner_group"
+      :placeholder="$t('enterRouteName')"
+      v-model="inputValue"
     />
 
     <!--＝搜尋時間-->
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import {CITIES} from "../constant/city";
+import { CITIES } from "../constant/city";
 
 export default {
   name: "Search",
@@ -57,8 +57,7 @@ export default {
     };
   },
   //TODO need to remove(for testing axios and location)
-  mounted() {
-  },
+  mounted() {},
   methods: {
     clickKeyboard(value) {
       console.log("parent:" + value);
@@ -76,10 +75,11 @@ export default {
   },
   watch: {
     inputValue: function () {
-      this.$emit("getInputValuee", this.inputValue);
+      this.$emit("getInputValue", this.inputValue);
     },
     selected: function () {
-      this.$emit("getSearchCity", this.selected.value);
+      this.$emit("getSearchCity", this.selected);
+      this.$emit("getInputValue", this.inputValue);
     },
   },
 };

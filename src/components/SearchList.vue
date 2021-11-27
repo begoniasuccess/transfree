@@ -9,9 +9,9 @@
             <div class="list_bottom h_100 flex_col">
               <div class="select_scrollbar">
                 <div
-                    class="list_inner"
-                    v-for="(bus, i) in searchBusList"
-                    :key="i"
+                  class="list_inner"
+                  v-for="(bus, i) in searchBusList"
+                  :key="i"
                 >
                   <div class="flex_col" @click="getThisBus(bus.routeUID)">
                     <p class="text_b">{{ bus.zh_tw }}</p>
@@ -23,9 +23,9 @@
                   </div>
                   <div class="flex_row_ce">
                     <i
-                        class="i_love"
-                        :class="{ 'i_love active': bus.isLove }"
-                        @click="setLoveList(bus)"
+                      class="i_love"
+                      :class="{ 'i_love active': bus.isLove }"
+                      @click="setLoveList(bus)"
                     ></i>
                     <i class="i_next" @click="getThisBus(bus.routeUID)"></i>
                   </div>
@@ -40,20 +40,20 @@
 </template>
 
 <script>
-import {CITIES} from "../constant/city";
+import { CITIES } from "../constant/city";
 import {
   BUS_URL_V2,
   RESPONSE_DATA_FORMAT_JSON,
   sendRequest,
 } from "../utils/https";
-import {BusObj} from "../constant/bus";
-import {addBus, removeBus} from "../utils/commonly-used-bus.js";
+import { BusObj } from "../constant/bus";
+import { getAllBus, addBus, removeBus } from "../utils/commonly-used-bus.js";
 // import { DEFAULT_NUMBER_OF_QUERY_RECORDS } from "../constant/common";
 
 export default {
   name: "SearchList",
   props: {
-    selectedCity: String,
+    selectedCity: Object,
     search: String,
   },
   data() {
@@ -63,8 +63,8 @@ export default {
       open: false,
       isDynamicKeyboardShow: false,
       isBusInfoShow: false,
-      searchBusList: new Array(),
-      cityBusList: new Array(),
+      searchBusList: new Array(), // 篩選過的List
+      cityBusList: new Array(), // 完整的List
       routeName: String, // 路線名稱
       // bus: BusObj,
       busNum: "", // 選擇的busNum
@@ -80,31 +80,33 @@ export default {
       // const city = this.$route.params.city;
       // const routeName = this.$route.params.routeName;
       sendRequest(
-          "get",
-          `${BUS_URL_V2}/Route/City/${this.selectedCity}?$top=10&$format=${RESPONSE_DATA_FORMAT_JSON}`
+        "get",
+        `${BUS_URL_V2}/Route/City/${this.selectedCity.value}?$top=10&$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
-          .then((res) => {
-            console.log("SearchList sendRequest this.selected=", this.selected);
-            console.log("res=", res);
-            console.log("this.searchBusList=", this.searchBusList);
-            console.log("search=", this.search);
-            this.searchBus(res);
-          })
-          .catch((err) => {
-            //TODO Change to popup
-            window.alert("Get SearchList occurs error：" + err);
-          });
+        .then((res) => {
+          console.log("SearchList sendRequest this.selected=", this.selected);
+          console.log("res=", res);
+          console.log("this.searchBusList=", this.searchBusList);
+          console.log("search=", this.search);
+          this.searchBus(res);
+          this.getLoveList();
+          this.searchKeyWord();
+        })
+        .catch((err) => {
+          //TODO Change to popup
+          window.alert("Get SearchList occurs error：" + err);
+        });
     },
     searchBus(res) {
       this.searchBusList = [];
       this.cityBusList = [];
       res.data.forEach((element) => {
         const item = new BusObj(
-            element.RouteUID,
-            element.RouteName.Zh_tw,
-            element.RouteName.En,
-            element.DepartureStopNameZh,
-            element.DestinationStopNameZh
+          element.RouteUID,
+          element.RouteName.Zh_tw,
+          element.RouteName.En,
+          element.DepartureStopNameZh,
+          element.DestinationStopNameZh
         );
         this.searchBusList.push(item);
       });
@@ -123,6 +125,7 @@ export default {
     },
     getThisBus(bus) {
       this.busNum = bus;
+      this.order();
       this.$emit("getBusNum", this.busNum);
     },
     setLoveList(bus) {
@@ -137,14 +140,37 @@ export default {
       } else {
         removeBus(bus);
       }
-      console.log("setLoveList this.cityBusList=", this.cityBusList);
-
-      console.log("after setLoveList bus=", bus);
+    },
+    getLoveList() {
+      let allBus = getAllBus();
+      if (allBus == null) {
+        return;
+      }
+      let tmpList = [];
+      allBus.forEach((element) => {
+        if (element.routeUID.substring(0, 3) == this.selectedCity.id) {
+          tmpList.push(element);
+        }
+      });
+      this.cityBusList.forEach((element) => {
+        tmpList.forEach((tmpBus) => {
+          if (tmpBus.routeUID == element.routeUID) {
+            element.isLove = true;
+          }
+        });
+      });
+    },
+    order() {
+      this.$router.push({
+        name: "EstimatedTimeOfArrival",
+        params: { city: this.selectedCity.value, routeName: this.busNum },
+      });
     },
   },
   watch: {
     selectedCity: function () {
       this.sendRequest();
+      this.getLoveList();
     },
     search: function () {
       this.searchKeyWord();
