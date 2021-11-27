@@ -13,7 +13,7 @@
           v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
         >
           <span v-if="isDynamicKeyboardShow">
-            <DynamicKeyboard @clickKeyboard="clickKeyboard"></DynamicKeyboard>
+            <DynamicKeyboard @clickKeyboard="clickKeyboard" @mobileSwitchBusInfo="mobileSwitchBusInfo"></DynamicKeyboard>
           </span>
           <span v-if="isBusInfoShow">
             <BusInfo
@@ -239,13 +239,13 @@ export default {
       selected: CITIES[0],
       open: false,
       isDynamicKeyboardShow: false,
-      isBusInfoShow: true,
+      isBusInfoShow: false,
       searchBusList: new Array(),
       routeName: String, // 路線名稱
       bus: BusObj,
       inputValue: "",
       busNum: "",
-      isMobileOpenBusInfo: false
+      isMobileOpenBusInfo: true
     };
   },
   //TODO need to remove(for testing axios and location)
