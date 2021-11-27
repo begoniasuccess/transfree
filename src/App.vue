@@ -111,7 +111,8 @@ export default {
       globalFontSize: this.$store.getters.getFontSize,
       isA11y: false,
       isEn: false,
-      isMobileOpenMenu: true
+      isMobileOpenMenu: true,
+      isPopupShow: false
     }
   },
   watch: {
