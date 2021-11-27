@@ -8,10 +8,10 @@
 
   "personalSettings": "個人設定",
   "updateSettings": "更新設定",
-  "versionInfo": "版本資訊",
+  "versionSettings": "版本設定",
   "resetCommonBus": "重設常用公車",
   "contactUs": "聯絡我們",
-  "fare": "票價",
+  "versionInfo": "版本資訊",
   "programVersion": "程式版本",
   "routeVersion": "路線版本",
   "autoUpdateRoute": "路線資料自動更新",
@@ -25,5 +25,8 @@
   "fontSmall": "字體 較小",
   "fontNormal": "字體 正常",
   "fontBig": "字體 較大",
-  "fontBigger": "字體 更大"
+  "fontBigger": "字體 更大",
+
+
+  "fare": "票價"
 }

@@ -121,11 +121,11 @@
 
         <!--版本資訊-->
         <div class="block_primary flex_col">
-          <p class="title_txt">{{ $t("versionInfo") }}</p>
+          <p class="title_txt">{{ $t("versionSettings") }}</p>
 
           <!--版本資訊-->
           <div class="content_card">
-            <p class="title_card_txt">{{ $t("fare") }}</p>
+            <p class="title_card_txt">{{ $t("versionInfo") }}</p>
             <label class="flex_row_cb">
               <p>{{ $t("programVersion") }}</p>
               <p>{{ programVersion }}</p>
@@ -253,13 +253,13 @@ export default {
   methods: {
     getFontSizeText(fontSize) {
       switch (fontSize) {
-        case 0.75:
+        case GLOBAL_FONT_SIZE_SMALL:
           return "fontSmall";
-        case 1:
+        case GLOBAL_FONT_SIZE_NORMAL:
           return "fontNormal";
-        case 1.25:
+        case GLOBAL_FONT_SIZE_BIG:
           return "fontBig";
-        case 1.5:
+        case GLOBAL_FONT_SIZE_BIGGER:
           return "fontBigger";
       }
     }
