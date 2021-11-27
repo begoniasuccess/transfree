@@ -260,11 +260,13 @@
     height: 36px;
     background-color: #D9D9D9;
     text-align: center;
+    align-items: center;
     color: #919191;
     font-weight: bold;
     border-radius: 20px;
-    padding-top: 6px;
+    padding:6px 0px;
     margin-right: 16px;
+    line-height: normal;
 }
 
 /*---- bus type:預計到站狀態 ----*/
@@ -276,13 +278,16 @@
     color: #FFFFFF;
     font-weight: bold;
     border-radius: 20px;
-    padding-top: 6px;
     margin-right: 16px;
+    padding:4px 0px;
+    line-height: normal;
+    align-items: center;
 }
 
 .bus_status1 > span {
     font-size: 1.375em;
-    padding-right: 4px;
+    padding-right: 2px;
+    line-height: normal;
 }
 
 /*---- bus type:進站中狀態 ----*/
@@ -294,8 +299,9 @@
     color: #FFFFFF;
     font-weight: bold;
     border-radius: 20px;
-    padding-top: 6px;
+    padding:6px 0px;
     margin-right: 16px;
+    line-height: normal;
 }
 
 /*---- symbol type:button ----*/
