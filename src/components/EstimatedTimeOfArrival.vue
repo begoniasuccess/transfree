@@ -3,10 +3,10 @@
     <div class="list_top flex_row_cb">
       <!--模式切換-->
       <i class="i_model_map"></i>
-      <p>{{ $route.params.routeName }}</p>
+      <p>{{ routeName }}</p>
       <div class="flex_row_ce">
         <i class="i_update" @click="clickUpdateData"></i>
-        <i class="i_info"></i>
+        <i class="i_info" @click="mobileSwitchBusInfo"></i>
       </div>
     </div>
 
@@ -58,7 +58,8 @@
             <span v-if="data.StopStatus == 4"
             ><label class="bus_status0">{{ $t("notOperatingToday") }}</label></span
             >
-            <div>{{ data.StopName.Zh_tw }}</div>
+            <div v-if="$store.getters.getMultilingual === multilingualChinese">{{ data.StopName.Zh_tw }}</div>
+            <div v-if="$store.getters.getMultilingual === multilingualEnglish">{{ data.StopName.En }}</div>
           </div>
           <!--          <div class="flex_row_ce">-->
           <!--            <p class="text_primary">{{ getBusNearByStop(data.StopName.Zh_tw, data.Direction) }}</p>-->
@@ -130,13 +131,14 @@
 
 <script>
 import {BUS_URL_V2, sendRequest} from "../utils/https";
-import {RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
+import {GLOBAL_MULTILINGUAL_CHINESE, GLOBAL_MULTILINGUAL_ENGLISH, RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
 import {getCurrentDateTime} from "../utils/date";
 
 export default {
   name: "EstimatedTimeOfArrival",
   data() {
     return {
+      routeName: '',
       goList: [],
       backList: [],
       isGoListActive: true,
@@ -144,6 +146,8 @@ export default {
       busList: [],
       allBusInCity: [],
       interval: "",
+      multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
+      multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH
     };
   },
   mounted() {
@@ -190,6 +194,12 @@ export default {
       )
           .then((res) => {
             console.log(res);
+            if(this.$store.getters.getMultilingual === GLOBAL_MULTILINGUAL_CHINESE) {
+              this.routeName = res.data[0].RouteName.Zh_tw;
+            } else {
+              this.routeName = res.data[0].RouteName.En;
+            }
+
             this.goList = res.data
                 .filter((data) => data.Direction == 0)
                 .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
@@ -250,6 +260,9 @@ export default {
       //   }, updateSecond);
       // }
     },
+    mobileSwitchBusInfo() {
+      this.$emit("mobileSwitchBusInfo")
+    }
   },
   computed: {
     activeList: {

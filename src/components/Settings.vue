@@ -1,38 +1,66 @@
 <template>
   <div class="w_100">
-
     <div class="flex_row_sb w_100 h_100">
       <!--左側列表設定-->
       <div class="flex_col w_100 h_100">
-
         <!--個人設定-->
         <div class="block_primary flex_col">
           <p class="title_txt">{{ $t("personalSettings") }}</p>
 
           <!--字體大小-->
           <div class="custom-select" @blur="isFontSizeOpen = false">
-            <div class="selected" :class="{ open: isFontSizeOpen }"
-                 @click="isFontSizeOpen = !isFontSizeOpen; isMultilingualOpen = false; isUpdateFrequencyOpen = false">
+            <div
+              class="selected"
+              :class="{ open: isFontSizeOpen }"
+              @click="
+                isFontSizeOpen = !isFontSizeOpen;
+                isMultilingualOpen = false;
+                isUpdateFrequencyOpen = false;
+              "
+            >
               {{ $t(selectedFontSizeText) }}
             </div>
 
-            <div class="items flex_col" :class="{ selectHide: !isFontSizeOpen }">
+            <div
+              class="items flex_col"
+              :class="{ selectHide: !isFontSizeOpen }"
+            >
               <p class="option_title">{{ $t("selectFontSize") }}</p>
               <div class="select_scrollbar">
-                <div class="select_option"
-                     @click="selectedFontSizeValue=fontSizeSmall;isFontSizeOpen=false">
+                <div
+                  class="select_option"
+                  @click="
+                    selectedFontSizeValue = fontSizeSmall;
+                    isFontSizeOpen = false;
+                  "
+                >
                   {{ $t("fontSmall") }}
                 </div>
-                <div class="select_option"
-                     @click="selectedFontSizeValue=fontSizeNormal;isFontSizeOpen=false">
+                <div
+                  class="select_option"
+                  @click="
+                    selectedFontSizeValue = fontSizeNormal;
+                    isFontSizeOpen = false;
+                  "
+                >
                   {{ $t("fontNormal") }}
                 </div>
-                <div class="select_option"
-                     @click="selectedFontSizeValue=fontSizeBig;isFontSizeOpen=false">
+                <div
+                  class="select_option"
+                  @click="
+                    selectedFontSizeValue = fontSizeBig;
+                    isFontSizeOpen = false;
+                  "
+                >
                   {{ $t("fontBig") }}
                 </div>
-                <div class="select_option"
-                     @click="selectedFontSizeValue=fontSizeBigger;isFontSizeOpen=false">
+                <div
+                  class="select_option"
+                  @click="
+                    selectedFontSizeValue = fontSizeBigger;
+                    isFontSizeOpen = false;
+                  "
+                >
                   {{ $t("fontBigger") }}
                 </div>
               </div>
@@ -41,25 +69,44 @@
 
           <!--語系-->
           <div class="custom-select" @blur="isMultilingualOpen = false">
-            <div class="selected" :class="{ open: isMultilingualOpen }"
-                 @click="isMultilingualOpen = !isMultilingualOpen; isFontSizeOpen = false; isUpdateFrequencyOpen = false">
+            <div
+              class="selected"
+              :class="{ open: isMultilingualOpen }"
+              @click="
+                isMultilingualOpen = !isMultilingualOpen;
+                isFontSizeOpen = false;
+                isUpdateFrequencyOpen = false;
+              "
+            >
               {{ $t(selectedMultilingualText) }}
             </div>
-            <div class="items flex_col" :class="{ selectHide: !isMultilingualOpen }">
+            <div
+              class="items flex_col"
+              :class="{ selectHide: !isMultilingualOpen }"
+            >
               <p class="option_title">{{ $t("selectMultilingual") }}</p>
               <div class="select_scrollbar">
-                <div class="select_option"
-                     @click="selectedMultilingualValue=multilingualChinese; isMultilingualOpen=false">
+                <div
+                  class="select_option"
+                  @click="
+                    selectedMultilingualValue = multilingualChinese;
+                    isMultilingualOpen = false;
+                  "
+                >
                   {{ $t("tw") }}
                 </div>
-                <div class="select_option"
-                     @click="selectedMultilingualValue=multilingualEnglish; isMultilingualOpen=false">
+                <div
+                  class="select_option"
+                  @click="
+                    selectedMultilingualValue = multilingualEnglish;
+                    isMultilingualOpen = false;
+                  "
+                >
                   {{ $t("en") }}
                 </div>
               </div>
             </div>
           </div>
-
         </div>
 
         <!--更新設定-->
@@ -71,7 +118,11 @@
           <div class="custom-switch">
             <div class="selected"><p>{{ $t("autoUpdateRoute") }}</p></div>
             <div class="switch_open_close">
-              <input type="checkbox" id="toggle" v-model="selectedIsAutoUpdate">
+              <input
+                type="checkbox"
+                id="toggle"
+                v-model="selectedIsAutoUpdate"
+              />
               <label for="toggle">
                 <i></i>
                 <div class="flex_row_cb">
@@ -82,38 +133,79 @@
             </div>
           </div>
 
-
           <!--更新頻率-->
           <div class="custom-select" @blur="isUpdateFrequencyOpen = false">
-            <div class="selected" :class="{ open: isUpdateFrequencyOpen }"
-                 @click="isUpdateFrequencyOpen = !isUpdateFrequencyOpen; isFontSizeOpen = false; isMultilingualOpen = false">
-              <p class="text_overflow">
-              {{ $t("arrivalTimeUpdateFrequency") }} {{ selectUpdateFrequency }} {{ $t("seconds") }}</p>
+    <div
+              class="selected"
+              :class="{ open: isUpdateFrequencyOpen }"
+              @click="
+                isUpdateFrequencyOpen = !isUpdateFrequencyOpen;
+                isFontSizeOpen = false;
+                isMultilingualOpen = false;
+              "
+            >
+             <p class="text_overflow">
+              {{ $t("arrivalTimeUpdateFrequency") }}
+              {{ selectUpdateFrequency }} {{ $t("seconds") }}
+              </p>
+
             </div>
 
-            <div class="items flex_col" :class="{ selectHide: !isUpdateFrequencyOpen }">
-
+            <div
+              class="items flex_col"
+              :class="{ selectHide: !isUpdateFrequencyOpen }"
+            >
               <p class="option_title">{{ $t("selectUpdateFrequency") }}</p>
               <div class="select_scrollbar">
-                <div class="select_option"
-                     @click="selectUpdateFrequency=updateFrequencyFaster;isUpdateFrequencyOpen=false">
-                  {{ $t("arrivalTimeUpdateFrequency") }} {{ updateFrequencyFaster }} {{ $t("seconds") }}
+                <div
+                  class="select_option"
+                  @click="
+                    selectUpdateFrequency = updateFrequencyFaster;
+                    isUpdateFrequencyOpen = false;
+                  "
+                >
+                  {{ $t("arrivalTimeUpdateFrequency") }}
+                  {{ updateFrequencyFaster }} {{ $t("seconds") }}
                 </div>
-                <div class="select_option"
-                     @click="selectUpdateFrequency=updateFrequencyFast;isUpdateFrequencyOpen=false">
-                  {{ $t("arrivalTimeUpdateFrequency") }} {{ updateFrequencyFast }} {{ $t("seconds") }}
+                <div
+                  class="select_option"
+                  @click="
+                    selectUpdateFrequency = updateFrequencyFast;
+                    isUpdateFrequencyOpen = false;
+                  "
+                >
+                  {{ $t("arrivalTimeUpdateFrequency") }}
+                  {{ updateFrequencyFast }} {{ $t("seconds") }}
                 </div>
-                <div class="select_option"
-                     @click="selectUpdateFrequency=updateFrequencyMedian;isUpdateFrequencyOpen=false">
-                  {{ $t("arrivalTimeUpdateFrequency") }} {{ updateFrequencyMedian }} {{ $t("seconds") }}
+                <div
+                  class="select_option"
+                  @click="
+                    selectUpdateFrequency = updateFrequencyMedian;
+                    isUpdateFrequencyOpen = false;
+                  "
+                >
+                  {{ $t("arrivalTimeUpdateFrequency") }}
+                  {{ updateFrequencyMedian }} {{ $t("seconds") }}
                 </div>
-                <div class="select_option"
-                     @click="selectUpdateFrequency=updateFrequencySlow;isUpdateFrequencyOpen=false">
-                  {{ $t("arrivalTimeUpdateFrequency") }} {{ updateFrequencySlow }} {{ $t("seconds") }}
+                <div
+                  class="select_option"
+                  @click="
+                    selectUpdateFrequency = updateFrequencySlow;
+                    isUpdateFrequencyOpen = false;
+                  "
+                >
+                  {{ $t("arrivalTimeUpdateFrequency") }}
+                  {{ updateFrequencySlow }} {{ $t("seconds") }}
                 </div>
-                <div class="select_option"
-                     @click="selectUpdateFrequency=updateFrequencySlower;isUpdateFrequencyOpen=false">
-                  {{ $t("arrivalTimeUpdateFrequency") }} {{ updateFrequencySlower }} {{ $t("seconds") }}
+                <div
+                  class="select_option"
+                  @click="
+                    selectUpdateFrequency = updateFrequencySlower;
+                    isUpdateFrequencyOpen = false;
+                  "
+                >
+                  {{ $t("arrivalTimeUpdateFrequency") }}
+                  {{ updateFrequencySlower }} {{ $t("seconds") }}
                 </div>
               </div>
             </div>
@@ -140,7 +232,7 @@
       </div>
 
       <!--右側列表功能-->
-      <div class="flex_row w_100 margin_top">
+      <div class="flex_row w_100 margin_top" @click="resetCommonBus()">
         <div class="block_setting">
           <div class="flex_col_cc h_100">
             <i class="i_reset"></i>
@@ -160,10 +252,8 @@
 
       <!--初始圖-->
       <div class="img_04"></div>
-
     </div>
   </div>
-
 </template>
 
 <script>
@@ -180,8 +270,9 @@ import {
   GLOBAL_UPDATE_FREQUENCY_SLOW,
   GLOBAL_UPDATE_FREQUENCY_SLOWER,
   PROGRAM_VERSION,
-  ROUTE_VERSION
-} from '../constant/common';
+  ROUTE_VERSION,
+} from "../constant/common";
+import { removeAllBus } from "../utils/commonly-used-bus.js";
 
 export default {
   name: "Settings.vue",
@@ -206,11 +297,11 @@ export default {
       isMultilingualOpen: false,
       selectedMultilingualValue: this.$store.getters.getMultilingual,
       multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
-      multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH
-    }
+      multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
+    };
   },
   props: {
-    globalFontSize: Number
+    globalFontSize: Number,
   },
   computed: {
     selectedFontSizeText: {
@@ -218,9 +309,7 @@ export default {
         return this.getFontSizeText(this.selectedFontSizeValue);
       },
       // eslint-disable-next-line
-      set(value) {
-
-      }
+      set(value) {},
     },
     selectedMultilingualText: {
       get() {
@@ -228,28 +317,26 @@ export default {
         return this.selectedMultilingualValue;
       },
       // eslint-disable-next-line
-      set(value) {
-
-      }
-    }
+      set(value) {},
+    },
   },
   watch: {
     // eslint-disable-next-line
     selectedFontSizeValue: function (newValue, oldValue) {
-      this.$store.dispatch('setFontSize', newValue);
+      this.$store.dispatch("setFontSize", newValue);
     },
     // eslint-disable-next-line
     selectedMultilingualValue: function (newValue, oldValue) {
-      this.$store.dispatch('setMultilingual', newValue);
+      this.$store.dispatch("setMultilingual", newValue);
     },
     // eslint-disable-next-line
     selectedIsAutoUpdate: function (newValue, oldValue) {
-      this.$store.dispatch('setIsAutoUpdate', newValue);
+      this.$store.dispatch("setIsAutoUpdate", newValue);
     },
     // eslint-disable-next-line
     selectUpdateFrequency: function (newValue, oldValue) {
-      this.$store.dispatch('setUpdateFrequency', newValue);
-    }
+      this.$store.dispatch("setUpdateFrequency", newValue);
+    },
   },
   methods: {
     getFontSizeText(fontSize) {
@@ -263,12 +350,17 @@ export default {
         case GLOBAL_FONT_SIZE_BIGGER:
           return "fontBigger";
       }
-    }
-  }
-
-}
+    },
+    resetCommonBus() {
+      let confirm = window.confirm("Do you confirm to reset CommonBusList?");
+      if (confirm) {
+        removeAllBus();
+      }
+      console.log("confirm=", confirm);
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 </style>

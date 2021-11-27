@@ -22,7 +22,7 @@
     <div class="content">
 
       <!--左側功能menu-->
-      <div class="menu">
+      <div class="menu" :style="[isMobileOpenMenu ? '' : {'transform' : 'translate( -100%,0)'}]">
 
         <!--logo-->
         <div class="img_logo"></div>
@@ -65,18 +65,19 @@
       <div class="search">
 
         <!--友善專區-->
-        <div class="btn_a11y" @click="isA11y = !isA11y">
-          <div v-if="!isA11y">{{ $t("switchToFriendlyArea") }}</div>
-          <div v-if="isA11y">{{ $t("switchToNormalArea") }}</div>
-          <i class="i_a11y"> </i>
+        <div class="btn_a11y">
+          <div v-if="!isA11y" @click="isA11y = !isA11y">{{ $t("switchToFriendlyArea") }}</div>
+          <div v-if="isA11y" @click="isA11y = !isA11y">{{ $t("switchToNormalArea") }}</div>
+          <i class="i_a11y" @click="isA11y = !isA11y"></i>
         </div>
 
         <div class="header_mobile flex_row_cb">
-          <i class="i_menu"> </i>
+          <i class="i_menu" @click="mobileSwitchMenu"> </i>
           <i class="img_logo_mobile"></i>
-          <div class="btn_a11y" @click="isA11y = !isA11y">
-            <div>友善專區</div>
-            <i class="i_a11y"> </i>
+          <div class="btn_a11y">
+            <div v-if="!isA11y" @click="isA11y = !isA11y">{{ $t("switchToFriendlyArea") }}</div>
+            <div v-if="isA11y" @click="isA11y = !isA11y">{{ $t("switchToNormalArea") }}</div>
+            <i class="i_a11y" @click="isA11y = !isA11y"> </i>
           </div>
         </div>
         <div class="black_overlay"></div>
@@ -108,7 +109,8 @@ export default {
     return {
       globalFontSize: this.$store.getters.getFontSize,
       isA11y: false,
-      isEn: false
+      isEn: false,
+      isMobileOpenMenu: true
     }
   },
   watch: {
@@ -121,6 +123,11 @@ export default {
       } else {
         this.isEn = false;
       }
+    }
+  },
+  methods: {
+    mobileSwitchMenu() {
+      this.isMobileOpenMenu = !this.isMobileOpenMenu;
     }
   }
 };

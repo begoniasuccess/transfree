@@ -21,9 +21,12 @@ export const addBus = (bus) => {
  * Remove one bus from commonly used list by routeId.
  * @param routeId route id
  */
-export const removeBus = (routeId) => {
+export const removeBus = (bus) => {
   let allBus = getAllBus();
-  allBus = allBus.filter((bus) => bus.RouteID !== routeId);
+  console.log(" removeBus=", allBus);
+  console.log("bus=", bus);
+  allBus = allBus.filter((tmpBus) => tmpBus.routeUID !== bus.routeUID);
+  console.log("after removeBus=", allBus);
   if (allBus !== null) {
     window.localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(allBus));
   }
@@ -35,7 +38,6 @@ export const removeBus = (routeId) => {
  */
 export const getAllBus = () => {
   let allBus = window.localStorage.getItem(LOCALSTORAGE_KEY);
-  //   return allBus;
   return JSON.parse(allBus);
 };
 
