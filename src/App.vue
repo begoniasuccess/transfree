@@ -170,6 +170,7 @@ a {
   color: #4A4A4A !important;
   text-decoration: none !important;
 }
+
 @media only screen and (max-width: 320px) {
   #app {
     font-size: 14px;
@@ -205,6 +206,10 @@ a {
   border-radius: 24px;
   background-color: #2398A1;
   z-index: 99;
+}
+.a11y .menu,
+.a11y .content{
+  background-color: #1A777E;
 }
 
 /* ---menu按鈕--- */
@@ -287,16 +292,14 @@ a {
   flex-direction: row;
   align-items: flex-end !important;
   justify-content: flex-end !important;
-  width: 100%;
+  width: auto;
   margin-top: 16px;
   margin-bottom: 16px;
   padding-right: 36px;
   font-weight: bold;
 }
 
-.btn_a11y:hover{
-  transition: .3s;
-  transform: scale(1.1) translate(-24px, 0);
+div.btn_a11y:hover{
   cursor: pointer;
 }
 
