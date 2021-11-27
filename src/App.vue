@@ -1,23 +1,24 @@
 <template>
   <div id="app" :style="{fontSize: globalFontSize + 'em'}" :class="{a11y : isA11y, en: isEn}">
     <!--        popup-->
-    <!--        <div class="content_popup">-->
-    <!--          &lt;!&ndash;版本資訊&ndash;&gt;-->
-    <!--          <div class="flex_row_cb">-->
-    <!--            <p class="title_card_txt">提醒您</p>-->
-    <!--            <i class="i_close"></i>-->
-    <!--          </div>-->
+    <div class="content_popup" v-if="isPopupShow">
+      <!--版本資訊-->
+      <div class="flex_row_cb">
+        <p class="title_card_txt">提醒您</p>
+        <i class="i_close"></i>
+      </div>
 
-    <!--          <div class="flex_row_cc">-->
-    <!--            <p>請問您要重設常用公車紀錄嗎？</p>-->
-    <!--          </div>-->
+      <div class="flex_row_cc">
+        <p v-if="isA11y">請問您要切換為一般專區嗎？</p>
+        <p v-if="!isA11y">請問您要切換為友善專區嗎？</p>
+      </div>
 
-    <!--          <div class="flex_row_cc">-->
-    <!--            <button class="bus_status2" type="button">取消</button>-->
-    <!--            <button class="bus_status1" type="button">確定</button>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--        <div class="black_overlay"></div>-->
+      <div class="flex_row_cc">
+        <button class="bus_status2" type="button" @click="isPopupShow = false">取消</button>
+        <button class="bus_status1" type="button" @click="isA11y = !isA11y; isPopupShow = false">確定</button>
+      </div>
+    </div>
+    <div class="black_overlay"></div>
 
     <div class="content">
 
@@ -66,9 +67,9 @@
 
         <!--友善專區-->
         <div class="btn_a11y">
-          <div v-if="!isA11y" @click="isA11y = !isA11y">{{ $t("switchToFriendlyArea") }}</div>
-          <div v-if="isA11y" @click="isA11y = !isA11y">{{ $t("switchToNormalArea") }}</div>
-          <i class="i_a11y" @click="isA11y = !isA11y"></i>
+          <div v-if="!isA11y" @click="isPopupShow = true">{{ $t("switchToFriendlyArea") }}</div>
+          <div v-if="isA11y" @click="isPopupShow = true">{{ $t("switchToNormalArea") }}</div>
+          <i class="i_a11y" @click="isPopupShow = true"></i>
         </div>
 
         <div class="header_mobile flex_row_cb">
@@ -110,7 +111,8 @@ export default {
       globalFontSize: this.$store.getters.getFontSize,
       isA11y: false,
       isEn: false,
-      isMobileOpenMenu: true
+      isMobileOpenMenu: true,
+      isPopupShow: false
     }
   },
   watch: {
@@ -169,13 +171,14 @@ a {
   color: #4A4A4A !important;
   text-decoration: none !important;
 }
+
 @media only screen and (max-width: 320px) {
   #app {
     font-size: 14px;
   }
 }
 
-#app.en  {
+#app.en {
   font-size: 14px;
 }
 
@@ -296,7 +299,7 @@ a {
   font-weight: bold;
 }
 
-.btn_a11y:hover{
+.btn_a11y:hover {
   transition: .3s;
   transform: scale(1.1) translate(-24px, 0);
   cursor: pointer;
@@ -393,8 +396,8 @@ a {
   position: absolute;
   top: 10px;
   left: 60px;
-  cursor: auto!important;
-  transform:none!important;
+  cursor: auto !important;
+  transform: none !important;
 }
 
 /* ---icon--- */
@@ -479,7 +482,6 @@ a {
 .menu_btn.active .menu_i_stop {
   background-image: url("./assets/images/icon/i_stop_menu_s.svg");
 }
-
 
 
 </style>
