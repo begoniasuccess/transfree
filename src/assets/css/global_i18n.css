@@ -1,4 +1,17 @@
 /*英文版本 元件*/
+.en .bus_status0,
+.en .bus_status1{
+    font-size: 0.875em;
+    letter-spacing: -0.6px;
+    line-height: 12px;
+}
+
+.en .bus_status2{
+    font-size: 0.875em;
+    letter-spacing: -0.6px;
+    line-height: 24px;
+}
+
 /* @group [長度控制 max-width: 768px] (以下) ----------------------------------------------------------------------------------------*/
 @media only screen and (max-width: 768px) {
     .en p {
