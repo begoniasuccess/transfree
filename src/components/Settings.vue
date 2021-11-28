@@ -266,6 +266,7 @@
             </button>
           </div>
         </div>
+        <div class="black_overlay"></div>
 
         <address class="block_setting">
           <a href="mailto:transfree@gmail.com">
