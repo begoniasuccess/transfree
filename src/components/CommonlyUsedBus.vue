@@ -1,6 +1,6 @@
 <template>
   <div class="h_100 w_100">
-    <div class="flex_row_sb w_100 h_100">
+    <div class="flex_row_sb w_100 h_100 auto">
       <div class="flex_col w_100 h_100">
         <Search
           v-on:getSearchCity="getSearchCity"
@@ -14,7 +14,7 @@
             class="img_03"
             v-if="isDynamicKeyboardShow == false && isBusInfoShow == false"
           ></span>
-          <span
+          <div
             class="block_sec flex_col select_scrollbar"
             v-if="isDynamicKeyboardShow"
           >
@@ -22,7 +22,7 @@
               @clickKeyboard="clickKeyboard"
               @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></DynamicKeyboard>
-          </span>
+          </div>
           <span
             class="block_sec flex_col select_scrollbar"
             v-if="isBusInfoShow"
