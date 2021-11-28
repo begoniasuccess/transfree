@@ -144,6 +144,9 @@
 .content_popup > .flex_row_cc {
     margin-top: 24px;
 }
+.block_setting + .content_popup{
+    position: fixed;
+}
 
 /*---- content type:list ----*/
 .content_list {
@@ -253,6 +256,12 @@
     display: block;
 }
 
+.block_setting + .content_popup + .black_overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 /*---- symbol type:bus time ----*/
 /*---- bus type:未發車狀態 ----*/
 .bus_status0 {
