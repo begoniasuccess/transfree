@@ -170,5 +170,15 @@ button {
     margin: 8px 4px;
   }
 
+
+}
+@media only screen and (max-width: 375px) {
+  .en button {
+    min-width: 50px;
+    min-height: 70px;
+    font-size: 0.875em;
+    margin: 2px;
+    line-height: 20px;
+  }
 }
 </style>
