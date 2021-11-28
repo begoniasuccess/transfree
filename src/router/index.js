@@ -5,6 +5,8 @@ import SearchList from "../components/SearchList";
 import Settings from "../components/Settings";
 import EstimatedTimeOfArrival from "../components/EstimatedTimeOfArrival";
 import CommonlyUsedBus from "../components/CommonlyUsedBus";
+import NearbyStop from "../components/NearbyStop";
+import Map from "../components/Map";
 
 Vue.use(VueRouter);
 
@@ -28,6 +30,23 @@ export default new VueRouter({
           path: "/:city/:routeName",
           name: "SearchList",
           component: SearchList,
+        },
+        {
+          path: "/map/:city/:routeName",
+          name: "SearchMap",
+          component: Map,
+        },
+      ],
+    },
+    {
+      path: "/nearby-stop",
+      name: "NearbyStop",
+      component: NearbyStop,
+      children: [
+        {
+          path: "estimated-time-of-arrival/:city/:routeName",
+          name: "EstimatedTimeOfArrival",
+          component: EstimatedTimeOfArrival,
         },
       ],
     },

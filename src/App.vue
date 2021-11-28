@@ -37,12 +37,12 @@
             </div>
           </router-link>
 
-          <div class="menu_btn">
+          <router-link to="/nearby-stop" class="menu_btn" active-class="active">
             <i class="menu_i_stop"></i>
             <div class="menu_btn_txt">
               {{ $t("nearbyStop") }}
             </div>
-          </div>
+          </router-link>
 
           <router-link to="/commonly-used-bus" class="menu_btn" active-class="active">
             <i class="menu_i_favoraite"></i>
