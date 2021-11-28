@@ -21,8 +21,8 @@
           </span>
           <span v-if="isBusInfoShow">
             <BusInfo
-              :city="$route.params.city"
-              :routeName="$route.params.routeName"
+              :city="this.selected.value"
+              :routeName="this.busNum"
               @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></BusInfo>
           </span>
@@ -77,7 +77,10 @@
         </div>
       </div>
       <!--block_list:動態公車列表模式-->
-      <div class="block_list" v-if="isSelectedTheBus == true">
+      <div
+        class="block_list"
+        v-if="busList.length >= 1 && isSelectedTheBus == true"
+      >
         <router-view
           @mobileSwitchBusInfo="mobileSwitchBusInfo"
           @showBusInfo="
@@ -121,6 +124,8 @@ export default {
     };
   },
   mounted() {
+    // const city = this.$route.params.city;
+    // const routeName = this.$route.params.routeName;
     let allBus = getAllBus();
     if (allBus == null) {
       this.busList = [];
@@ -167,7 +172,6 @@ export default {
       this.inputValue = inputValue;
     },
     getThisBus(bus) {
-      console.log("common getThisBus", bus);
       this.busNum = bus;
       this.order();
       this.$emit("getBusNum", this.busNum);
@@ -208,6 +212,8 @@ export default {
     },
     getBusInfo(bus) {
       console.log("bus=", bus);
+      console.log("selected=", this.selected);
+      this.busNum = bus.zh_tw;
       this.isBusInfoShow == true;
     },
   },
