@@ -3,27 +3,27 @@
     <div class="flex_row_sb w_100 h_100 auto">
       <div class="flex_col w_100 h_100">
         <Search
-          v-on:getSearchCity="getSearchCity"
-          v-on:getInputValue="getInputValue"
-          :inputValue="inputValue"
+            v-on:getSearchCity="getSearchCity"
+            v-on:getInputValue="getInputValue"
+            :inputValue="inputValue"
         ></Search>
 
         <!--次要列表-->
         <div
-          class="block_sec flex_col select_scrollbar"
-          v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
+            class="block_sec flex_col select_scrollbar"
+            v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
         >
           <span v-if="isDynamicKeyboardShow">
             <DynamicKeyboard
-              @clickKeyboard="clickKeyboard"
-              @mobileSwitchBusInfo="mobileSwitchBusInfo"
+                @clickKeyboard="clickKeyboard"
+                @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></DynamicKeyboard>
           </span>
           <span v-if="isBusInfoShow && isDynamicKeyboardShow == false">
             <BusInfo
-              :city="this.selected.value"
-              :routeName="this.busNum"
-              @mobileSwitchBusInfo="mobileSwitchBusInfo"
+                :city="this.selected.value"
+                :routeName="this.busNum"
+                @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></BusInfo>
           </span>
         </div>
@@ -47,8 +47,8 @@
 
       <!--block_list:常用搜尋列表-->
       <div
-        class="block_list"
-        v-if="busList.length >= 1 || isSelectedTheBus == false"
+          class="block_list"
+          v-if="(busList.length >= 1 || isSelectedTheBus == false) && !showEstimatedTimeOfArrival"
       >
         <div class="content_list">
           <div class="list_top flex_row_cc">搜尋清單</div>
@@ -65,9 +65,9 @@
                 </div>
                 <div class="flex_row_ce">
                   <i
-                    class="i_love"
-                    :class="{ 'i_love active': bus.isLove }"
-                    @click="setLoveList(bus)"
+                      class="i_love"
+                      :class="{ 'i_love active': bus.isLove }"
+                      @click="setLoveList(bus)"
                   ></i>
                   <i class="i_info" @click="getBusInfo(bus)"></i>
                 </div>
@@ -78,17 +78,17 @@
       </div>
       <!--block_list:動態公車列表模式-->
       <div
-        class="block_list"
-        v-if="busList.length >= 1 && isSelectedTheBus == true"
+          class="block_list"
+          v-if="(busList.length >= 1 && isSelectedTheBus == true) && showEstimatedTimeOfArrival"
       >
         <router-view
-          @mobileSwitchBusInfo="mobileSwitchBusInfo"
-          @showBusInfo="
+            @mobileSwitchBusInfo="mobileSwitchBusInfo"
+            @showBusInfo="
             isBusInfoShow = true;
             isDynamicKeyboardShow = false;
           "
-          :selectedCity="selected"
-          :search="inputValue"
+            :selectedCity="selected"
+            :search="inputValue"
         ></router-view>
       </div>
     </div>
@@ -104,7 +104,7 @@ import DynamicKeyboard from "./DynamicKeyboard";
 
 export default {
   name: "CommonlyUsedBus",
-  components: { DynamicKeyboard, BusInfo, Search },
+  components: {DynamicKeyboard, BusInfo, Search},
 
   data() {
     return {
@@ -120,6 +120,7 @@ export default {
       allBusList: new Array(), // 完整的List
       busNum: "", // 選擇的busNum
       inputValue: "",
+      showEstimatedTimeOfArrival: false
     };
   },
   mounted() {
@@ -166,6 +167,7 @@ export default {
     getInputValue: function (inputValue) {
       this.isDynamicKeyboardShow = true;
       this.isMobileOpenBusInfo = true;
+      this.showEstimatedTimeOfArrival = false;
       this.isSelectedTheBus = false;
       this.inputValue = inputValue;
     },
@@ -200,10 +202,14 @@ export default {
     },
     order() {
       this.$emit("showBusInfo");
-      this.$router.push({
-        name: "EstimatedTimeOfArrival",
-        params: { city: this.selected.value, routeName: this.busNum },
+      // this.$router.push({
+      //   name: "EstimatedTimeOfArrival",
+      //   params: { city: this.selected.value, routeName: this.busNum },
+      // });
+
+      this.$router.push(`/commonly-used-bus/estimated-time-of-arrival/${this.selected.value}/${this.busNum}`).catch(() => {
       });
+      this.showEstimatedTimeOfArrival = true;
     },
     mobileSwitchBusInfo() {
       this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
@@ -218,6 +224,9 @@ export default {
     inputValue: function () {
       this.searchKeyWord();
     },
+    selected: function() {
+      this.showEstimatedTimeOfArrival = false;
+    }
   },
 };
 </script>
