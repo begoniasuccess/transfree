@@ -144,6 +144,9 @@
 .content_popup > .flex_row_cc {
     margin-top: 24px;
 }
+.block_setting + .content_popup{
+    position: fixed;
+}
 
 /*---- content type:list ----*/
 .content_list {
@@ -253,6 +256,12 @@
     display: block;
 }
 
+.block_setting + .content_popup + .black_overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 /*---- symbol type:bus time ----*/
 /*---- bus type:未發車狀態 ----*/
 .bus_status0 {
@@ -803,6 +812,7 @@ i:hover {
     padding: 12px;
     box-shadow: 0px 1px 6px 1px rgba(145, 145, 145, 0.6);
     border-radius: 4px;
+    z-index:1000;
 }
 
 .i_zoomout {
@@ -820,6 +830,7 @@ i:hover {
     padding: 12px;
     box-shadow: 0px 1px 6px 1px rgba(145, 145, 145, 0.6);
     border-radius: 4px;
+    z-index:1000;
 }
 
 .i_zoomin.active, .i_zoomout.active {

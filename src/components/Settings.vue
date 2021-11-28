@@ -116,7 +116,9 @@
           <!--自動更新-->
           <!-- switch -->
           <div class="custom-switch">
-            <div class="selected"><p>{{ $t("autoUpdateRoute") }}</p></div>
+            <div class="selected">
+              <p>{{ $t("autoUpdateRoute") }}</p>
+            </div>
             <div class="switch_open_close">
               <input
                 type="checkbox"
@@ -135,7 +137,7 @@
 
           <!--更新頻率-->
           <div class="custom-select" @blur="isUpdateFrequencyOpen = false">
-    <div
+            <div
               class="selected"
               :class="{ open: isUpdateFrequencyOpen }"
               @click="
@@ -144,11 +146,10 @@
                 isMultilingualOpen = false;
               "
             >
-             <p class="text_overflow">
-              {{ $t("arrivalTimeUpdateFrequency") }}
-              {{ selectUpdateFrequency }} {{ $t("seconds") }}
+              <p class="text_overflow">
+                {{ $t("arrivalTimeUpdateFrequency") }}
+                {{ selectUpdateFrequency }} {{ $t("seconds") }}
               </p>
-
             </div>
 
             <div
@@ -232,13 +233,40 @@
       </div>
 
       <!--右側列表功能-->
-      <div class="flex_row w_100 margin_top" @click="resetCommonBus()">
-        <div class="block_setting">
+      <div class="flex_row w_100 margin_top">
+        <div class="block_setting" @click="isPopupShow = !isPopupShow">
+          <!-- <div class="block_setting" @click="resetCommonBus()"> -->
           <div class="flex_col_cc h_100">
             <i class="i_reset"></i>
             <p class="text_b">{{ $t("resetCommonBus") }}</p>
           </div>
         </div>
+        <!--        popup-->
+        <div class="content_popup" v-if="isPopupShow">
+          <!--版本資訊-->
+          <div class="flex_row_cb">
+            <p class="title_card_txt">{{ $t("remindYou") }}</p>
+            <i class="i_close" @click="isPopupShow = false"></i>
+          </div>
+
+          <div class="flex_row_cc">
+            <p v-if="!isA11y">{{ $t("doYouConfirmToResetCommonBusList") }}</p>
+          </div>
+
+          <div class="flex_row_cc">
+            <button
+              class="bus_status2"
+              type="button"
+              @click="isPopupShow = false"
+            >
+              {{ $t("cancel") }}
+            </button>
+            <button class="bus_status1" type="button" @click="resetCommonBus()">
+              {{ $t("confirm") }}
+            </button>
+          </div>
+        </div>
+        <div class="black_overlay"></div>
 
         <address class="block_setting">
           <a href="mailto:transfree@gmail.com">
@@ -298,6 +326,8 @@ export default {
       selectedMultilingualValue: this.$store.getters.getMultilingual,
       multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
       multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
+      isPopupShow: false,
+      isA11y: false,
     };
   },
   props: {
@@ -352,11 +382,9 @@ export default {
       }
     },
     resetCommonBus() {
-      let confirm = window.confirm("Do you confirm to reset CommonBusList?");
-      if (confirm) {
-        removeAllBus();
-      }
-      console.log("confirm=", confirm);
+      this.isA11y = !this.isA11y;
+      this.isPopupShow = false;
+      removeAllBus();
     },
   },
 };

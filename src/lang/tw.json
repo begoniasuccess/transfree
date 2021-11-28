@@ -47,7 +47,7 @@
   "lastBus": "末班車",
   "remark": "備註",
   "holidayDeparture": "假日發車",
-  "dynamicKeyboard": "Dynamic Keyboard",
+  "dynamicKeyboard": "動態鍵盤",
   "red": "紅",
   "blue": "藍",
   "green": "綠",
@@ -92,6 +92,7 @@
   "remindYou": "提醒您",
   "doYouWantToSwitchToNormalArea": "請問您要切換為一般專區嗎？",
   "doYouWantToSwitchToFriendlyArea": "請問您要切換為友善專區嗎？",
+  "doYouConfirmToResetCommonBusList": "請問您確定要重設常用公車嗎？",
   "confirm": "確定",
   "cancel": "取消"
 }

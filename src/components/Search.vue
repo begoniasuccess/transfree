@@ -32,55 +32,53 @@
         class="inner_group text_overflow"
         :placeholder="$t('enterRouteName')"
         v-model="inputValue"
+        @focus="focusInputValue()"
     />
 
-    <!--＝搜尋時間-->
-    <p class="text_info">{{ $t("searchTimestamp") }} 2021/11/21 20:22:11</p>
+    <!--搜尋時間-->
+    <p class="text_info" v-if="searchTimestamp != ''">{{ $t("searchTimestamp") }} {{ searchTimestamp }}</p>
   </div>
 </template>
 
 <script>
 import {CITIES} from "../constant/city";
+import {getCurrentDateTime} from "../utils/date";
 
 export default {
   name: "Search",
   props: {
     selectedCity: String,
-    search: String,
+    inputValue: String,
   },
   data() {
     return {
       cities: CITIES,
       selected: CITIES[0],
       open: false,
-      inputValue: "",
+      searchTimestamp: ''
     };
   },
-  //TODO need to remove(for testing axios and location)
   mounted() {
   },
   methods: {
-    clickKeyboard(value) {
-      console.log("parent:" + value);
-      //TODO Do something to the search input.
-      if (Number.isInteger(value)) {
-        //Append value to input value.
-      } else if ("reset" === value) {
-        //Reset the input value.
-      } else if ("back" === value) {
-        //Backspace the input value
-      } else {
-        //Set the input value as value.
-      }
+    focusInputValue() {
+      this.$emit("getInputValue", this.inputValue);
     },
+    updateSearchTimestamp() {
+      this.searchTimestamp = getCurrentDateTime();
+    }
   },
   watch: {
     inputValue: function () {
       this.$emit("getInputValue", this.inputValue);
+      this.updateSearchTimestamp();
     },
     selected: function () {
       this.$emit("getSearchCity", this.selected);
       this.$emit("getInputValue", this.inputValue);
+      if(this.inputValue !== '') {
+        this.updateSearchTimestamp();
+      }
     },
   },
 };

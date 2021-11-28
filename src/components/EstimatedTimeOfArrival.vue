@@ -232,6 +232,7 @@ export default {
       if (nearBy.length === 0) {
         return "";
       } else {
+        console.log({stopName, direction,nearBy});
         return nearBy;
       }
     },
@@ -273,6 +274,7 @@ export default {
       // eslint-disable-next-line
       get() {
         if (this.isGoListActive) {
+          console.log({estGoList:this.goList});
           return this.goList;
         } else {
           return this.backList;

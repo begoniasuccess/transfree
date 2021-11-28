@@ -16,43 +16,43 @@
 
             <!-- tab  -->
             <div class="bookmark_container">
-                <button :class="{active : isGoListActive}" @click="isGoListActive = true">去</button>
-                <button :class="{active : !isGoListActive}" @click="isGoListActive = false">返</button>
+                <button :class="{active : isgoStopListActive}" @click="isgoStopListActive = true">去</button>
+                <button :class="{active : !isgoStopListActive}" @click="isgoStopListActive = false">返</button>
             </div>
 
             <div class="list_bottom flex_col">
                 <div class="select_scrollbar">
                     <!-- 地圖區域 -->
                     <div class="map_inner">
-                    <i class="i_zoomin"></i>
-                    <i class="i_zoomout active"></i>
+                    <i :class="{i_zoomin:true, active:zoomMode == 'in'}" @click="zoomSize++;zoomMode='in';"></i>
+                    <i :class="{i_zoomout:true, active:zoomMode == 'out'}" @click="zoomSize--;zoomMode='out';"></i>
 
                     <!-- 站牌資訊 -->
-                    <div class="content_card">
+                    <div class="content_card" v-if="isPopUpActive && popUpMode == 'stop'">
                         <div class="flex_row_cb">
-                            <p class="title_card_txt">站牌名稱</p>
-                            <i class="i_close"></i>
+                            <p class="title_card_txt">{{activeStop.StopName.En}}</p>
+                            <i class="i_close" @click="isPopUpActive = false;"></i>
                         </div>
                         <label class="flex_row_cb">
                             <p>路線</p>
-                            <p>路1</p>
+                            <p>{{this.$route.params.routeName}}</p>
                         </label>
                         <label class="flex_row_cb">
                             <p>站序</p>
-                            <p>1</p>
+                            <p>{{activeStop.StopIndex}}</p>
                         </label>
                     </div>
 
                     <!-- 公車資訊 -->
-                    <div class="content_card">
+                    <div class="content_card" v-if="isPopUpActive && popUpMode == 'route'">
                         <div class="flex_row_cb">
-                            <p class="title_card_txt">站牌名稱</p>
-                            <i class="i_close"></i>
+                            <p class="title_card_txt">{{this.$route.params.routeName}}</p>
+                            <i class="i_close" @click="isPopUpActive = false;"></i>
                         </div>
 
                         <label class="flex_row_cb">
                             <p>營運業者</p>
-                            <p>統聯客運</p>
+                            <p>{{operatorName.En}}</p>
                         </label>
 
                         <label class="flex_row_cb">
@@ -64,7 +64,11 @@
                         </label>
                     </div>
                     <div class=" black_overlay"></div>
-                    <Map :center="center"></Map>
+                    <Map  :center="center" 
+                          :stopsData="activeList"
+                          :zoom="zoomSize"
+                          @show-stop-popup="showStopInfo"
+                    ></Map>
                     <router-view></router-view>
                     </div>
                 </div>
@@ -80,29 +84,38 @@
 import {BUS_URL_V2, sendRequest} from "../utils/https";
 import {GLOBAL_MULTILINGUAL_CHINESE, GLOBAL_MULTILINGUAL_ENGLISH, RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
 import {getCurrentDateTime} from "../utils/date";
+import Map from "./Map";
 
 export default {
-  name: "EstimatedTimeOfArrival",
+  name: "SearchMap",
   data() {
     return {
       routeName: '',
-      goList: [],
-      backList: [],
-      isGoListActive: true,
+      goStopList: [],
+      backStopList: [],
+      isgoStopListActive: true,
       updateTime: getCurrentDateTime(),
       busList: [],
       // allBusInCity: [],
-      allRouteCity: [],
+      allRouteCityStops: [
+      ],
       interval: "",
       multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
       multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
-      center:[0,0]
+      center:[22.612961, 120.304167],
+      zoomSize : 13,
+      popUpMode:'route',
+      isPopUpActive :true,
+      zoomMode:'in',
+      activeStop:{},
+      operatorName:"",
+      plateNumb: "" 
     };
   },
+  components:{
+    Map
+  },
   mounted() {
-    // this.getAllBusInCity();
-    // this.getStopList();
-    // this.getBusList();
     this.getStopOfRoute();
     if (this.$store.getters.getIsAutoUpdate) {
       const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
@@ -117,98 +130,9 @@ export default {
   },
   methods: {
     resetData() {
-      // this.getStopList();
-      // this.getBusList();
-      this.getStopOfRoute();
-    },
-    // getAllBusInCity() {
-    //   const city = this.$route.params.city;
-    //   sendRequest(
-    //       "get",
-    //       `${BUS_URL_V2}/Vehicle/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`
-    //   )
-    //       .then((res) => {
-    //         this.allBusInCity = res.data;
-    //       })
-    //       .catch((err) => {
-    //         window.alert("Get AllBusInCity occurs error：" + err);
-    //       });
-    // },
-    // getStopList() {
-    //   const city = this.$route.params.city;
-    //   const routeName = this.$route.params.routeName;
-    //   sendRequest(
-    //       "get",
-    //       `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
-    //   )
-    //       .then((res) => {
-    //         console.log({getStopListRes:res.data});
-    //         if(this.$store.getters.getMultilingual === GLOBAL_MULTILINGUAL_CHINESE) {
-    //           this.routeName = res.data[0].RouteName.Zh_tw;
-    //         } else {
-    //           this.routeName = res.data[0].RouteName.En;
-    //         }
-
-    //         this.goList = res.data
-    //             .filter((data) => data.Direction == 0)
-    //             .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
-    //         this.backList = res.data
-    //             .filter((data) => data.Direction == 1)
-    //             .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
-    //         this.updateTime = getCurrentDateTime();
-    //       })
-    //       .catch((err) => {
-    //         window.alert("Get EstimatedTimeOfArrival occurs error：" + err);
-    //       });
-    // },
-    // getBusList() {
-    //   const city = this.$route.params.city;
-    //   const routeName = this.$route.params.routeName;
-    //   sendRequest(
-    //       "get",
-    //       `${BUS_URL_V2}/RealTimeNearStop/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
-    //   )
-    //       .then((res) => {
-    //         this.busList = res.data;
-    //       })
-    //       .catch((err) => {
-    //         window.alert("Get RealTimeNearStop occurs error：" + err);
-    //       });
-    // },
-    // getBusNearByStop(stopName, direction) {
-    //   const nearBy = this.busList.filter(
-    //       (data) =>
-    //           data.StopName.Zh_tw === stopName && data.Direction === direction
-    //   );
-    //   if (nearBy.length === 0) {
-    //     return "";
-    //   } else {
-    //     return nearBy;
-    //   }
-    // },
-    // isBarrierFree(plateNumb) {
-    //   if (plateNumb !== "") {
-    //     const bus = this.allBusInCity.filter(
-    //         (data) => data.PlateNumb === plateNumb
-    //     );
-    //     return bus.length !== 0 && bus[0].VehicleType === 1;
-    //   } else {
-    //     return false;
-    //   }
-    // },
-    // clickUpdateData() {
-    //   this.resetData();
-    //   if (this.$store.getters.getIsAutoUpdate) {
-    //     clearInterval(this.interval);
-    //     const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
-    //     this.interval = setInterval(() => {
-    //       this.resetData();
-    //     }, updateSecond);
-    //   }
-    // },
-    // mobileSwitchBusInfo() {
-    //   this.$emit("mobileSwitchBusInfo")
-    // },
+      // this.getStopOfRoute();      
+      this.getBusList();
+    },    
     switchMode(mode) {
       this.$router.push({
         name: mode,
@@ -223,36 +147,110 @@ export default {
           `${BUS_URL_V2}/StopOfRoute/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
           .then((res) => {
-            this.allRouteCity = res.data;
-            console.log({allRouteCity:res.data});
+            this.allRouteCityStops = res.data;
+            // console.log({allRouteCityStops:this.allRouteCityStops});
+            
+            this.goStopList = this.makeStopList(res.data[1]);
+            this.backStopList = this.makeStopList(res.data[0]);
+            // console.log({goStopList:this.goStopList, backStopList:this.backStopList});
+            this.operatorName = res.data[0].Operators[0].OperatorName;
+            this.setCenter();
           })
           .catch((err) => {
             window.alert("Get getStopOfRoute occurs error：" + err);
           });
-    }
+    },
+    makeStopList(dataFromRouteCityStops){
+      let stops = dataFromRouteCityStops.Stops;
+      let stopList = [];
+      stops.forEach((aStop, index) => {
+          let aLocObj = {
+            StopID : aStop.StopID,
+            StopName : aStop.StopName,
+            StopPosition : [aStop.StopPosition.PositionLat, aStop.StopPosition.PositionLon],
+            StopIndex : index+1,
+            
+          };
+          stopList.push(aLocObj);
+          
+      });      
+      return stopList;
+    },
+    setCenter(){
+      if (this.activeList.length > 10){
+        this.center = this.activeList[9].StopPosition;
+      }else if(this.activeList.length > 5){
+        this.center = this.activeList[4].StopPosition;
+      }else{
+        this.center = this.activeList[0].StopPosition;
+      }
+    },
+    showStopInfo(stopIndex){
+      console.log("showStopInfo",{stopIndex});
+      this.isPopUpActive = true;
+      this.popUpMode = 'stop';
+      this.activeStop = this.activeList[stopIndex];
+      console.log({activeStop:this.activeStop});
+    },
+    getBusList() {
+      const city = this.$route.params.city;
+      const routeName = this.$route.params.routeName;
+      sendRequest(
+          "get",
+          `${BUS_URL_V2}/RealTimeNearStop/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+      )
+          .then((res) => {
+            this.busList = res.data;
+          })
+          .catch((err) => {
+            window.alert("Get RealTimeNearStop occurs error：" + err);
+          });
+    },
+    getBusNearByStop(stopName, direction) {
+      const nearBy = this.busList.filter(
+          (data) =>
+              data.StopName.Zh_tw === stopName && data.Direction === direction
+      );
+      if (nearBy.length === 0) {
+        return "";
+      } else {
+        return nearBy;
+      }
+    },
+    isBarrierFree(plateNumb) {
+      if (plateNumb !== "") {
+        const bus = this.allBusInCity.filter(
+            (data) => data.PlateNumb === plateNumb
+        );
+        return bus.length !== 0 && bus[0].VehicleType === 1;
+      } else {
+        return false;
+      }
+    },
   },
   computed: {
     activeList: {
       // eslint-disable-next-line
       get() {
-        if (this.isGoListActive) {
-          return this.goList;
+        if (this.isgoStopListActive) {
+          return this.goStopList;
         } else {
-          return this.backList;
+          return this.backStopList;
         }
       },
       // eslint-disable-next-line
       set(value) {
       },
-    },
+    }
   },
   watch: {
-    isGoListActive: function (newVal, oldVal) {
+    isgoStopListActive: function (newVal, oldVal) {
       if (newVal && !oldVal) {
-        this.activeList = this.goList;
+        this.activeList = this.goStopList;        
       } else {
-        this.activeList = this.backList;
+        this.activeList = this.backStopList;
       }
+      this.setCenter();
     },
   },
 };
