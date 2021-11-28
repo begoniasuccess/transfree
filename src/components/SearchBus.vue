@@ -252,23 +252,6 @@ export default {
       isMobileOpenBusInfo: true
     };
   },
-  //TODO need to remove(for testing axios and location)
-  mounted() {
-    // sendRequest(
-    //   "get",
-    //   `${BUS_URL_V2}/RealTimeByFrequency/Streaming/City/Hsinchu?$top=30&$format=JSON`
-    // ).then((res) => {
-    //   console.log(res);
-    // });
-
-    getCurrentLocationInfo()
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-  },
   methods: {
     clickKeyboard(value) {
       console.log("parent:" + value);

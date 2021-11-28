@@ -110,7 +110,6 @@ export default {
                 this.operatorPhoneNumber = res.data.filter(d => d.OperatorNo === data[0].Operators[0].OperatorNo)[0].OperatorPhone;
               })
         }).catch(err => {
-      //TODO change to popup
       console.log(err);
     })
   },
