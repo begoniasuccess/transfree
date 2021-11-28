@@ -5,11 +5,34 @@
         <Search
           v-on:getSearchCity="getSearchCity"
           v-on:getInputValue="getInputValue"
+          :inputValue="inputValue"
         ></Search>
 
         <!--次要列表-->
         <div class="block_sec img_first flex_col_cc">
-          <div class="img_03"></div>
+          <span
+            class="img_03"
+            v-if="isDynamicKeyboardShow == false && isBusInfoShow == false"
+          ></span>
+          <span
+            class="block_sec flex_col select_scrollbar"
+            v-if="isDynamicKeyboardShow"
+          >
+            <DynamicKeyboard
+              @clickKeyboard="clickKeyboard"
+              @mobileSwitchBusInfo="mobileSwitchBusInfo"
+            ></DynamicKeyboard>
+          </span>
+          <span
+            class="block_sec flex_col select_scrollbar"
+            v-if="isBusInfoShow"
+          >
+            <BusInfo
+              :city="$route.params.city"
+              :routeName="$route.params.routeName"
+              @mobileSwitchBusInfo="mobileSwitchBusInfo"
+            ></BusInfo>
+          </span>
         </div>
       </div>
 
@@ -40,10 +63,10 @@
                   </p>
                 </div>
                 <div class="flex_row_ce">
-                  <i 
-                  class="i_love"
-                  :class="{ 'i_love active': bus.isLove }"
-                  @click="setLoveList(bus)"
+                  <i
+                    class="i_love"
+                    :class="{ 'i_love active': bus.isLove }"
+                    @click="setLoveList(bus)"
                   ></i>
                   <i class="i_info"></i>
                 </div>
@@ -52,6 +75,19 @@
           </div>
         </div>
       </div>
+
+      <!--block_list:動態公車列表模式-->
+      <!-- <div class="block_list">
+        <router-view
+          @mobileSwitchBusInfo="mobileSwitchBusInfo"
+          @showBusInfo="
+            isBusInfoShow = true;
+            isDynamicKeyboardShow = false;
+          "
+          :selectedCity="selected"
+          :search="inputValue"
+        ></router-view>
+      </div> -->
     </div>
   </div>
 </template>
@@ -61,17 +97,21 @@
 import { CITIES } from "../constant/city";
 import { getAllBus, addBus, removeBus } from "../utils/commonly-used-bus.js";
 import Search from "./Search";
+import BusInfo from "./BusInfo";
+import DynamicKeyboard from "./DynamicKeyboard";
 
 export default {
   name: "CommonlyUsedBus",
-  components: { Search },
+  components: { DynamicKeyboard, BusInfo, Search },
+
   data() {
     return {
-     cities: CITIES,
+      cities: CITIES,
       selected: CITIES[0],
       open: false,
       isDynamicKeyboardShow: false,
       isBusInfoShow: false,
+      isMobileOpenBusInfo: true,
       busList: new Array(), // 篩選過的List
       cityBusList: new Array(), // city的List
       allBusList: new Array(), // 完整的List
@@ -80,7 +120,7 @@ export default {
     };
   },
   mounted() {
-   let allBus = getAllBus();
+    let allBus = getAllBus();
     if (allBus == null) {
       this.busList = [];
       return;
@@ -91,7 +131,27 @@ export default {
     this.setCityBusList();
   },
   methods: {
-   setCityBusList() {
+    clickKeyboard(value) {
+      console.log("parent:" + value);
+      //TODO Do something to the search input.
+      console.log("Number.isInteger(value)=", Number.isInteger(value));
+      if (Number.isInteger(value)) {
+        //Append value to input value.
+      } else if ("reset" === value) {
+        this.inputValue = "";
+        //Reset the input value.
+      } else if ("back" === value) {
+        this.inputValue = this.inputValue.substr(0, this.inputValue.length - 1);
+        this.getInputValue(this.inputValue);
+        //Backspace the input value
+      } else {
+        this.inputValue = this.inputValue + value;
+        console.log("parent inputValue:" + this.inputValue);
+        this.getInputValue(this.inputValue);
+        //Set the input value as value.
+      }
+    },
+    setCityBusList() {
       let tmpList = [];
       this.allBusList.forEach((element) => {
         if (element.routeUID.substring(0, 3) == this.selected.id) {
@@ -102,15 +162,19 @@ export default {
       this.busList = this.cityBusList;
     },
     getSearchCity: function (city) {
-     this.selected = city;
+      this.selected = city;
       this.setCityBusList();
       this.searchKeyWord();
     },
     getInputValue: function (inputValue) {
+      console.log("try getSearchValue:" + inputValue + "/");
+      this.isDynamicKeyboardShow = true;
       this.inputValue = inputValue;
     },
     getThisBus(bus) {
+      console.log("common getThisBus", bus);
       this.busNum = bus;
+      this.order();
       this.$emit("getBusNum", this.busNum);
     },
     setLoveList(bus) {
@@ -135,6 +199,16 @@ export default {
         }
       });
       this.busList = tmplist;
+    },
+    order() {
+      this.$emit("showBusInfo");
+      this.$router.push({
+        name: "EstimatedTimeOfArrival",
+        params: { city: this.selectedCity.value, routeName: this.busNum },
+      });
+    },
+    mobileSwitchBusInfo() {
+      this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
     },
   },
   watch: {

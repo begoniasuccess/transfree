@@ -32,6 +32,7 @@
       class="inner_group text_overflow"
       :placeholder="$t('enterRouteName')"
       v-model="inputValue"
+      @focus="focusInputValue()"
     />
 
     <!--＝搜尋時間-->
@@ -58,22 +59,14 @@ export default {
   //TODO need to remove(for testing axios and location)
   mounted() {},
   methods: {
-    clickKeyboard(value) {
-      console.log("parent:" + value);
-      //TODO Do something to the search input.
-      if (Number.isInteger(value)) {
-        //Append value to input value.
-      } else if ("reset" === value) {
-        //Reset the input value.
-      } else if ("back" === value) {
-        //Backspace the input value
-      } else {
-        //Set the input value as value.
-      }
+    focusInputValue() {
+      console.log("focusInputValue");
+      this.$emit("getInputValue", this.inputValue);
     },
   },
   watch: {
     inputValue: function () {
+      console.log("inputValue");
       this.$emit("getInputValue", this.inputValue);
     },
     selected: function () {
