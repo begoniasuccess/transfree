@@ -5,6 +5,7 @@ import SearchList from "../components/SearchList";
 import Settings from "../components/Settings";
 import EstimatedTimeOfArrival from "../components/EstimatedTimeOfArrival";
 import CommonlyUsedBus from "../components/CommonlyUsedBus";
+import BlankList from "../components/BlankList";
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,16 @@ export default new VueRouter({
       name: "SearchBus",
       component: SearchBus,
       children: [
+        {
+          path: "",
+          name: "BlankList",
+          component: BlankList,
+        },
+        {
+          path: "search-list",
+          name: "SearchList",
+          component: SearchList,
+        },
         {
           path: "estimated-time-of-arrival/:city/:routeName",
           name: "EstimatedTimeOfArrival",

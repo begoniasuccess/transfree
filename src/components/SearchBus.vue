@@ -15,7 +15,8 @@
             v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
         >
           <span v-if="isDynamicKeyboardShow">
-            <DynamicKeyboard @clickKeyboard="clickKeyboard" @mobileSwitchBusInfo="mobileSwitchBusInfo"></DynamicKeyboard>
+            <DynamicKeyboard @clickKeyboard="clickKeyboard"
+                             @mobileSwitchBusInfo="mobileSwitchBusInfo"></DynamicKeyboard>
           </span>
           <span v-if="isBusInfoShow">
             <BusInfo
@@ -60,6 +61,7 @@
       <!--                </div>-->
       <!--              </div>-->
       <!--            </div>-->
+
       <!--      <SearchList-->
       <!--        :selectedCity="selected"-->
       <!--        :search="inputValue"-->
@@ -103,7 +105,7 @@
 
       <!--block_list:動態公車列表模式-->
       <div class="block_list">
-        <router-view @mobileSwitchBusInfo="mobileSwitchBusInfo"></router-view>
+        <router-view @mobileSwitchBusInfo="mobileSwitchBusInfo" @showBusInfo="isBusInfoShow=true;isDynamicKeyboardShow=false" :selectedCity="selected" :search="inputValue"></router-view>
       </div>
 
       <!--block_list:動態公車地圖模式-->
@@ -294,12 +296,27 @@ export default {
     },
     mobileSwitchBusInfo() {
       this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
+    },
+    loadSearchList() {
+      this.$router.replace(`/search-bus/search-list`).catch(()=>{});;
     }
   },
   watch: {
     busNum: function () {
       console.log("watch father busNum:" + this.busNum);
     },
+    selected: function () {
+      this.isDynamicKeyboardShow = true;
+      if(this.selected.value !== '' && this.inputValue !== '') {
+        this.loadSearchList();
+      }
+    },
+    inputValue: function () {
+      this.isDynamicKeyboardShow = true;
+      if(this.selected.value !== '' && this.inputValue !== '') {
+        this.loadSearchList();
+      }
+    }
   },
 };
 </script>
