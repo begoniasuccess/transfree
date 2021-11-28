@@ -3,26 +3,30 @@
     <div class="flex_row_sb w_100 h_100">
       <div class="flex_col w_100 h_100">
         <Search
-            v-on:getSearchCity="getSearchCity"
-            v-on:getInputValue="getInputValue"
-        >
-        </Search>
+          v-on:getSearchCity="getSearchCity"
+          v-on:getInputValue="getInputValue"
+          :inputValue="inputValue"
+        ></Search>
 
         <!--次要列表-->
         <div
-            class="block_sec flex_col select_scrollbar"
-            :style="[isMobileOpenBusInfo ? {'display' : 'block'} : {'display' : 'none'}]"
-            v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
+          class="block_sec flex_col select_scrollbar"
+          :style="[
+            isMobileOpenBusInfo ? { display: 'block' } : { display: 'none' },
+          ]"
+          v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
         >
           <span v-if="isDynamicKeyboardShow">
-            <DynamicKeyboard @clickKeyboard="clickKeyboard"
-                             @mobileSwitchBusInfo="mobileSwitchBusInfo"></DynamicKeyboard>
+            <DynamicKeyboard
+              @clickKeyboard="clickKeyboard"
+              @mobileSwitchBusInfo="mobileSwitchBusInfo"
+            ></DynamicKeyboard>
           </span>
           <span v-if="isBusInfoShow">
             <BusInfo
-                :city="$route.params.city"
-                :routeName="$route.params.routeName"
-                @mobileSwitchBusInfo="mobileSwitchBusInfo"
+              :city="$route.params.city"
+              :routeName="$route.params.routeName"
+              @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></BusInfo>
           </span>
 
@@ -105,7 +109,15 @@
 
       <!--block_list:動態公車列表模式-->
       <div class="block_list">
-        <router-view @mobileSwitchBusInfo="mobileSwitchBusInfo" @showBusInfo="isBusInfoShow=true;isDynamicKeyboardShow=false" :selectedCity="selected" :search="inputValue"></router-view>
+        <router-view
+          @mobileSwitchBusInfo="mobileSwitchBusInfo"
+          @showBusInfo="
+            isBusInfoShow = true;
+            isDynamicKeyboardShow = false;
+          "
+          :selectedCity="selected"
+          :search="inputValue"
+        ></router-view>
       </div>
 
       <!--block_list:動態公車地圖模式-->
@@ -225,8 +237,8 @@
 </template>
 
 <script>
-import {CITIES} from "../constant/city";
-import {BusObj} from "../constant/bus";
+import { CITIES } from "../constant/city";
+import { BusObj } from "../constant/bus";
 // import SearchList from "./SearchList";
 import Search from "./Search";
 // import { BUS_URL_V2, sendRequest } from "../utils/https";
@@ -236,7 +248,7 @@ import DynamicKeyboard from "./DynamicKeyboard";
 
 export default {
   name: "SearchBus",
-  components: {DynamicKeyboard, BusInfo, Search},
+  components: { DynamicKeyboard, BusInfo, Search },
   data() {
     return {
       cities: CITIES,
@@ -249,20 +261,21 @@ export default {
       bus: BusObj,
       inputValue: "",
       busNum: "",
-      isMobileOpenBusInfo: true
+      isMobileOpenBusInfo: true,
     };
   },
   methods: {
     clickKeyboard(value) {
-      console.log("parent:" + value);
-      //TODO Do something to the search input.
-      if (!isNaN(value)) {
-        //Append value to input value.
-      } else if ("reset" === value) {
+      if ("reset" === value) {
+        this.inputValue = "";
         //Reset the input value.
       } else if ("back" === value) {
+        this.inputValue = this.inputValue.substr(0, this.inputValue.length - 1);
+        this.getInputValue(this.inputValue);
         //Backspace the input value
       } else {
+        this.inputValue = this.inputValue + value;
+        this.getInputValue(this.inputValue);
         //Set the input value as value.
       }
     },
@@ -281,8 +294,8 @@ export default {
       this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
     },
     loadSearchList() {
-      this.$router.replace(`/search-bus/search-list`).catch(()=>{});;
-    }
+      this.$router.replace(`/search-bus/search-list`).catch(() => {});
+    },
   },
   watch: {
     busNum: function () {
@@ -290,16 +303,16 @@ export default {
     },
     selected: function () {
       this.isDynamicKeyboardShow = true;
-      if(this.selected.value !== '' && this.inputValue !== '') {
+      if (this.selected.value !== "" && this.inputValue !== "") {
         this.loadSearchList();
       }
     },
     inputValue: function () {
       this.isDynamicKeyboardShow = true;
-      if(this.selected.value !== '' && this.inputValue !== '') {
+      if (this.selected.value !== "" && this.inputValue !== "") {
         this.loadSearchList();
       }
-    }
+    },
   },
 };
 </script>
