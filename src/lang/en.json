@@ -98,6 +98,7 @@
   "remindYou": "Remind You",
   "doYouWantToSwitchToNormalArea": "Do You Want To Switch To The Normal Area?",
   "doYouWantToSwitchToFriendlyArea": "Do You Want To Switch To The Friendly Area?",
+  "doYouConfirmToResetCommonBusList": "Do you confirm to reset CommonBusList?",
   "confirm": "Confirm",
   "cancel": "Cancel"
 }
