@@ -16,7 +16,7 @@
         >
           <span v-if="isDynamicKeyboardShow">
             <DynamicKeyboard @clickKeyboard="clickKeyboard"
-                             @mobileSwitchBusInfo="mobileSwitchBusInfo"></DynamicKeyboard>
+                            @mobileSwitchBusInfo="mobileSwitchBusInfo"></DynamicKeyboard>
           </span>
           <span v-if="isBusInfoShow">
             <BusInfo
@@ -25,24 +25,6 @@
                 @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></BusInfo>
           </span>
-
-          <!--站牌公車-->
-          <!--          <div>-->
-          <!--            <p class="title_txt">站牌公車</p>-->
-          <!--            &lt;!&ndash;卡片式資訊&ndash;&gt;-->
-          <!--            <div class="content_card">-->
-          <!--              <div class="flex_row_cb">-->
-          <!--                <div class="flex_col">-->
-          <!--                  <p class="text_b">公車號碼</p>-->
-          <!--                  <p class="text_sec">行車方向</p>-->
-          <!--                </div>-->
-          <!--                <div class="flex_row_ce">-->
-          <!--                  <i class="i_love active"></i>-->
-          <!--                  <i class="i_next"></i>-->
-          <!--                </div>-->
-          <!--              </div>-->
-          <!--            </div>-->
-          <!--          </div>-->
         </div>
 
         <!--初始圖-->
@@ -52,60 +34,16 @@
       </div>
 
       <!--右側列表-->
-      <!--block_list:白箱狀態-->
-      <!--            <div class="block_list">-->
-      <!--              <div class="content_list">-->
-      <!--                <div class="list_top flex_col_cc">搜尋清單</div>-->
-      <!--                <div class="list_bottom flex_col_cc">-->
-      <!--                  <div class="img_box"></div>-->
-      <!--                </div>-->
-      <!--              </div>-->
-      <!--            </div>-->
-
-      <!--      <SearchList-->
-      <!--        :selectedCity="selected"-->
-      <!--        :search="inputValue"-->
-      <!--        v-on:getBusNum="getBusNum"-->
-      <!--      ></SearchList>-->
-
-      <!-- <router-link :to="`/search-bus/search-list/${selected.value}`"
-        >555</router-link
-      > -->
-
-      <!--block_list:搜尋列表-->
-      <!--      <div class="block_list">-->
-      <!--        <div class="content_list">-->
-      <!--          <div class="list_top flex_row_cc">搜尋清單</div>-->
-      <!--          <div class="list_bottom flex_col">-->
-      <!--            <div class="select_scrollbar">-->
-      <!--              <div class="list_inner">-->
-      <!--                <div class="flex_col">-->
-      <!--                  <p class="text_b">公車號碼</p>-->
-      <!--                  <p class="text_sec">行車方向</p>-->
-      <!--                </div>-->
-      <!--                <div class="flex_row_ce">-->
-      <!--                  <i class="i_love active"></i>-->
-      <!--                  <i class="i_next"></i>-->
-      <!--                </div>-->
-      <!--              </div>-->
-      <!--              <div class="list_inner">-->
-      <!--                <div class="flex_col">-->
-      <!--                  <p class="text_b">公車號碼</p>-->
-      <!--                  <p class="text_sec">行車方向</p>-->
-      <!--                </div>-->
-      <!--                <div class="flex_row_ce">-->
-      <!--                  <i class="i_love"></i>-->
-      <!--                  <i class="i_next"></i>-->
-      <!--                </div>-->
-      <!--              </div>-->
-      <!--            </div>-->
-      <!--          </div>-->
-      <!--        </div>-->
-      <!--      </div>-->
 
       <!--block_list:動態公車列表模式-->
       <div class="block_list">
-        <router-view @mobileSwitchBusInfo="mobileSwitchBusInfo" @showBusInfo="isBusInfoShow=true;isDynamicKeyboardShow=false" :selectedCity="selected" :search="inputValue"></router-view>
+        <router-view 
+          @mobileSwitchBusInfo = "mobileSwitchBusInfo" 
+          @showBusInfo = "isBusInfoShow=true;isDynamicKeyboardShow=false" 
+          @searchMode = "loadSearchPanel"
+          :selectedCity = "selected" 
+          :search = "inputValue"
+        ></router-view>
       </div>
 
       <!--block_list:動態公車地圖模式-->
@@ -232,7 +170,8 @@ import Search from "./Search";
 // import { BUS_URL_V2, sendRequest } from "../utils/https";
 import BusInfo from "./BusInfo";
 import DynamicKeyboard from "./DynamicKeyboard";
-import {getCurrentLocationInfo} from "../utils/location";
+// import {getCurrentLocationInfo} from "../utils/location";
+import { SEARCH_MODE } from "../constant/common";
 
 export default {
   name: "SearchBus",
@@ -249,7 +188,10 @@ export default {
       bus: BusObj,
       inputValue: "",
       busNum: "",
-      isMobileOpenBusInfo: true
+      isMobileOpenBusInfo: true,
+      searchMode:{
+        now:SEARCH_MODE.list
+      }
     };
   },
   methods: {
@@ -280,8 +222,8 @@ export default {
     mobileSwitchBusInfo() {
       this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
     },
-    loadSearchList() {
-      this.$router.replace(`/search-bus/search-list`).catch(()=>{});;
+    loadSearchPanel(mode) {
+      this.$router.replace(`/search-bus/${mode}`).catch(()=>{});
     }
   },
   watch: {
@@ -291,13 +233,13 @@ export default {
     selected: function () {
       this.isDynamicKeyboardShow = true;
       if(this.selected.value !== '' && this.inputValue !== '') {
-        this.loadSearchList();
+        this.loadSearchPanel(this.searchMode.now);
       }
     },
     inputValue: function () {
       this.isDynamicKeyboardShow = true;
       if(this.selected.value !== '' && this.inputValue !== '') {
-        this.loadSearchList();
+        this.loadSearchPanel(this.searchMode.now);
       }
     }
   },

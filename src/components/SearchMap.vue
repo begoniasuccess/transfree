@@ -5,10 +5,11 @@
         <div class="content_list">
             <div class="list_top flex_row_cb">
                 <!-- 模式切換 -->
-                <i class="i_model_list"></i>
+                <i class="i_model_list" @click="switchMode('EstimatedTimeOfArrival')"></i>
                 <p>公車號碼</p>
                 <div class="flex_row_ce">
-                    <i class="i_update" @click="getList"></i>
+                    <i class="i_update"></i>
+                    <!-- <i class="i_update" @click="getList"></i> -->
                     <i class="i_info"></i>
                 </div>
             </div>
@@ -76,142 +77,182 @@
 </template>
 
 <script>
-import { CITIES } from "../constant/city";
-import {
-  BUS_URL_V2,
-  RESPONSE_DATA_FORMAT_JSON,
-  sendRequest,
-} from "../utils/https";
-import { BusObj } from "../constant/bus";
-import { getAllBus, addBus, removeBus } from "../utils/commonly-used-bus.js";
-// import { DEFAULT_NUMBER_OF_QUERY_RECORDS } from "../constant/common";
-import Map from "./Map";
+import {BUS_URL_V2, sendRequest} from "../utils/https";
+import {GLOBAL_MULTILINGUAL_CHINESE, GLOBAL_MULTILINGUAL_ENGLISH, RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
+import {getCurrentDateTime} from "../utils/date";
 
 export default {
-  name: "SearchMap",
-  components:{Map},
-  props: {
-    selectedCity: Object,
-    search: String,
-  },
+  name: "EstimatedTimeOfArrival",
   data() {
     return {
-      cities: CITIES,
-      selected: CITIES[0],
-      open: false,
-      isDynamicKeyboardShow: false,
-      isBusInfoShow: false,
-      searchBusList: new Array(), // 篩選過的List
-      cityBusList: new Array(), // 完整的List
-      routeName: String, // 路線名稱
-      // bus: BusObj,
-      busNum: "", // 選擇的busNum
-      // isLoved: false, // 常用標記
+      routeName: '',
+      goList: [],
+      backList: [],
+      isGoListActive: true,
+      updateTime: getCurrentDateTime(),
+      busList: [],
+      // allBusInCity: [],
+      allRouteCity: [],
+      interval: "",
+      multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
+      multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
+      center:[0,0]
     };
   },
-  //TODO need to remove(for testing axios and location)
   mounted() {
-    this.sendRequest();
+    // this.getAllBusInCity();
+    // this.getStopList();
+    // this.getBusList();
+    this.getStopOfRoute();
+    if (this.$store.getters.getIsAutoUpdate) {
+      const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+      this.interval = setInterval(() => {
+        this.resetData();
+      }, updateSecond);
+    }
+  },
+  beforeDestroy() {
+    console.log("clearInterval");
+    clearInterval(this.interval);
   },
   methods: {
-    sendRequest() {
-      // const city = this.$route.params.city;
-      // const routeName = this.$route.params.routeName;
-      sendRequest(
-        "get",
-        `${BUS_URL_V2}/Route/City/${this.selectedCity.value}?&$format=${RESPONSE_DATA_FORMAT_JSON}`
-      )
-        .then((res) => {
-          console.log("SearchList sendRequest this.selected=", this.selected);
-          console.log("res=", res);
-          console.log("this.searchBusList=", this.searchBusList);
-          console.log("search=", this.search);
-          this.searchBus(res);
-          this.getLoveList();
-          this.searchKeyWord();
-        })
-        .catch((err) => {
-          //TODO Change to popup
-          window.alert("Get SearchList occurs error：" + err);
-        });
+    resetData() {
+      // this.getStopList();
+      // this.getBusList();
+      this.getStopOfRoute();
     },
-    searchBus(res) {
-      this.searchBusList = [];
-      this.cityBusList = [];
-      res.data.forEach((element) => {
-        const item = new BusObj(
-          element.RouteUID,
-          element.RouteName.Zh_tw,
-          element.RouteName.En,
-          element.DepartureStopNameZh,
-          element.DestinationStopNameZh
-        );
-        this.searchBusList.push(item);
-      });
-      this.cityBusList = this.searchBusList;
-    },
-    searchKeyWord() {
-      let tmplist = [];
-      this.searchBusList = this.cityBusList;
-      this.searchBusList.forEach((element) => {
-        element.zh_tw.indexOf(this.search);
-        if (element.zh_tw.indexOf(this.search) != -1) {
-          tmplist.push(element);
-        }
-      });
-      this.searchBusList = tmplist;
-    },
-    getThisBus(bus) {
-      this.busNum = bus.zh_tw;
-      this.order();
-      this.$emit("getBusNum", this.busNum);
-    },
-    setLoveList(bus) {
-      this.cityBusList.forEach((element) => {
-        if (element.routeUID == bus.routeUID) {
-          element.isLove = !bus.isLove;
-        }
-      });
-      if (bus.isLove) {
-        addBus(bus);
-      } else {
-        removeBus(bus);
-      }
-    },
-    getLoveList() {
-      let allBus = getAllBus();
-      if (allBus == null) {
-        return;
-      }
-      let tmpList = [];
-      allBus.forEach((element) => {
-        if (element.routeUID.substring(0, 3) == this.selectedCity.id) {
-          tmpList.push(element);
-        }
-      });
-      this.cityBusList.forEach((element) => {
-        tmpList.forEach((tmpBus) => {
-          if (tmpBus.routeUID == element.routeUID) {
-            element.isLove = true;
-          }
-        });
-      });
-    },
-    order() {
-      this.$emit("showBusInfo");
+    // getAllBusInCity() {
+    //   const city = this.$route.params.city;
+    //   sendRequest(
+    //       "get",
+    //       `${BUS_URL_V2}/Vehicle/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+    //   )
+    //       .then((res) => {
+    //         this.allBusInCity = res.data;
+    //       })
+    //       .catch((err) => {
+    //         window.alert("Get AllBusInCity occurs error：" + err);
+    //       });
+    // },
+    // getStopList() {
+    //   const city = this.$route.params.city;
+    //   const routeName = this.$route.params.routeName;
+    //   sendRequest(
+    //       "get",
+    //       `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+    //   )
+    //       .then((res) => {
+    //         console.log({getStopListRes:res.data});
+    //         if(this.$store.getters.getMultilingual === GLOBAL_MULTILINGUAL_CHINESE) {
+    //           this.routeName = res.data[0].RouteName.Zh_tw;
+    //         } else {
+    //           this.routeName = res.data[0].RouteName.En;
+    //         }
+
+    //         this.goList = res.data
+    //             .filter((data) => data.Direction == 0)
+    //             .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
+    //         this.backList = res.data
+    //             .filter((data) => data.Direction == 1)
+    //             .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
+    //         this.updateTime = getCurrentDateTime();
+    //       })
+    //       .catch((err) => {
+    //         window.alert("Get EstimatedTimeOfArrival occurs error：" + err);
+    //       });
+    // },
+    // getBusList() {
+    //   const city = this.$route.params.city;
+    //   const routeName = this.$route.params.routeName;
+    //   sendRequest(
+    //       "get",
+    //       `${BUS_URL_V2}/RealTimeNearStop/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+    //   )
+    //       .then((res) => {
+    //         this.busList = res.data;
+    //       })
+    //       .catch((err) => {
+    //         window.alert("Get RealTimeNearStop occurs error：" + err);
+    //       });
+    // },
+    // getBusNearByStop(stopName, direction) {
+    //   const nearBy = this.busList.filter(
+    //       (data) =>
+    //           data.StopName.Zh_tw === stopName && data.Direction === direction
+    //   );
+    //   if (nearBy.length === 0) {
+    //     return "";
+    //   } else {
+    //     return nearBy;
+    //   }
+    // },
+    // isBarrierFree(plateNumb) {
+    //   if (plateNumb !== "") {
+    //     const bus = this.allBusInCity.filter(
+    //         (data) => data.PlateNumb === plateNumb
+    //     );
+    //     return bus.length !== 0 && bus[0].VehicleType === 1;
+    //   } else {
+    //     return false;
+    //   }
+    // },
+    // clickUpdateData() {
+    //   this.resetData();
+    //   if (this.$store.getters.getIsAutoUpdate) {
+    //     clearInterval(this.interval);
+    //     const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+    //     this.interval = setInterval(() => {
+    //       this.resetData();
+    //     }, updateSecond);
+    //   }
+    // },
+    // mobileSwitchBusInfo() {
+    //   this.$emit("mobileSwitchBusInfo")
+    // },
+    switchMode(mode) {
       this.$router.push({
-        name: "EstimatedTimeOfArrival",
-        params: { city: this.selectedCity.value, routeName: this.busNum },
+        name: mode,
+        params: { city: this.$route.params.city, routeName: this.$route.params.routeName },
       });
+    },
+    getStopOfRoute(){
+      const city = this.$route.params.city;
+      const routeName = this.$route.params.routeName;
+      sendRequest(
+          "get",
+          `${BUS_URL_V2}/StopOfRoute/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+      )
+          .then((res) => {
+            this.allRouteCity = res.data;
+            console.log({allRouteCity:res.data});
+          })
+          .catch((err) => {
+            window.alert("Get getStopOfRoute occurs error：" + err);
+          });
+    }
+  },
+  computed: {
+    activeList: {
+      // eslint-disable-next-line
+      get() {
+        if (this.isGoListActive) {
+          return this.goList;
+        } else {
+          return this.backList;
+        }
+      },
+      // eslint-disable-next-line
+      set(value) {
+      },
     },
   },
   watch: {
-    selectedCity: function () {
-      this.sendRequest();
-      this.getLoveList();
-    },
-    search: function () {
-      this.searchKeyWord();
+    isGoListActive: function (newVal, oldVal) {
+      if (newVal && !oldVal) {
+        this.activeList = this.goList;
+      } else {
+        this.activeList = this.backList;
+      }
     },
   },
 };
