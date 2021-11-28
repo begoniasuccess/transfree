@@ -280,14 +280,16 @@ export default {
       }
     },
     getBusNum: function (busNum) {
+      this.isDynamicKeyboardShow = false;
       this.busNum = busNum;
     },
     getSearchCity: function (city) {
-      console.log("getSearchValue:" + city + "/");
       this.selected = city;
     },
     getInputValue: function (inputValue) {
-      console.log("getSearchValue:" + inputValue + "/");
+      this.isDynamicKeyboardShow = true;
+      this.isMobileOpenBusInfo = true;
+      this.isBusInfoShow = false;
       this.inputValue = inputValue;
     },
     mobileSwitchBusInfo() {
@@ -319,7 +321,7 @@ export default {
 
 <style src="../assets/css/global_all.css"></style>
 <style scoped>
-.flex_row_sb w_100 h_100 > .h_100{
+.flex_row_sb w_100 h_100 > .h_100 {
   height: inherit;
 }
 </style>
