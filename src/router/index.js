@@ -6,6 +6,7 @@ import Settings from "../components/Settings";
 import EstimatedTimeOfArrival from "../components/EstimatedTimeOfArrival";
 import CommonlyUsedBus from "../components/CommonlyUsedBus";
 import BlankList from "../components/BlankList";
+import NearbyStop from "../components/NearbyStop";
 
 Vue.use(VueRouter);
 
@@ -58,6 +59,11 @@ export default new VueRouter({
       path: "/settings",
       name: "Settings",
       component: Settings,
+    },
+    {
+      path: "/nearby-stop",
+      name: "NearbyStop",
+      component: NearbyStop,
     },
   ],
 });
