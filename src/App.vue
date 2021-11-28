@@ -301,6 +301,9 @@ a {
 }
 
 div.btn_a11y:hover{
+  transition: .3s;
+  transform:scale( 1.03,1.1);
+  transform-origin:right center;
   cursor: pointer;
 }
 
@@ -411,6 +414,10 @@ div.btn_a11y:hover{
   cursor: none;
   transform: none;
   /*background-position: center;*/
+}
+
+.i_a11y:hover{
+  transform: none;
 }
 
 .i_menu {
