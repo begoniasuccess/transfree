@@ -232,7 +232,7 @@ import Search from "./Search";
 // import { BUS_URL_V2, sendRequest } from "../utils/https";
 import BusInfo from "./BusInfo";
 import DynamicKeyboard from "./DynamicKeyboard";
-import {getCurrentLocationInfo} from "../utils/location";
+// import {getCurrentLocationInfo} from "../utils/location";
 
 export default {
   name: "SearchBus",
@@ -242,7 +242,7 @@ export default {
       cities: CITIES,
       selected: CITIES[0],
       open: false,
-      isDynamicKeyboardShow: false,
+      isDynamicKeyboardShow: true,
       isBusInfoShow: false,
       searchBusList: new Array(),
       routeName: String, // 路線名稱
@@ -256,7 +256,7 @@ export default {
     clickKeyboard(value) {
       console.log("parent:" + value);
       //TODO Do something to the search input.
-      if (Number.isInteger(value)) {
+      if (!isNaN(value)) {
         //Append value to input value.
       } else if ("reset" === value) {
         //Reset the input value.
