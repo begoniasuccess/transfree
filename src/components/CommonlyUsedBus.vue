@@ -13,13 +13,14 @@
           class="block_sec flex_col select_scrollbar"
           v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
         >
-          <span v-if="isDynamicKeyboardShow">
+          <span v-if="isDynamicKeyboardShow"
+            >">
             <DynamicKeyboard
               @clickKeyboard="clickKeyboard"
               @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></DynamicKeyboard>
           </span>
-          <span v-if="isBusInfoShow">
+          <span v-if="isBusInfoShow && isDynamicKeyboardShow == false">
             <BusInfo
               :city="this.selected.value"
               :routeName="this.busNum"
@@ -96,7 +97,6 @@
 </template>
 
 <script>
-// const LOCALSTORAGE_KEY = "TRANSFREE_COMMONLY_USED_BUS";
 import { CITIES } from "../constant/city";
 import { getAllBus, addBus, removeBus } from "../utils/commonly-used-bus.js";
 import Search from "./Search";
@@ -124,8 +124,6 @@ export default {
     };
   },
   mounted() {
-    // const city = this.$route.params.city;
-    // const routeName = this.$route.params.routeName;
     let allBus = getAllBus();
     if (allBus == null) {
       this.busList = [];
@@ -169,6 +167,7 @@ export default {
     getInputValue: function (inputValue) {
       this.isDynamicKeyboardShow = true;
       this.isMobileOpenBusInfo = true;
+      this.isSelectedTheBus = false;
       this.inputValue = inputValue;
     },
     getThisBus(bus) {
@@ -211,11 +210,9 @@ export default {
       this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
     },
     getBusInfo(bus) {
+      this.isDynamicKeyboardShow = false;
       this.isBusInfoShow = true;
-      console.log("this.isBusInfoShow=", this.isBusInfoShow);
-      console.log("selected=", this.selected.value);
       this.busNum = bus.zh_tw;
-      console.log("bus=", this.busNum);
     },
   },
   watch: {
