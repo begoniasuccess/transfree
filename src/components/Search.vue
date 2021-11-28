@@ -35,7 +35,7 @@
       @focus="focusInputValue()"
     />
 
-    <!--＝搜尋時間-->
+    <!--搜尋時間-->
     <p class="text_info">{{ $t("searchTimestamp") }} 2021/11/21 20:22:11</p>
   </div>
 </template>
@@ -56,17 +56,14 @@ export default {
       open: false,
     };
   },
-  //TODO need to remove(for testing axios and location)
   mounted() {},
   methods: {
     focusInputValue() {
-      console.log("focusInputValue");
       this.$emit("getInputValue", this.inputValue);
     },
   },
   watch: {
     inputValue: function () {
-      console.log("inputValue");
       this.$emit("getInputValue", this.inputValue);
     },
     selected: function () {

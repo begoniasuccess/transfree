@@ -2,18 +2,6 @@
   <div class="h_100 w_100">
     <div class="flex_row_cb w_100 h_100">
       <div class="flex_col w_100 h_100">
-        <!--右側列表-->
-        <!--block_list:白箱狀態-->
-        <!--        <div class="block_list" v-if="searchBusList.length < 1">-->
-        <!--          <div class="content_list">-->
-        <!--            <div class="list_top flex_col_cc">{{ $t("searchList") }}</div>-->
-        <!--            <div class="list_bottom flex_col_cc">-->
-        <!--              <div class="img_box"></div>-->
-        <!--            </div>-->
-        <!--          </div>-->
-        <!--        </div>-->
-        <!--block_list:搜尋列表-->
-        <!--        <div class="block_list" v-if="searchBusList.length >= 1">-->
         <div class="content_list">
           <div class="list_top flex_row_cc">{{ $t("searchList") }}</div>
           <div class="list_bottom h_100 flex_col">
@@ -43,7 +31,6 @@
             </div>
           </div>
         </div>
-        <!--        </div>-->
       </div>
     </div>
   </div>
@@ -58,7 +45,6 @@ import {
 } from "../utils/https";
 import { BusObj } from "../constant/bus";
 import { getAllBus, addBus, removeBus } from "../utils/commonly-used-bus.js";
-// import { DEFAULT_NUMBER_OF_QUERY_RECORDS } from "../constant/common";
 
 export default {
   name: "SearchList",
@@ -76,34 +62,25 @@ export default {
       searchBusList: new Array(), // 篩選過的List
       cityBusList: new Array(), // 完整的List
       routeName: String, // 路線名稱
-      // bus: BusObj,
       busNum: "", // 選擇的busNum
-      // isLoved: false, // 常用標記
     };
   },
-  //TODO need to remove(for testing axios and location)
   mounted() {
     this.sendRequest();
   },
   methods: {
     sendRequest() {
-      // const city = this.$route.params.city;
-      // const routeName = this.$route.params.routeName;
       sendRequest(
         "get",
         `${BUS_URL_V2}/Route/City/${this.selectedCity.value}?&$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
         .then((res) => {
-          console.log("SearchList sendRequest this.selected=", this.selected);
           console.log("res=", res);
-          console.log("this.searchBusList=", this.searchBusList);
-          console.log("search=", this.search);
           this.searchBus(res);
           this.getLoveList();
           this.searchKeyWord();
         })
         .catch((err) => {
-          //TODO Change to popup
           window.alert("Get SearchList occurs error：" + err);
         });
     },
