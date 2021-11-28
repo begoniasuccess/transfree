@@ -7,6 +7,7 @@
           v-on:getInputValue="getInputValue"
           :inputValue="inputValue"
           :page="page"
+          :inputHint="inputHint"
         ></Search>
 
         <!--次要列表-->
@@ -117,6 +118,7 @@ export default {
   data() {
     return {
       page:"searchBus",
+      inputHint:"enterRouteName",
       cities: CITIES,
       selected: CITIES[0],
       open: false,

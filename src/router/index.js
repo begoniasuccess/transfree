@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import SearchBus from "../components/SearchBus";
 import SearchList from "../components/SearchList";
 import SearchMap from "../components/SearchMap";
+import NearbyMap from "../components/NearbyMap";
 import Settings from "../components/Settings";
 import EstimatedTimeOfArrival from "../components/EstimatedTimeOfArrival";
 import CommonlyUsedBus from "../components/CommonlyUsedBus";
@@ -77,19 +78,14 @@ export default new VueRouter({
           component: BlankList,
         },
         {
-          path: "search-list",
-          name: "SearchList",
-          component: SearchList,
-        },
-        {
           path: "/:city/:routeName",
           name: "SearchList",
           component: SearchList,
         },
         {
-          path: "search-map/:city/:routeName",
-          name: "SearchMap",
-          component: SearchMap,
+          path: "nearby-map/:city/:routeName",
+          name: "NearbyMap",
+          component: NearbyMap,
         },
         {
           path: "estimated-time-of-arrival/:city/:routeName",

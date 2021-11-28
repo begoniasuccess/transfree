@@ -30,7 +30,7 @@
     <input
         type="text"
         class="inner_group text_overflow"
-        :placeholder="$t('enterRouteName')"
+        :placeholder="$t(inputHint)"
         v-model="inputValue"
         @focus="focusInputValue()"
     />
@@ -49,7 +49,8 @@ export default {
   props: {
     selectedCity: String,
     inputValue: String,
-    page:String
+    page:String,
+    inputHint:String
   },
   data() {
     return {

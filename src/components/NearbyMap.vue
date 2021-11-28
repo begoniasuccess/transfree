@@ -3,78 +3,49 @@
     <div class="flex_row_cb w_100 h_100">
       <div class="flex_col w_100 h_100">
         <div class="content_list">
-            <div class="list_top flex_row_cb">
-                <!-- 模式切換 -->
-                <i class="i_model_list" @click="switchMode('EstimatedTimeOfArrival')"></i>
-                <p>公車號碼</p>
-                <div class="flex_row_ce">
-                    <i class="i_update"></i>
-                    <!-- <i class="i_update" @click="getList"></i> -->
-                    <i class="i_info"></i>
-                </div>
+          <div class="list_top flex_row_cb">
+            <i></i>
+            <p>附近站牌</p>
+            <div class="flex_row_ce">
+              <i class="i_update" @click="getList"></i>
             </div>
+          </div>
 
-            <!-- tab  -->
-            <div class="bookmark_container">
-                <button :class="{active : isgoStopListActive}" @click="isgoStopListActive = true">去</button>
-                <button :class="{active : !isgoStopListActive}" @click="isgoStopListActive = false">返</button>
-            </div>
+          <div class="list_bottom flex_col">
+            <div class="select_scrollbar">
+              <!-- &lt;!&ndash;地圖區域&ndash;&gt; -->
+              <div class="map_inner map_stop">
+                <i class="i_zoomin"></i>
+                <i class="i_zoomout active"></i>
 
-            <div class="list_bottom flex_col">
-                <div class="select_scrollbar">
-                    <!-- 地圖區域 -->
-                    <div class="map_inner">
-                    <i :class="{i_zoomin:true, active:zoomMode == 'in'}" @click="zoomSize++;zoomMode='in';"></i>
-                    <i :class="{i_zoomout:true, active:zoomMode == 'out'}" @click="zoomSize--;zoomMode='out';"></i>
-
-                    <!-- 站牌資訊 -->
-                    <div class="content_card" v-if="isPopUpActive && popUpMode == 'stop'">
-                        <div class="flex_row_cb">
-                            <p class="title_card_txt">{{activeStop.StopName.En}}</p>
-                            <i class="i_close" @click="isPopUpActive = false;"></i>
-                        </div>
-                        <label class="flex_row_cb">
-                            <p>路線</p>
-                            <p>{{this.$route.params.routeName}}</p>
-                        </label>
-                        <label class="flex_row_cb">
-                            <p>站序</p>
-                            <p>{{activeStop.StopIndex}}</p>
-                        </label>
+                <!-- &lt;!&ndash;站牌相關公車資訊&ndash;&gt; -->
+                <div class="content_card">
+                  <div class="flex_row_cb">
+                    <p class="title_card_txt">2380 捷運北屯總站(松竹路)</p>
+                    <i class="i_close"></i>
+                  </div>
+                  <label class="flex_row_cb">
+                    <p>站牌公車</p>
+                    <p>33,234</p>
+                  </label>
+                  <label class="flex_row_cb">
+                    <p>距離</p>
+                    <div class="flex_row">
+                      <p>300</p>
+                      <p>m</p>
                     </div>
-
-                    <!-- 公車資訊 -->
-                    <div class="content_card" v-if="isPopUpActive && popUpMode == 'route'">
-                        <div class="flex_row_cb">
-                            <p class="title_card_txt">{{this.$route.params.routeName}}</p>
-                            <i class="i_close" @click="isPopUpActive = false;"></i>
-                        </div>
-
-                        <label class="flex_row_cb">
-                            <p>營運業者</p>
-                            <p>{{operatorName.En}}</p>
-                        </label>
-
-                        <label class="flex_row_cb">
-                            <p>車牌號碼</p>
-                            <div class="flex_row_ce">
-                                <p class="text_primary">590-GT</p>
-                                <i class="i_a11ybus"></i>
-                            </div>
-                        </label>
-                    </div>
-                    
-                    <Map  :center="center" 
-                          :stopsData="activeList"
-                          :zoom="zoomSize"
-                          @show-stop-popup="showStopInfo"
+                  </label>
+                </div>                
+                <Map    :center="center" 
+                        :stopsData="activeList"
+                        :zoom="zoom"
+                        @show-stop-popup="showStopInfo"
                     ></Map>
-                    <router-view></router-view>
-                    </div>
-                    <div class=" black_overlay"></div>
-                </div>
-                <p class="text_info">更新時間 {{ updateTime }}</p>
+                <div class=" black_overlay"></div>
+              </div>
             </div>
+            <p class="text_info map_stop">更新時間 {{ updateTime }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -85,10 +56,14 @@
 import {BUS_URL_V2, sendRequest} from "../utils/https";
 import {GLOBAL_MULTILINGUAL_CHINESE, GLOBAL_MULTILINGUAL_ENGLISH, RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
 import {getCurrentDateTime} from "../utils/date";
+import {getCurrentLocationInfo} from "../utils/location";
 import Map from "./Map";
 
 export default {
-  name: "SearchMap",
+  name: "NearbyMap",
+  props:{
+      zoom:Number
+  },
   data() {
     return {
       routeName: '',
@@ -104,7 +79,7 @@ export default {
       multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
       multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
       center:[22.612961, 120.304167],
-      zoomSize : 13,
+    //   zoomSize : 13,
       popUpMode:'route',
       isPopUpActive :true,
       zoomMode:'in',
@@ -116,7 +91,9 @@ export default {
   components:{
     Map
   },
+  
   mounted() {
+    this.setCenter();
     this.getStopOfRoute();
     if (this.$store.getters.getIsAutoUpdate) {
       const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
@@ -132,7 +109,7 @@ export default {
   methods: {
     resetData() {
       // this.getStopOfRoute();      
-      this.getBusList();
+    //   this.getBusList();
     },    
     switchMode(mode) {
       this.$router.push({
@@ -178,13 +155,15 @@ export default {
       return stopList;
     },
     setCenter(){
-      if (this.activeList.length > 10){
-        this.center = this.activeList[9].StopPosition;
-      }else if(this.activeList.length > 5){
-        this.center = this.activeList[4].StopPosition;
-      }else{
-        this.center = this.activeList[0].StopPosition;
-      }
+      let self = this;
+      getCurrentLocationInfo().then((data)=>{
+        //   console.log({setCenter:data});
+          self.center=[data.data.lat, data.data.lon];
+          console.log({setCenter:self.center});
+      }).catch((err)=>{
+          console.log({setCenterErr:err});
+      });
+      
     },
     showStopInfo(stopIndex){
       console.log("showStopInfo",{stopIndex});

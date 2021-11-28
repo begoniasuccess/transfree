@@ -812,7 +812,7 @@ i:hover {
     padding: 12px;
     box-shadow: 0px 1px 6px 1px rgba(145, 145, 145, 0.6);
     border-radius: 4px;
-    z-index:1000;
+    /* z-index:1000; */
 }
 
 .i_zoomout {
@@ -830,7 +830,7 @@ i:hover {
     padding: 12px;
     box-shadow: 0px 1px 6px 1px rgba(145, 145, 145, 0.6);
     border-radius: 4px;
-    z-index:1000;
+    /* z-index:1000; */
 }
 
 .i_zoomin.active, .i_zoomout.active {
