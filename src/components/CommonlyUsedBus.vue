@@ -13,8 +13,7 @@
           class="block_sec flex_col select_scrollbar"
           v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
         >
-          <span v-if="isDynamicKeyboardShow"
-            >">
+          <span v-if="isDynamicKeyboardShow">
             <DynamicKeyboard
               @clickKeyboard="clickKeyboard"
               @mobileSwitchBusInfo="mobileSwitchBusInfo"
