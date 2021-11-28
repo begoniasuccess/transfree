@@ -1,7 +1,7 @@
 <template>
   <div class="h_100 w_100">
     <div class="flex_row_sb w_100 h_100">
-      <div class="flex_col w_100 h_100">
+      <div class="flex_col w_100 h_100 auto">
         <Search
           v-on:getSearchCity="getSearchCity"
           v-on:getInputValue="getInputValue"
@@ -318,4 +318,8 @@ export default {
 </script>
 
 <style src="../assets/css/global_all.css"></style>
-<style scoped></style>
+<style scoped>
+.flex_row_sb w_100 h_100 > .h_100{
+  height: inherit;
+}
+</style>

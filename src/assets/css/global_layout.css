@@ -227,6 +227,10 @@
         margin-left: 8px;
     }
 
+    .flex_col.w_100.h_100.auto{
+        height: auto
+    }
+
 
 }
 

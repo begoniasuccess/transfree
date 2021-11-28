@@ -1,6 +1,6 @@
 <template>
   <div class="h_100 w_100">
-    <div class="flex_row_sb w_100 h_100">
+    <div class="flex_row_sb w_100 h_100 auto">
       <div class="flex_col w_100 h_100">
         <Search
           v-on:getSearchCity="getSearchCity"
@@ -9,30 +9,28 @@
         ></Search>
 
         <!--次要列表-->
-        <div class="block_sec img_first flex_col_cc">
-          <span
-            class="img_03"
-            v-if="isDynamicKeyboardShow == false && isBusInfoShow == false"
-          ></span>
-          <span
-            class="block_sec flex_col select_scrollbar"
-            v-if="isDynamicKeyboardShow"
-          >
+        <div
+          class="block_sec flex_col select_scrollbar"
+          v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
+        >
+          <span v-if="isDynamicKeyboardShow">
             <DynamicKeyboard
               @clickKeyboard="clickKeyboard"
               @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></DynamicKeyboard>
           </span>
-          <span
-            class="block_sec flex_col select_scrollbar"
-            v-if="isBusInfoShow"
-          >
+          <span v-if="isBusInfoShow">
             <BusInfo
               :city="$route.params.city"
               :routeName="$route.params.routeName"
               @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></BusInfo>
           </span>
+        </div>
+
+        <!--初始圖-->
+        <div class="block_sec img_first flex_col" v-else>
+          <div class="img_01"></div>
         </div>
       </div>
 
@@ -48,7 +46,10 @@
       </div>
 
       <!--block_list:常用搜尋列表-->
-      <div class="block_list" v-if="busList.length >= 1">
+      <div
+        class="block_list"
+        v-if="busList.length >= 1 || isSelectedTheBus == false"
+      >
         <div class="content_list">
           <div class="list_top flex_row_cc">搜尋清單</div>
           <div class="list_bottom h_100 flex_col">
@@ -68,16 +69,15 @@
                     :class="{ 'i_love active': bus.isLove }"
                     @click="setLoveList(bus)"
                   ></i>
-                  <i class="i_info"></i>
+                  <i class="i_info" @click="getBusInfo(bus)"></i>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <!--block_list:動態公車列表模式-->
-      <!-- <div class="block_list">
+      <div class="block_list" v-if="isSelectedTheBus == true">
         <router-view
           @mobileSwitchBusInfo="mobileSwitchBusInfo"
           @showBusInfo="
@@ -87,7 +87,7 @@
           :selectedCity="selected"
           :search="inputValue"
         ></router-view>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>
@@ -112,6 +112,7 @@ export default {
       isDynamicKeyboardShow: false,
       isBusInfoShow: false,
       isMobileOpenBusInfo: true,
+      isSelectedTheBus: false,
       busList: new Array(), // 篩選過的List
       cityBusList: new Array(), // city的List
       allBusList: new Array(), // 完整的List
@@ -132,12 +133,7 @@ export default {
   },
   methods: {
     clickKeyboard(value) {
-      console.log("parent:" + value);
-      //TODO Do something to the search input.
-      console.log("Number.isInteger(value)=", Number.isInteger(value));
-      if (Number.isInteger(value)) {
-        //Append value to input value.
-      } else if ("reset" === value) {
+      if ("reset" === value) {
         this.inputValue = "";
         //Reset the input value.
       } else if ("back" === value) {
@@ -146,7 +142,6 @@ export default {
         //Backspace the input value
       } else {
         this.inputValue = this.inputValue + value;
-        console.log("parent inputValue:" + this.inputValue);
         this.getInputValue(this.inputValue);
         //Set the input value as value.
       }
@@ -167,8 +162,8 @@ export default {
       this.searchKeyWord();
     },
     getInputValue: function (inputValue) {
-      console.log("try getSearchValue:" + inputValue + "/");
       this.isDynamicKeyboardShow = true;
+      this.isMobileOpenBusInfo = true;
       this.inputValue = inputValue;
     },
     getThisBus(bus) {
@@ -176,6 +171,7 @@ export default {
       this.busNum = bus;
       this.order();
       this.$emit("getBusNum", this.busNum);
+      this.isSelectedTheBus = true;
     },
     setLoveList(bus) {
       this.busList.forEach((element) => {
@@ -204,11 +200,15 @@ export default {
       this.$emit("showBusInfo");
       this.$router.push({
         name: "EstimatedTimeOfArrival",
-        params: { city: this.selectedCity.value, routeName: this.busNum },
+        params: { city: this.selected.value, routeName: this.busNum },
       });
     },
     mobileSwitchBusInfo() {
       this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
+    },
+    getBusInfo(bus) {
+      console.log("bus=", bus);
+      this.isBusInfoShow == true;
     },
   },
   watch: {
