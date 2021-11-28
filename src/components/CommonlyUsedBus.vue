@@ -211,10 +211,11 @@ export default {
       this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
     },
     getBusInfo(bus) {
-      console.log("bus=", bus);
-      console.log("selected=", this.selected);
+      this.isBusInfoShow = true;
+      console.log("this.isBusInfoShow=", this.isBusInfoShow);
+      console.log("selected=", this.selected.value);
       this.busNum = bus.zh_tw;
-      this.isBusInfoShow == true;
+      console.log("bus=", this.busNum);
     },
   },
   watch: {
