@@ -87,5 +87,11 @@
   "TaitungCounty": "臺東縣",
   "KinmenCounty": "金門縣",
   "PenghuCounty": "澎湖縣",
-  "LienchiangCounty": "連江縣"
+  "LienchiangCounty": "連江縣",
+
+  "remindYou": "提醒您",
+  "doYouWantToSwitchToNormalArea": "請問您要切換為一般專區嗎？",
+  "doYouWantToSwitchToFriendlyArea": "請問您要切換為友善專區嗎？",
+  "confirm": "確定",
+  "cancel": "取消"
 }

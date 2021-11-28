@@ -93,5 +93,11 @@
   "TaitungCounty": "TaitungCounty",
   "KinmenCounty": "KinmenCounty",
   "PenghuCounty": "PenghuCounty",
-  "LienchiangCounty": "LienchiangCounty"
+  "LienchiangCounty": "LienchiangCounty",
+
+  "remindYou": "Remind You",
+  "doYouWantToSwitchToNormalArea": "Do You Want To Switch To The Normal Area?",
+  "doYouWantToSwitchToFriendlyArea": "Do You Want To Switch To The Friendly Area?",
+  "confirm": "Confirm",
+  "cancel": "Cancel"
 }
