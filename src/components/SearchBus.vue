@@ -254,7 +254,7 @@ export default {
       cities: CITIES,
       selected: CITIES[0],
       open: false,
-      isDynamicKeyboardShow: true,
+      isDynamicKeyboardShow: false,
       isBusInfoShow: false,
       searchBusList: new Array(),
       routeName: String, // 路線名稱
