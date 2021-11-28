@@ -36,14 +36,14 @@
 
       <!--右側列表-->
       <!--block_list:白箱狀態-->
-      <div class="block_list" v-if="busList.length < 1">
-        <div class="content_list">
-          <div class="list_top flex_col_cc">{{ $t("searchList") }}</div>
-          <div class="list_bottom flex_col_cc">
-            <div class="img_box"></div>
-          </div>
-        </div>
-      </div>
+      <!--      <div class="block_list" v-if="busList.length < 1">-->
+      <!--        <div class="content_list">-->
+      <!--          <div class="list_top flex_col_cc">{{ $t("searchList") }}</div>-->
+      <!--          <div class="list_bottom flex_col_cc">-->
+      <!--            <div class="img_box"></div>-->
+      <!--          </div>-->
+      <!--        </div>-->
+      <!--      </div>-->
 
       <!--block_list:常用搜尋列表-->
       <div
@@ -51,7 +51,7 @@
           v-if="(busList.length >= 1 || isSelectedTheBus == false) && !showEstimatedTimeOfArrival"
       >
         <div class="content_list">
-          <div class="list_top flex_row_cc">搜尋清單</div>
+          <div class="list_top flex_row_cc">{{ $t("searchList") }}</div>
           <div class="list_bottom h_100 flex_col">
             <div class="select_scrollbar">
               <div class="list_inner" v-for="(bus, i) in busList" :key="i">
@@ -84,20 +84,22 @@
         <router-view
             @mobileSwitchBusInfo="mobileSwitchBusInfo"
             @showBusInfo="
-            isBusInfoShow = true;
-            isDynamicKeyboardShow = false;
-          "
+                  isBusInfoShow = true;
+                  isDynamicKeyboardShow = false;
+                "
             :selectedCity="selected"
             :search="inputValue"
         ></router-view>
       </div>
+
+
     </div>
   </div>
 </template>
 
 <script>
-import { CITIES } from "../constant/city";
-import { getAllBus, addBus, removeBus } from "../utils/commonly-used-bus.js";
+import {CITIES} from "../constant/city";
+import {getAllBus, addBus, removeBus} from "../utils/commonly-used-bus.js";
 import Search from "./Search";
 import BusInfo from "./BusInfo";
 import DynamicKeyboard from "./DynamicKeyboard";
@@ -224,7 +226,7 @@ export default {
     inputValue: function () {
       this.searchKeyWord();
     },
-    selected: function() {
+    selected: function () {
       this.showEstimatedTimeOfArrival = false;
     }
   },
