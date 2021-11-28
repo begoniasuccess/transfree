@@ -1,7 +1,7 @@
 <template>
   <!--主要搜尋列表-->
   <div class="block_primary flex_col">
-    <p class="title_txt">{{ $t("searchBus") }}</p>
+    <p class="title_txt">{{ $t(page) }}</p>
 
     <div class="custom-select" @blur="open = false">
       <div class="selected" :class="{ open: open }" @click="open = !open">
@@ -49,6 +49,7 @@ export default {
   props: {
     selectedCity: String,
     inputValue: String,
+    page:String
   },
   data() {
     return {

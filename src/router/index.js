@@ -70,6 +70,33 @@ export default new VueRouter({
       path: "/nearby-stop",
       name: "NearbyStop",
       component: NearbyStop,
+      children: [
+        {
+          path: "",
+          name: "BlankList",
+          component: BlankList,
+        },
+        {
+          path: "search-list",
+          name: "SearchList",
+          component: SearchList,
+        },
+        {
+          path: "/:city/:routeName",
+          name: "SearchList",
+          component: SearchList,
+        },
+        {
+          path: "search-map/:city/:routeName",
+          name: "SearchMap",
+          component: SearchMap,
+        },
+        {
+          path: "estimated-time-of-arrival/:city/:routeName",
+          name: "EstimatedTimeOfArrival",
+          component: EstimatedTimeOfArrival,
+        }        
+      ],
     },
   ],
 });

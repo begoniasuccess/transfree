@@ -39,7 +39,7 @@
             </div>
           </router-link>
 
-          <router-link to="/nearby-stop" class="menu_btn">
+          <router-link to="/nearby-stop" class="menu_btn" active-class="active" @click.native="width < 768?isMobileOpenMenu=false:''">
             <i class="menu_i_stop"></i>
             <div class="menu_btn_txt">
               {{ $t("nearbyStop") }}

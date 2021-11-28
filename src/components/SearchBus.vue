@@ -6,6 +6,7 @@
           v-on:getSearchCity="getSearchCity"
           v-on:getInputValue="getInputValue"
           :inputValue="inputValue"
+          :page="page"
         ></Search>
 
         <!--次要列表-->
@@ -115,6 +116,7 @@ export default {
   components: { DynamicKeyboard, BusInfo, Search },
   data() {
     return {
+      page:"searchBus",
       cities: CITIES,
       selected: CITIES[0],
       open: false,
