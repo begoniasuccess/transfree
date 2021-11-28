@@ -154,13 +154,12 @@ export default {
     this.getAllBusInCity();
     this.getStopList();
     this.getBusList();
-    //TODO Start interval
-    // if (this.$store.getters.getIsAutoUpdate) {
-    //   const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
-    //   this.interval = setInterval(() => {
-    //     this.resetData();
-    //   }, updateSecond);
-    // }
+    if (this.$store.getters.getIsAutoUpdate) {
+      const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+      this.interval = setInterval(() => {
+        this.resetData();
+      }, updateSecond);
+    }
   },
   beforeDestroy() {
     console.log("clearInterval");
@@ -181,7 +180,6 @@ export default {
             this.allBusInCity = res.data;
           })
           .catch((err) => {
-            //TODO Change to popup
             window.alert("Get AllBusInCity occurs error：" + err);
           });
     },
@@ -209,7 +207,6 @@ export default {
             this.updateTime = getCurrentDateTime();
           })
           .catch((err) => {
-            //TODO Change to popup
             window.alert("Get EstimatedTimeOfArrival occurs error：" + err);
           });
     },
@@ -224,7 +221,6 @@ export default {
             this.busList = res.data;
           })
           .catch((err) => {
-            //TODO Change to popup
             window.alert("Get RealTimeNearStop occurs error：" + err);
           });
     },
@@ -251,14 +247,13 @@ export default {
     },
     clickUpdateData() {
       this.resetData();
-      //TODO Start interval
-      // if (this.$store.getters.getIsAutoUpdate) {
-      //   clearInterval(this.interval);
-      //   const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
-      //   this.interval = setInterval(() => {
-      //     this.resetData();
-      //   }, updateSecond);
-      // }
+      if (this.$store.getters.getIsAutoUpdate) {
+        clearInterval(this.interval);
+        const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
+        this.interval = setInterval(() => {
+          this.resetData();
+        }, updateSecond);
+      }
     },
     mobileSwitchBusInfo() {
       this.$emit("mobileSwitchBusInfo")

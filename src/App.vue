@@ -4,18 +4,19 @@
     <div class="content_popup" v-if="isPopupShow">
       <!--版本資訊-->
       <div class="flex_row_cb">
-        <p class="title_card_txt">提醒您</p>
-        <i class="i_close"></i>
+        <p class="title_card_txt">{{ $t("remindYou") }}</p>
+        <i class="i_close" @click="isPopupShow = false"></i>
       </div>
 
       <div class="flex_row_cc">
-        <p v-if="isA11y">請問您要切換為一般專區嗎？</p>
-        <p v-if="!isA11y">請問您要切換為友善專區嗎？</p>
+        <p v-if="isA11y">{{ $t("doYouWantToSwitchToNormalArea") }}</p>
+        <p v-if="!isA11y">{{ $t("doYouWantToSwitchToFriendlyArea") }}</p>
       </div>
 
       <div class="flex_row_cc">
-        <button class="bus_status2" type="button" @click="isPopupShow = false">取消</button>
-        <button class="bus_status1" type="button" @click="isA11y = !isA11y; isPopupShow = false">確定</button>
+        <button class="bus_status2" type="button" @click="isPopupShow = false">{{ $t("cancel") }}</button>
+        <button class="bus_status1" type="button" @click="isA11y = !isA11y; isPopupShow = false">{{ $t("confirm") }}
+        </button>
       </div>
     </div>
     <div class="black_overlay"></div>
@@ -208,8 +209,9 @@ a {
   background-color: #2398A1;
   z-index: 99;
 }
+
 .a11y .menu,
-.a11y .content{
+.a11y .content {
   background-color: #1A777E;
 }
 
@@ -300,10 +302,10 @@ a {
   font-weight: bold;
 }
 
-div.btn_a11y:hover{
+div.btn_a11y:hover {
   transition: .3s;
-  transform:scale( 1.03,1.1);
-  transform-origin:right center;
+  transform: scale(1.03, 1.1);
+  transform-origin: right center;
   cursor: pointer;
 }
 
@@ -398,8 +400,8 @@ div.btn_a11y:hover{
   position: absolute;
   top: 10px;
   left: 60px;
-  cursor: auto!important;
-  transform:none!important;
+  cursor: auto !important;
+  transform: none !important;
 }
 
 /* ---icon--- */
@@ -416,7 +418,7 @@ div.btn_a11y:hover{
   /*background-position: center;*/
 }
 
-.i_a11y:hover{
+.i_a11y:hover {
   transform: none;
 }
 
@@ -488,7 +490,6 @@ div.btn_a11y:hover{
 .menu_btn.active .menu_i_stop {
   background-image: url("./assets/images/icon/i_stop_menu_s.svg");
 }
-
 
 
 </style>
