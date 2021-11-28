@@ -31,7 +31,7 @@
 
         <!--btn-->
         <div class="flex_col_cc h_100">
-          <router-link to="/search-bus" class="menu_btn" active-class="active">
+          <router-link to="/search-bus" class="menu_btn" active-class="active" @click.native="isMobileOpenMenu=false">
             <i class="menu_i_search"></i>
             <div class="menu_btn_txt">
               <!--              公車搜尋-->
@@ -46,14 +46,14 @@
             </div>
           </div>
 
-          <router-link to="/commonly-used-bus" class="menu_btn" active-class="active">
+          <router-link to="/commonly-used-bus" class="menu_btn" active-class="active" @click.native="isMobileOpenMenu=false">
             <i class="menu_i_favoraite"></i>
             <div class="menu_btn_txt">
               {{ $t("commonlyUsed") }}
             </div>
           </router-link>
 
-          <router-link to="/settings" class="menu_btn" active-class="active">
+          <router-link to="/settings" class="menu_btn" active-class="active" @click.native="isMobileOpenMenu=false">
             <i class="menu_i_set"></i>
             <div class="menu_btn_txt">
               {{ $t("settings") }}
