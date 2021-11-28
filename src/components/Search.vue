@@ -12,10 +12,10 @@
         <p class="option_title">{{ $t("selectCity") }}</p>
         <div class="select_scrollbar">
           <div
-            class="select_option"
-            v-for="(city, i) in cities"
-            :key="i"
-            @click="
+              class="select_option"
+              v-for="(city, i) in cities"
+              :key="i"
+              @click="
               selected = city;
               open = false;
             "
@@ -28,20 +28,21 @@
 
     <!-- 路線-input -->
     <input
-      type="text"
-      class="inner_group text_overflow"
-      :placeholder="$t('enterRouteName')"
-      v-model="inputValue"
-      @focus="focusInputValue()"
+        type="text"
+        class="inner_group text_overflow"
+        :placeholder="$t('enterRouteName')"
+        v-model="inputValue"
+        @focus="focusInputValue()"
     />
 
     <!--搜尋時間-->
-    <p class="text_info">{{ $t("searchTimestamp") }} 2021/11/21 20:22:11</p>
+    <p class="text_info" v-if="searchTimestamp != ''">{{ $t("searchTimestamp") }} {{ searchTimestamp }}</p>
   </div>
 </template>
 
 <script>
-import { CITIES } from "../constant/city";
+import {CITIES} from "../constant/city";
+import {getCurrentDateTime} from "../utils/date";
 
 export default {
   name: "Search",
@@ -54,21 +55,30 @@ export default {
       cities: CITIES,
       selected: CITIES[0],
       open: false,
+      searchTimestamp: ''
     };
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {
     focusInputValue() {
       this.$emit("getInputValue", this.inputValue);
     },
+    updateSearchTimestamp() {
+      this.searchTimestamp = getCurrentDateTime();
+    }
   },
   watch: {
     inputValue: function () {
       this.$emit("getInputValue", this.inputValue);
+      this.updateSearchTimestamp();
     },
     selected: function () {
       this.$emit("getSearchCity", this.selected);
       this.$emit("getInputValue", this.inputValue);
+      if(this.inputValue !== '') {
+        this.updateSearchTimestamp();
+      }
     },
   },
 };
