@@ -31,7 +31,7 @@
 
         <!--btn-->
         <div class="flex_col_cc h_100">
-          <router-link to="/search-bus" class="menu_btn" active-class="active">
+          <router-link to="/search-bus" class="menu_btn" active-class="active" @click.native="width < 768?isMobileOpenMenu=false:''">
             <i class="menu_i_search"></i>
             <div class="menu_btn_txt">
               <!--              公車搜尋-->
@@ -39,21 +39,21 @@
             </div>
           </router-link>
 
-          <div class="menu_btn">
+          <router-link to="/nearby-stop" class="menu_btn" active-class="active" @click.native="width < 768?isMobileOpenMenu=false:''">
             <i class="menu_i_stop"></i>
             <div class="menu_btn_txt">
               {{ $t("nearbyStop") }}
             </div>
-          </div>
+          </router-link>
 
-          <router-link to="/commonly-used-bus" class="menu_btn" active-class="active">
+          <router-link to="/commonly-used-bus" class="menu_btn" active-class="active" @click.native="width < 768?isMobileOpenMenu=false:''">
             <i class="menu_i_favoraite"></i>
             <div class="menu_btn_txt">
               {{ $t("commonlyUsed") }}
             </div>
           </router-link>
 
-          <router-link to="/settings" class="menu_btn" active-class="active">
+          <router-link to="/settings" class="menu_btn" active-class="active" @click.native="width < 768?isMobileOpenMenu=false:''">
             <i class="menu_i_set"></i>
             <div class="menu_btn_txt">
               {{ $t("settings") }}
@@ -113,7 +113,8 @@ export default {
       isA11y: false,
       isEn: false,
       isMobileOpenMenu: true,
-      isPopupShow: false
+      isPopupShow: false,
+      width: window.innerWidth
     }
   },
   watch: {

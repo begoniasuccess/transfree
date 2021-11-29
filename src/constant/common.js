@@ -37,3 +37,9 @@ export const GLOBAL_UPDATE_FREQUENCY_FAST = 15;
 export const GLOBAL_UPDATE_FREQUENCY_MEDIAN = 20;
 export const GLOBAL_UPDATE_FREQUENCY_SLOW = 25;
 export const GLOBAL_UPDATE_FREQUENCY_SLOWER = 30;
+
+export const SEARCH_MODE = {
+    list:"search-list",
+    estimated:"EstimatedTimeOfArrival",
+    map:"SearchMap"
+};

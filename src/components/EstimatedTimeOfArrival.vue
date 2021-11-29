@@ -2,7 +2,7 @@
   <div class="content_list">
     <div class="list_top flex_row_cb">
       <!--模式切換-->
-      <i class="i_model_map"></i>
+      <i class="i_model_map" @click="switchMode('SearchMap')"></i>
       <p>{{ routeName }}</p>
       <div class="flex_row_ce">
         <i class="i_update" @click="clickUpdateData"></i>
@@ -191,7 +191,7 @@ export default {
           `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
           .then((res) => {
-            console.log(res);
+            console.log({getStopListRes:res.data});
             if(this.$store.getters.getMultilingual === GLOBAL_MULTILINGUAL_CHINESE) {
               this.routeName = res.data[0].RouteName.Zh_tw;
             } else {
@@ -232,6 +232,7 @@ export default {
       if (nearBy.length === 0) {
         return "";
       } else {
+        console.log({stopName, direction,nearBy});
         return nearBy;
       }
     },
@@ -257,6 +258,15 @@ export default {
     },
     mobileSwitchBusInfo() {
       this.$emit("mobileSwitchBusInfo")
+    },
+    showSearchMode(){
+      this.$emit("searchMode", "search-map");
+    },
+    switchMode(mode) {
+      this.$router.push({
+        name: mode,
+        params: { city: this.$route.params.city, routeName: this.$route.params.routeName },
+      });
     }
   },
   computed: {
@@ -264,6 +274,7 @@ export default {
       // eslint-disable-next-line
       get() {
         if (this.isGoListActive) {
+          console.log({estGoList:this.goList});
           return this.goList;
         } else {
           return this.backList;
