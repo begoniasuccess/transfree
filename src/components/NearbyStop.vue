@@ -84,7 +84,7 @@ export default {
       inputValue: "",
       busNum: "",
       isMobileOpenBusInfo: true,
-      zoom:"13"
+      zoom:13
     };
   },
   methods: {

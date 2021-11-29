@@ -7,7 +7,9 @@
             <i></i>
             <p>附近站牌</p>
             <div class="flex_row_ce">
-              <i class="i_update" @click="getList"></i>
+              <!-- <i class="i_update" @click="getList"></i> -->
+              <i class="i_update"></i>
+
             </div>
           </div>
 
@@ -55,8 +57,11 @@
 <script>
 import {BUS_URL_V2, sendRequest} from "../utils/https";
 import {GLOBAL_MULTILINGUAL_CHINESE, GLOBAL_MULTILINGUAL_ENGLISH, RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
+// import {GLOBAL_MULTILINGUAL_CHINESE, GLOBAL_MULTILINGUAL_ENGLISH} from "../constant/common";
 import {getCurrentDateTime} from "../utils/date";
+// import {getCurrentLocationInfo, distance} from "../utils/location";
 import {getCurrentLocationInfo} from "../utils/location";
+
 import Map from "./Map";
 
 export default {
@@ -67,20 +72,13 @@ export default {
   data() {
     return {
       routeName: '',
-      goStopList: [],
-      backStopList: [],
       isgoStopListActive: true,
       updateTime: getCurrentDateTime(),
       busList: [],
-      // allBusInCity: [],
-      allRouteCityStops: [
-      ],
       interval: "",
       multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
       multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
       center:[22.612961, 120.304167],
-    //   zoomSize : 13,
-      popUpMode:'route',
       isPopUpActive :false,
       zoomMode:'in',
       activeStop:{},
@@ -93,8 +91,8 @@ export default {
   },
   
   mounted() {
+    this.getBusList();
     this.setCenter();
-    this.getStopOfRoute();
     if (this.$store.getters.getIsAutoUpdate) {
       const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
       this.interval = setInterval(() => {
@@ -111,33 +109,27 @@ export default {
       // this.getStopOfRoute();      
     //   this.getBusList();
     },    
-    switchMode(mode) {
-      this.$router.push({
-        name: mode,
-        params: { city: this.$route.params.city, routeName: this.$route.params.routeName },
-      });
-    },
-    getStopOfRoute(){
-      const city = this.$route.params.city;
-      const routeName = this.$route.params.routeName;
-      sendRequest(
-          "get",
-          `${BUS_URL_V2}/StopOfRoute/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
-      )
-          .then((res) => {
-            this.allRouteCityStops = res.data;
-            // console.log({allRouteCityStops:this.allRouteCityStops});
+    // getStopOfRoute(){
+    //   const city = this.$route.params.city;
+    //   const routeName = this.$route.params.routeName;
+    //   sendRequest(
+    //       "get",
+    //       `${BUS_URL_V2}/StopOfRoute/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+    //   )
+    //       .then((res) => {
+    //         this.allRouteCityStops = res.data;
+    //         // console.log({allRouteCityStops:this.allRouteCityStops});
             
-            this.goStopList = this.makeStopList(res.data[1]);
-            this.backStopList = this.makeStopList(res.data[0]);
-            // console.log({goStopList:this.goStopList, backStopList:this.backStopList});
-            this.operatorName = res.data[0].Operators[0].OperatorName;
-            this.setCenter();
-          })
-          .catch((err) => {
-            window.alert("Get getStopOfRoute occurs error：" + err);
-          });
-    },
+    //         this.goStopList = this.makeStopList(res.data[1]);
+    //         this.backStopList = this.makeStopList(res.data[0]);
+    //         // console.log({goStopList:this.goStopList, backStopList:this.backStopList});
+    //         this.operatorName = res.data[0].Operators[0].OperatorName;
+    //         this.setCenter();
+    //       })
+    //       .catch((err) => {
+    //         window.alert("Get getStopOfRoute occurs error：" + err);
+    //       });
+    // },
     makeStopList(dataFromRouteCityStops){
       let stops = dataFromRouteCityStops.Stops;
       let stopList = [];
@@ -157,13 +149,12 @@ export default {
     setCenter(){
       let self = this;
       getCurrentLocationInfo().then((data)=>{
-        //   console.log({setCenter:data});
+          console.log({locData:data});
           self.center=[data.data.lat, data.data.lon];
           console.log({setCenter:self.center});
       }).catch((err)=>{
           console.log({setCenterErr:err});
-      });
-      
+      });      
     },
     showStopInfo(stopIndex){
       console.log("showStopInfo",{stopIndex});
@@ -173,39 +164,19 @@ export default {
       console.log({activeStop:this.activeStop});
     },
     getBusList() {
+      let self = this;
       const city = this.$route.params.city;
-      const routeName = this.$route.params.routeName;
       sendRequest(
           "get",
-          `${BUS_URL_V2}/RealTimeNearStop/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+          `${BUS_URL_V2}/Stop/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
           .then((res) => {
-            this.busList = res.data;
+            self.busList = res.data;
+            console.log({busList:self.busList});
           })
           .catch((err) => {
             window.alert("Get RealTimeNearStop occurs error：" + err);
           });
-    },
-    getBusNearByStop(stopName, direction) {
-      const nearBy = this.busList.filter(
-          (data) =>
-              data.StopName.Zh_tw === stopName && data.Direction === direction
-      );
-      if (nearBy.length === 0) {
-        return "";
-      } else {
-        return nearBy;
-      }
-    },
-    isBarrierFree(plateNumb) {
-      if (plateNumb !== "") {
-        const bus = this.allBusInCity.filter(
-            (data) => data.PlateNumb === plateNumb
-        );
-        return bus.length !== 0 && bus[0].VehicleType === 1;
-      } else {
-        return false;
-      }
     },
   },
   computed: {
@@ -233,7 +204,8 @@ export default {
       this.setCenter();
     },
   },
-};
+}
+
 </script>
 
 <style scoped>

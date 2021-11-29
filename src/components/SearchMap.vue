@@ -30,11 +30,11 @@
                     <!-- 站牌資訊 -->
                     <div class="content_card" v-if="isPopUpActive && popUpMode == 'stop'">
                         <div class="flex_row_cb">                            
-                            <p v-if="this.$store.getters.getMultilingual === multilingualChinese" 
+                            <p  v-if="this.$store.getters.getMultilingual === multilingualChinese" 
                                 class="title_card_txt">
                                 {{activeStop.StopName.Zh_tw}}
                             </p>
-                            <p v-else class="title_card_txt">
+                            <p  v-else class="title_card_txt">
                                 {{activeStop.StopName.En}}
                             </p>
                             <i class="i_close" @click="isPopUpActive = false;"></i>
