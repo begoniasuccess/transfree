@@ -1,7 +1,7 @@
 <template>
   <div class="h_100 w_100">
-    <div class="flex_row_sb w_100 h_100 auto">
-      <div class="flex_col w_100 h_100">
+    <div class="flex_row_sb w_100 h_100">
+      <div class="flex_col w_100 h_100 auto">
         <Search
             v-on:getSearchCity="getSearchCity"
             v-on:getInputValue="getInputValue"
@@ -11,6 +11,9 @@
         <!--次要列表-->
         <div
             class="block_sec flex_col select_scrollbar"
+            :style="[
+            isMobileOpenBusInfo ? { display: 'block' } : { display: 'none' },
+          ]"
             v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
         >
           <span v-if="isDynamicKeyboardShow">
