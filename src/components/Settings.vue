@@ -235,13 +235,12 @@
       <!--右側列表功能-->
       <div class="flex_row w_100 margin_top">
         <div class="block_setting" @click="isPopupShow = !isPopupShow">
-          <!-- <div class="block_setting" @click="resetCommonBus()"> -->
           <div class="flex_col_cc h_100">
             <i class="i_reset"></i>
             <p class="text_b">{{ $t("resetCommonBus") }}</p>
           </div>
         </div>
-        <!--        popup-->
+        <!-- popup-->
         <div class="content_popup" v-if="isPopupShow">
           <!--版本資訊-->
           <div class="flex_row_cb">
@@ -343,7 +342,6 @@ export default {
     },
     selectedMultilingualText: {
       get() {
-        // return this.getMultilingualText(this.selectedMultilingualValue);
         return this.selectedMultilingualValue;
       },
       // eslint-disable-next-line

@@ -1,5 +1,9 @@
 <template>
-  <div id="app" :style="{fontSize: globalFontSize + 'em'}" :class="{a11y : isA11y, en: isEn}">
+  <div
+    id="app"
+    :style="{ fontSize: globalFontSize + 'em' }"
+    :class="{ a11y: isA11y, en: isEn }"
+  >
     <!--        popup-->
     <div class="content_popup" v-if="isPopupShow">
       <!--版本資訊-->
@@ -14,24 +18,40 @@
       </div>
 
       <div class="flex_row_cc">
-        <button class="bus_status2" type="button" @click="isPopupShow = false">{{ $t("cancel") }}</button>
-        <button class="bus_status1" type="button" @click="isA11y = !isA11y; isPopupShow = false">{{ $t("confirm") }}
+        <button class="bus_status2" type="button" @click="isPopupShow = false">
+          {{ $t("cancel") }}
+        </button>
+        <button
+          class="bus_status1"
+          type="button"
+          @click="
+            isA11y = !isA11y;
+            isPopupShow = false;
+          "
+        >
+          {{ $t("confirm") }}
         </button>
       </div>
     </div>
     <div class="black_overlay"></div>
 
     <div class="content">
-
       <!--左側功能menu-->
-      <div class="menu" :style="[isMobileOpenMenu ? '' : {'transform' : 'translate( -100%,0)'}]">
-
+      <div
+        class="menu"
+        :style="[isMobileOpenMenu ? '' : { transform: 'translate( -100%,0)' }]"
+      >
         <!--logo-->
         <div class="img_logo"></div>
 
         <!--btn-->
         <div class="flex_col_cc h_100">
-          <router-link to="/search-bus" class="menu_btn" active-class="active" @click.native="width < 768?isMobileOpenMenu=false:''">
+          <router-link
+            to="/search-bus"
+            class="menu_btn"
+            active-class="active"
+            @click.native="width < 768 ? (isMobileOpenMenu = false) : ''"
+          >
             <i class="menu_i_search"></i>
             <div class="menu_btn_txt">
               <!--              公車搜尋-->
@@ -39,21 +59,36 @@
             </div>
           </router-link>
 
-          <router-link to="/nearby-stop" class="menu_btn" active-class="active" @click.native="width < 768?isMobileOpenMenu=false:''">
+          <router-link
+            to="/nearby-stop"
+            class="menu_btn"
+            active-class="active"
+            @click.native="width < 768 ? (isMobileOpenMenu = false) : ''"
+          >
             <i class="menu_i_stop"></i>
             <div class="menu_btn_txt">
               {{ $t("nearbyStop") }}
             </div>
           </router-link>
 
-          <router-link to="/commonly-used-bus" class="menu_btn" active-class="active" @click.native="width < 768?isMobileOpenMenu=false:''">
+          <router-link
+            to="/commonly-used-bus"
+            class="menu_btn"
+            active-class="active"
+            @click.native="width < 768 ? (isMobileOpenMenu = false) : ''"
+          >
             <i class="menu_i_favoraite"></i>
             <div class="menu_btn_txt">
               {{ $t("commonlyUsed") }}
             </div>
           </router-link>
 
-          <router-link to="/settings" class="menu_btn" active-class="active" @click.native="width < 768?isMobileOpenMenu=false:''">
+          <router-link
+            to="/settings"
+            class="menu_btn"
+            active-class="active"
+            @click.native="width < 768 ? (isMobileOpenMenu = false) : ''"
+          >
             <i class="menu_i_set"></i>
             <div class="menu_btn_txt">
               {{ $t("settings") }}
@@ -62,14 +97,16 @@
         </div>
       </div>
 
-
       <!--右側顯示區塊-->
       <div class="search">
-
         <!--友善專區-->
         <div class="btn_a11y">
-          <div v-if="!isA11y" @click="isPopupShow = true">{{ $t("switchToFriendlyArea") }}</div>
-          <div v-if="isA11y" @click="isPopupShow = true">{{ $t("switchToNormalArea") }}</div>
+          <div v-if="!isA11y" @click="isPopupShow = true">
+            {{ $t("switchToFriendlyArea") }}
+          </div>
+          <div v-if="isA11y" @click="isPopupShow = true">
+            {{ $t("switchToNormalArea") }}
+          </div>
           <i class="i_a11y" @click="isPopupShow = true"></i>
         </div>
 
@@ -77,8 +114,12 @@
           <i class="i_menu" @click="mobileSwitchMenu"> </i>
           <i class="img_logo_mobile"></i>
           <div class="btn_a11y">
-            <div v-if="!isA11y" @click="isA11y = !isA11y">{{ $t("switchToFriendlyArea") }}</div>
-            <div v-if="isA11y" @click="isA11y = !isA11y">{{ $t("switchToNormalArea") }}</div>
+            <div v-if="!isA11y" @click="isA11y = !isA11y">
+              {{ $t("switchToFriendlyArea") }}
+            </div>
+            <div v-if="isA11y" @click="isA11y = !isA11y">
+              {{ $t("switchToNormalArea") }}
+            </div>
             <i class="i_a11y" @click="isA11y = !isA11y"> </i>
           </div>
         </div>
@@ -88,25 +129,17 @@
         <div class="content_function select_scrollbar">
           <router-view></router-view>
         </div>
-
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
-// import Test from "./components/Test.vue";
-// import HelloWorld from "./components/HelloWorld.vue";
-
-import {GLOBAL_MULTILINGUAL_ENGLISH} from "./constant/common";
+import { GLOBAL_MULTILINGUAL_ENGLISH } from "./constant/common";
 
 export default {
   name: "App",
-  components: {
-    // HelloWorld,
-    // Test
-  },
+  components: {},
   data() {
     return {
       globalFontSize: this.$store.getters.getFontSize,
@@ -114,42 +147,41 @@ export default {
       isEn: false,
       isMobileOpenMenu: true,
       isPopupShow: false,
-      width: window.innerWidth
-    }
+      width: window.innerWidth,
+    };
   },
   watch: {
-    '$store.state.fontSize': function () {
-      this.globalFontSize = this.$store.getters.getFontSize
+    "$store.state.fontSize": function () {
+      this.globalFontSize = this.$store.getters.getFontSize;
     },
-    '$i18n.locale': function () {
+    "$i18n.locale": function () {
       if (this.$i18n.locale === GLOBAL_MULTILINGUAL_ENGLISH) {
-        this.isEn = true
+        this.isEn = true;
       } else {
         this.isEn = false;
       }
-    }
+    },
   },
   methods: {
     mobileSwitchMenu() {
       this.isMobileOpenMenu = !this.isMobileOpenMenu;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
-
 /* group [default] ---------------------------------------------------------------------------------------- */
 #app {
-  font-family: 'Noto Sans CJK TC', 'Microsoft JhengHei';
+  font-family: "Noto Sans CJK TC", "Microsoft JhengHei";
   font-size: 16px;
   line-height: 24px;
-  color: #4A4A4A;
+  color: #4a4a4a;
   font-weight: normal;
   text-align: left;
   text-justify: distribute;
   text-justify: inter-ideograph;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
@@ -170,7 +202,7 @@ p {
 }
 
 a {
-  color: #4A4A4A !important;
+  color: #4a4a4a !important;
   text-decoration: none !important;
 }
 
@@ -179,7 +211,6 @@ a {
     font-size: 14px;
   }
 }
-
 
 /* End [default] ---------------------------------------------------------------------------------------- */
 
@@ -193,7 +224,7 @@ a {
   height: calc(100vh - 48px);
   margin: 24px;
 
-  background-color: #2398A1;
+  background-color: #2398a1;
   border-radius: 24px;
   box-shadow: 0px 2px 20px 0px rgba(145, 145, 145, 0.6);
   z-index: 9;
@@ -207,13 +238,13 @@ a {
   min-width: 172px;
   height: 100%;
   border-radius: 24px;
-  background-color: #2398A1;
+  background-color: #2398a1;
   z-index: 99;
 }
 
 .a11y .menu,
 .a11y .content {
-  background-color: #1A777E;
+  background-color: #1a777e;
 }
 
 /* ---menu按鈕--- */
@@ -233,25 +264,25 @@ a {
   font-size: 14px;
   font-weight: bold;
   text-align: center;
-  color: #FFFFFF;
+  color: #ffffff;
   overflow-y: hidden;
   white-space: nowrap;
 }
 
 /* ---menu按鈕-active文字--- */
 .menu_btn.active .menu_btn_txt {
-  color: #FFB13E;
+  color: #ffb13e;
   font-weight: bold;
 }
 
 /* ---menu按鈕-hover--- */
 .menu_btn:hover {
-  transition: .3s;
+  transition: 0.3s;
   transform: scale(1.1);
 }
 
 .menu_btn:hover > .menu_btn_txt {
-  color: #FFB13E;
+  color: #ffb13e;
 }
 
 /* ---右側列表設定--- */
@@ -265,7 +296,7 @@ a {
   height: calc(100vh - 48px);
   max-height: 1392px;
 
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 24px;
   z-index: 999;
 }
@@ -288,7 +319,6 @@ a {
   z-index: 999;
   background-color: white;
   box-shadow: 0px 1px 10px 0px rgba(217, 217, 217, 1);
-
 }
 
 .btn_a11y {
@@ -304,12 +334,11 @@ a {
 }
 
 div.btn_a11y:hover {
-  transition: .3s;
+  transition: 0.3s;
   transform: scale(1.03, 1.1);
   transform-origin: right center;
   cursor: pointer;
 }
-
 
 /* End [position] ---------------------------------------------------------------------------------------- */
 
@@ -338,7 +367,6 @@ div.btn_a11y:hover {
   align-items: flex-start;
   justify-content: space-between;
 }
-
 
 .flex_row_c {
   display: flex;
@@ -491,6 +519,4 @@ div.btn_a11y:hover {
 .menu_btn.active .menu_i_stop {
   background-image: url("./assets/images/icon/i_stop_menu_s.svg");
 }
-
-
 </style>

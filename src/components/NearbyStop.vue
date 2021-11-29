@@ -6,33 +6,9 @@
           v-on:getSearchCity="getSearchCity"
           v-on:getInputValue="getInputValue"
           :inputValue="inputValue"
-          :page="page" 
-          :inputHint="inputHint" 
-
+          :page="page"
+          :inputHint="inputHint"
         ></Search>
-
-        <!--次要列表-->
-        <!-- <div
-          class="block_sec flex_col select_scrollbar"
-          :style="[
-            isMobileOpenBusInfo ? { display: 'block' } : { display: 'none' },
-          ]"
-          v-if="isDynamicKeyboardShow == true || isBusInfoShow == true"
-        >
-          <span v-if="isDynamicKeyboardShow">
-            <DynamicKeyboard
-              @clickKeyboard="clickKeyboard"
-              @mobileSwitchBusInfo="mobileSwitchBusInfo"
-            ></DynamicKeyboard>
-          </span>
-          <span v-if="isBusInfoShow">
-            <BusInfo
-              :city="$route.params.city"
-              :routeName="$route.params.routeName"
-              @mobileSwitchBusInfo="mobileSwitchBusInfo"
-            ></BusInfo>
-          </span>
-        </div> -->
 
         <!--初始圖-->
         <div class="block_sec img_first flex_col">
@@ -44,14 +20,13 @@
 
       <!--block_list:動態公車列表模式-->
       <div class="block_list">
-          <NearbyMap
-            :zoom="zoom"
-            :center="center"
-            :city="$route.params.city"
-            :routeName="$route.params.routeName"
-          ></NearbyMap>
+        <NearbyMap
+          :zoom="zoom"
+          :center="center"
+          :city="$route.params.city"
+          :routeName="$route.params.routeName"
+        ></NearbyMap>
       </div>
-
     </div>
   </div>
 </template>
@@ -60,21 +35,16 @@
 import { CITIES } from "../constant/city";
 import { BusObj } from "../constant/bus";
 import Search from "./Search";
-// import BusInfo from "./BusInfo";
-// import DynamicKeyboard from "./DynamicKeyboard";
 import NearbyMap from "./NearbyMap";
 
 export default {
   name: "NearbyStop",
-  // components: { DynamicKeyboard, Search },
-  // components: { DynamicKeyboard, BusInfo, Search, NearbyMap },
   components: { Search, NearbyMap },
-
 
   data() {
     return {
-      page:"nearbyStop",
-      inputHint:"enterLocation",
+      page: "nearbyStop",
+      inputHint: "enterLocation",
       cities: CITIES,
       selected: CITIES[0],
       open: false,
@@ -86,7 +56,7 @@ export default {
       inputValue: "",
       busNum: "",
       isMobileOpenBusInfo: true,
-      zoom:13
+      zoom: 13,
     };
   },
   methods: {

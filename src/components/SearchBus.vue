@@ -53,51 +53,6 @@
           :search="inputValue"
         ></router-view>
       </div>
-
-      <!--block_list:附近站牌-->
-      <!--      <div class="block_list">-->
-      <!--        <div class="content_list">-->
-      <!--          <div class="list_top flex_row_cb">-->
-      <!--            <i></i>-->
-      <!--            <p>附近站牌</p>-->
-      <!--            <div class="flex_row_ce">-->
-      <!--              <i class="i_update" @click="getList"></i>-->
-      <!--            </div>-->
-      <!--          </div>-->
-
-      <!--          <div class="list_bottom flex_col">-->
-      <!--            <div class="select_scrollbar">-->
-      <!--              &lt;!&ndash;地圖區域&ndash;&gt;-->
-      <!--              <div class="map_inner map_stop">-->
-      <!--                <i class="i_zoomin"></i>-->
-      <!--                <i class="i_zoomout active"></i>-->
-
-      <!--                &lt;!&ndash;站牌相關公車資訊&ndash;&gt;-->
-      <!--                <div class="content_card">-->
-      <!--                  <div class="flex_row_cb">-->
-      <!--                    <p class="title_card_txt">2380 捷運北屯總站(松竹路)</p>-->
-      <!--                    <i class="i_close"></i>-->
-      <!--                  </div>-->
-      <!--                  <label class="flex_row_cb">-->
-      <!--                    <p>站牌公車</p>-->
-      <!--                    <p>33,234</p>-->
-      <!--                  </label>-->
-      <!--                  <label class="flex_row_cb">-->
-      <!--                    <p>距離</p>-->
-      <!--                    <div class="flex_row">-->
-      <!--                      <p>300</p>-->
-      <!--                      <p>m</p>-->
-      <!--                    </div>-->
-      <!--                  </label>-->
-      <!--                </div>-->
-      <!--                <div class=" black_overlay"></div>-->
-      <!--              </div>-->
-      <!--            </div>-->
-      <!--            <p class="text_info map_stop">更新時間 {{ updateTime }}</p>-->
-      <!--          </div>-->
-
-      <!--        </div>-->
-      <!--      </div>-->
     </div>
   </div>
 </template>
@@ -105,20 +60,17 @@
 <script>
 import { CITIES } from "../constant/city";
 import { BusObj } from "../constant/bus";
-// import SearchList from "./SearchList";
 import Search from "./Search";
-// import { BUS_URL_V2, sendRequest } from "../utils/https";
 import BusInfo from "./BusInfo";
 import DynamicKeyboard from "./DynamicKeyboard";
-// import {getCurrentLocationInfo} from "../utils/location";
 
 export default {
   name: "SearchBus",
   components: { DynamicKeyboard, BusInfo, Search },
   data() {
     return {
-      page:"searchBus",
-      inputHint:"enterRouteName",
+      page: "searchBus",
+      inputHint: "enterRouteName",
       cities: CITIES,
       selected: CITIES[0],
       open: false,

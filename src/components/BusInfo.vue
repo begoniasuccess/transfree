@@ -71,9 +71,9 @@
 </template>
 
 <script>
-import {BUS_URL_V2, sendRequest} from "../utils/https";
-import {formatTimeStamp} from "../utils/date";
-import {RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
+import { BUS_URL_V2, sendRequest } from "../utils/https";
+import { formatTimeStamp } from "../utils/date";
+import { RESPONSE_DATA_FORMAT_JSON } from "../constant/common";
 
 export default {
   name: "BusInfo",
@@ -83,44 +83,55 @@ export default {
   },
   data() {
     return {
-      operatorName: '',
-      operatorPhoneNumber: '',
-      ticketPriceDescription: '',
-      fareBufferZoneDescription: '',
-      firstBusTime: '',
-      lastBusTime: '',
-      holidayFirstBusTime: '',
-      holidayLastBusTime: ''
-    }
+      operatorName: "",
+      operatorPhoneNumber: "",
+      ticketPriceDescription: "",
+      fareBufferZoneDescription: "",
+      firstBusTime: "",
+      lastBusTime: "",
+      holidayFirstBusTime: "",
+      holidayLastBusTime: "",
+    };
   },
   mounted() {
-    sendRequest('get', `${BUS_URL_V2}/Route/City/${this.city}/${this.routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`)
-        .then(res => {
-          const {data} = res;
-          this.operatorName = data[0].Operators[0].OperatorName.Zh_tw;
-          this.ticketPriceDescription = data[0].TicketPriceDescriptionZh;
-          this.fareBufferZoneDescription = data[0].FareBufferZoneDescriptionZh;
-          this.firstBusTime = formatTimeStamp(data[0].SubRoutes[0].FirstBusTime);
-          this.lastBusTime = formatTimeStamp(data[0].SubRoutes[0].LastBusTime);
-          this.holidayFirstBusTime = formatTimeStamp(data[0].SubRoutes[0].HolidayFirstBusTime);
-          this.holidayLastBusTime = formatTimeStamp(data[0].SubRoutes[0].HolidayLastBusTime);
+    sendRequest(
+      "get",
+      `${BUS_URL_V2}/Route/City/${this.city}/${this.routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+    )
+      .then((res) => {
+        const { data } = res;
+        this.operatorName = data[0].Operators[0].OperatorName.Zh_tw;
+        this.ticketPriceDescription = data[0].TicketPriceDescriptionZh;
+        this.fareBufferZoneDescription = data[0].FareBufferZoneDescriptionZh;
+        this.firstBusTime = formatTimeStamp(data[0].SubRoutes[0].FirstBusTime);
+        this.lastBusTime = formatTimeStamp(data[0].SubRoutes[0].LastBusTime);
+        this.holidayFirstBusTime = formatTimeStamp(
+          data[0].SubRoutes[0].HolidayFirstBusTime
+        );
+        this.holidayLastBusTime = formatTimeStamp(
+          data[0].SubRoutes[0].HolidayLastBusTime
+        );
 
-          sendRequest('get', `${BUS_URL_V2}/Operator/City/${this.city}?format=${RESPONSE_DATA_FORMAT_JSON}`)
-              .then(res => {
-                this.operatorPhoneNumber = res.data.filter(d => d.OperatorNo === data[0].Operators[0].OperatorNo)[0].OperatorPhone;
-              })
-        }).catch(err => {
-      console.log(err);
-    })
+        sendRequest(
+          "get",
+          `${BUS_URL_V2}/Operator/City/${this.city}?format=${RESPONSE_DATA_FORMAT_JSON}`
+        ).then((res) => {
+          this.operatorPhoneNumber = res.data.filter(
+            (d) => d.OperatorNo === data[0].Operators[0].OperatorNo
+          )[0].OperatorPhone;
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
   methods: {
     mobileSwitchBusInfo() {
       this.$emit("mobileSwitchBusInfo");
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>
-
 </style>

@@ -45,7 +45,6 @@ import {
 } from "../utils/https";
 import { BusObj } from "../constant/bus";
 import { getAllBus, addBus, removeBus } from "../utils/commonly-used-bus.js";
-// import { DEFAULT_NUMBER_OF_QUERY_RECORDS } from "../constant/common";
 import { SEARCH_MODE } from "../constant/common";
 
 export default {
@@ -65,8 +64,7 @@ export default {
       cityBusList: new Array(), // 完整的List
       routeName: String, // 路線名稱
       busNum: "", // 選擇的busNum
-      // isLoved: false, // 常用標記
-      searchMode: SEARCH_MODE.estimated
+      searchMode: SEARCH_MODE.estimated,
     };
   },
   mounted() {

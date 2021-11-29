@@ -14,8 +14,8 @@
 
     <div class="bookmark_container">
       <button
-          :class="{ active: isGoListActive }"
-          @click="
+        :class="{ active: isGoListActive }"
+        @click="
           isGoListActive = true;
           resetData();
         "
@@ -23,8 +23,8 @@
         {{ $t("go") }}
       </button>
       <button
-          :class="{ active: !isGoListActive }"
-          @click="
+        :class="{ active: !isGoListActive }"
+        @click="
           isGoListActive = false;
           resetData();
         "
@@ -47,82 +47,44 @@
               </label>
             </span>
             <span v-if="data.StopStatus == 1"
-            ><label class="bus_status0">{{ $t("hasNotDeparted") }}</label>
+              ><label class="bus_status0">{{ $t("hasNotDeparted") }}</label>
             </span>
             <span v-if="data.StopStatus == 2"
-            ><label class="bus_status0">{{ $t("trafficControlDoNotStop") }}</label></span
+              ><label class="bus_status0">{{
+                $t("trafficControlDoNotStop")
+              }}</label></span
             >
             <span v-if="data.StopStatus == 3"
-            ><label class="bus_status0">{{ $t("lastBusHasPassed") }}</label></span
+              ><label class="bus_status0">{{
+                $t("lastBusHasPassed")
+              }}</label></span
             >
             <span v-if="data.StopStatus == 4"
-            ><label class="bus_status0">{{ $t("notOperatingToday") }}</label></span
+              ><label class="bus_status0">{{
+                $t("notOperatingToday")
+              }}</label></span
             >
-            <div v-if="$store.getters.getMultilingual === multilingualChinese">{{ data.StopName.Zh_tw }}</div>
-            <div v-if="$store.getters.getMultilingual === multilingualEnglish">{{ data.StopName.En }}</div>
+            <div v-if="$store.getters.getMultilingual === multilingualChinese">
+              {{ data.StopName.Zh_tw }}
+            </div>
+            <div v-if="$store.getters.getMultilingual === multilingualEnglish">
+              {{ data.StopName.En }}
+            </div>
           </div>
-          <!--          <div class="flex_row_ce">-->
-          <!--            <p class="text_primary">{{ getBusNearByStop(data.StopName.Zh_tw, data.Direction) }}</p>-->
-          <!--            <i class="i_a11ybus" v-if="isBarrierFree(getBusNearByStop(data.StopName.Zh_tw, data.Direction))"></i>-->
-          <!--          </div>-->
           <div class="flex_col">
             <div
-                v-for="(bus, i) in getBusNearByStop(
+              v-for="(bus, i) in getBusNearByStop(
                 data.StopName.Zh_tw,
                 data.Direction
               )"
-                :key="i"
-                class="flex_row_ce"
+              :key="i"
+              class="flex_row_ce"
             >
               <p class="text_primary">{{ bus.PlateNumb }}</p>
               <i class="i_a11ybus" v-if="isBarrierFree(bus.PlateNumb)"></i>
             </div>
           </div>
         </div>
-
-        <!--        <div class="list_inner">-->
-        <!--          <div class="flex_row">-->
-        <!--            <label class="bus_status1"><span>4</span>分</label>-->
-        <!--            <p>公車站牌名稱</p>-->
-        <!--          </div>-->
-        <!--          <div class="flex_row_ce">-->
-        <!--            <p class="text_primary">590-GT</p>-->
-        <!--            <i class="i_a11ybus"></i>-->
-        <!--          </div>-->
-        <!--        </div>-->
-
-        <!--        <div class="list_inner">-->
-        <!--          <div class="flex_row">-->
-        <!--            <label class="bus_status1"><span>4</span>分</label>-->
-        <!--            <p>公車站牌名稱</p>-->
-        <!--          </div>-->
-        <!--          <div class="flex_row_ce">-->
-        <!--            <p class="text_primary">590-GT</p>-->
-        <!--            <i class="i_a11ybus"></i>-->
-        <!--          </div>-->
-        <!--        </div>-->
-
-        <!--        <div class="list_inner">-->
-        <!--          <div class="flex_row">-->
-        <!--            <label class="bus_status2">進站中</label>-->
-        <!--            <p>公車站牌名稱</p>-->
-        <!--          </div>-->
-        <!--          <div class="flex_row_ce">-->
-        <!--            <p class="text_primary">590-GT</p>-->
-        <!--            <i class="i_a11ybus"></i>-->
-        <!--          </div>-->
-        <!--        </div>-->
-
-        <!--        <div class="list_inner">-->
-        <!--          <div class="flex_row">-->
-        <!--            <label class="bus_status0">未發車</label>-->
-        <!--            <p>公車站牌名稱</p>-->
-        <!--          </div>-->
-        <!--          &lt;!&ndash;          <div class="flex_row_ce">&ndash;&gt;-->
-        <!--          &lt;!&ndash;            <p class="text_primary">590-GT</p>&ndash;&gt;-->
-        <!--          &lt;!&ndash;            <i class="i_a11ybus"></i>&ndash;&gt;-->
-        <!--          &lt;!&ndash;          </div>&ndash;&gt;-->
-        <!--        </div>-->
       </div>
       <p class="text_info">{{ $t("updateTimestamp") }} {{ updateTime }}</p>
     </div>
@@ -130,15 +92,19 @@
 </template>
 
 <script>
-import {BUS_URL_V2, sendRequest} from "../utils/https";
-import {GLOBAL_MULTILINGUAL_CHINESE, GLOBAL_MULTILINGUAL_ENGLISH, RESPONSE_DATA_FORMAT_JSON} from "../constant/common";
-import {getCurrentDateTime} from "../utils/date";
+import { BUS_URL_V2, sendRequest } from "../utils/https";
+import {
+  GLOBAL_MULTILINGUAL_CHINESE,
+  GLOBAL_MULTILINGUAL_ENGLISH,
+  RESPONSE_DATA_FORMAT_JSON,
+} from "../constant/common";
+import { getCurrentDateTime } from "../utils/date";
 
 export default {
   name: "EstimatedTimeOfArrival",
   data() {
     return {
-      routeName: '',
+      routeName: "",
       goList: [],
       backList: [],
       isGoListActive: true,
@@ -147,7 +113,7 @@ export default {
       allBusInCity: [],
       interval: "",
       multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
-      multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH
+      multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
     };
   },
   mounted() {
@@ -173,73 +139,75 @@ export default {
     getAllBusInCity() {
       const city = this.$route.params.city;
       sendRequest(
-          "get",
-          `${BUS_URL_V2}/Vehicle/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+        "get",
+        `${BUS_URL_V2}/Vehicle/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
-          .then((res) => {
-            this.allBusInCity = res.data;
-          })
-          .catch((err) => {
-            window.alert("Get AllBusInCity occurs error：" + err);
-          });
+        .then((res) => {
+          this.allBusInCity = res.data;
+        })
+        .catch((err) => {
+          window.alert("Get AllBusInCity occurs error：" + err);
+        });
     },
     getStopList() {
       const city = this.$route.params.city;
       const routeName = this.$route.params.routeName;
       sendRequest(
-          "get",
-          `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+        "get",
+        `${BUS_URL_V2}/EstimatedTimeOfArrival/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
-          .then((res) => {
-            console.log({getStopListRes:res.data});
-            if(this.$store.getters.getMultilingual === GLOBAL_MULTILINGUAL_CHINESE) {
-              this.routeName = res.data[0].RouteName.Zh_tw;
-            } else {
-              this.routeName = res.data[0].RouteName.En;
-            }
+        .then((res) => {
+          console.log({ getStopListRes: res.data });
+          if (
+            this.$store.getters.getMultilingual === GLOBAL_MULTILINGUAL_CHINESE
+          ) {
+            this.routeName = res.data[0].RouteName.Zh_tw;
+          } else {
+            this.routeName = res.data[0].RouteName.En;
+          }
 
-            this.goList = res.data
-                .filter((data) => data.Direction == 0)
-                .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
-            this.backList = res.data
-                .filter((data) => data.Direction == 1)
-                .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
-            this.updateTime = getCurrentDateTime();
-          })
-          .catch((err) => {
-            window.alert("Get EstimatedTimeOfArrival occurs error：" + err);
-          });
+          this.goList = res.data
+            .filter((data) => data.Direction == 0)
+            .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
+          this.backList = res.data
+            .filter((data) => data.Direction == 1)
+            .sort((stop1, stop2) => stop1.StopID - stop2.StopID);
+          this.updateTime = getCurrentDateTime();
+        })
+        .catch((err) => {
+          window.alert("Get EstimatedTimeOfArrival occurs error：" + err);
+        });
     },
     getBusList() {
       const city = this.$route.params.city;
       const routeName = this.$route.params.routeName;
       sendRequest(
-          "get",
-          `${BUS_URL_V2}/RealTimeNearStop/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+        "get",
+        `${BUS_URL_V2}/RealTimeNearStop/City/${city}/${routeName}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
-          .then((res) => {
-            this.busList = res.data;
-          })
-          .catch((err) => {
-            window.alert("Get RealTimeNearStop occurs error：" + err);
-          });
+        .then((res) => {
+          this.busList = res.data;
+        })
+        .catch((err) => {
+          window.alert("Get RealTimeNearStop occurs error：" + err);
+        });
     },
     getBusNearByStop(stopName, direction) {
       const nearBy = this.busList.filter(
-          (data) =>
-              data.StopName.Zh_tw === stopName && data.Direction === direction
+        (data) =>
+          data.StopName.Zh_tw === stopName && data.Direction === direction
       );
       if (nearBy.length === 0) {
         return "";
       } else {
-        console.log({stopName, direction,nearBy});
+        console.log({ stopName, direction, nearBy });
         return nearBy;
       }
     },
     isBarrierFree(plateNumb) {
       if (plateNumb !== "") {
         const bus = this.allBusInCity.filter(
-            (data) => data.PlateNumb === plateNumb
+          (data) => data.PlateNumb === plateNumb
         );
         return bus.length !== 0 && bus[0].VehicleType === 1;
       } else {
@@ -257,32 +225,33 @@ export default {
       }
     },
     mobileSwitchBusInfo() {
-      this.$emit("mobileSwitchBusInfo")
+      this.$emit("mobileSwitchBusInfo");
     },
-    showSearchMode(){
+    showSearchMode() {
       this.$emit("searchMode", "search-map");
     },
     switchMode(mode) {
       this.$router.push({
         name: mode,
-        params: { city: this.$route.params.city, routeName: this.$route.params.routeName },
+        params: {
+          city: this.$route.params.city,
+          routeName: this.$route.params.routeName,
+        },
       });
-    }
+    },
   },
   computed: {
     activeList: {
-      // eslint-disable-next-line
       get() {
         if (this.isGoListActive) {
-          console.log({estGoList:this.goList});
+          console.log({ estGoList: this.goList });
           return this.goList;
         } else {
           return this.backList;
         }
       },
       // eslint-disable-next-line
-      set(value) {
-      },
+      set(value) {},
     },
   },
   watch: {
