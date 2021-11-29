@@ -260,6 +260,10 @@
         margin-left: 4px;
     }
 
+    .list_bottom .text_info{
+        bottom: 60px;
+    }
+
 }
 
 
