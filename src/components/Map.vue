@@ -34,7 +34,7 @@
         />
         <!-- 彈出視窗 -->
         <l-popup>
-          {{ aStop.StopName.Zh_tw }}
+          {{ aStop.StopName.Zh_tw +" "+ aStop.StopName.En }}
         </l-popup>
       </l-marker>
     </l-map>
