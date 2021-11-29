@@ -83,7 +83,8 @@ export default {
       activeStop:{},
       operatorName:"",
       plateNumb: "" ,
-      city:""
+      city:"",
+      rawStopList:[]
     };
   },
   components:{
@@ -167,15 +168,19 @@ export default {
     },
     getStopList() {
       let self = this;
-      let skip = this.stopList.length;
+      let skip = this.rawStopList.length;
       const city = this.$route.params.city;
       sendRequest(
           "get",
-          `${BUS_URL_V2}/Stop/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}&$top=500&$skip=${skip}`
+          `${BUS_URL_V2}/Stop/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}&$top=200&$skip=${skip}`
           // `${BUS_URL_V2}/Stop/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
           .then((res) => {
-            self.stopList = self.makeStopList(res.data);
+            self.rawStopList = self.rawStopList.concat(res.data);
+            if (res.data.length == 200 && self.rawStopList.length < 1000){
+              self.getStopList();
+            }
+            self.stopList = self.makeStopList(self.rawStopList);
             console.log({getStopList:res});
           })
           .catch((err) => {
