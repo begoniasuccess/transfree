@@ -29,8 +29,14 @@
 
                     <!-- 站牌資訊 -->
                     <div class="content_card" v-if="isPopUpActive && popUpMode == 'stop'">
-                        <div class="flex_row_cb">
-                            <p class="title_card_txt">{{activeStop.StopName.En}}</p>
+                        <div class="flex_row_cb">                            
+                            <p v-if="this.$store.getters.getMultilingual === multilingualChinese" 
+                                class="title_card_txt">
+                                {{activeStop.StopName.Zh_tw}}
+                            </p>
+                            <p v-else class="title_card_txt">
+                                {{activeStop.StopName.En}}
+                            </p>
                             <i class="i_close" @click="isPopUpActive = false;"></i>
                         </div>
                         <label class="flex_row_cb">
@@ -44,7 +50,7 @@
                     </div>
 
                     <!-- 公車資訊 -->
-                    <div class="content_card" v-if="isPopUpActive && popUpMode == 'route'">
+                    <!-- <div class="content_card" v-if="isPopUpActive && popUpMode == 'route'">
                         <div class="flex_row_cb">
                             <p class="title_card_txt">{{this.$route.params.routeName}}</p>
                             <i class="i_close" @click="isPopUpActive = false;"></i>
@@ -52,7 +58,9 @@
 
                         <label class="flex_row_cb">
                             <p>營運業者</p>
-                            <p>{{operatorName.En}}</p>
+                            <p v-if="this.$store.getters.getMultilingual === multilingualChinese">{{operatorName.Zh_tw}}</p>
+                            <p v-else>{{operatorName.En}}</p>
+
                         </label>
 
                         <label class="flex_row_cb">
@@ -62,7 +70,7 @@
                                 <i class="i_a11ybus"></i>
                             </div>
                         </label>
-                    </div>
+                    </div> -->
                     
                     <Map  :center="center" 
                           :stopsData="activeList"

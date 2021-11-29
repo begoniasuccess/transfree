@@ -75,6 +75,7 @@ export default {
         // console.log("selectedIndex");
         this.$emit("show-stop-popup", stopListIndex);
       },
+      
     },
     mounted() {
         // let self = this;

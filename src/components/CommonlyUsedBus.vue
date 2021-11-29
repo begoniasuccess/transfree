@@ -32,7 +32,7 @@
 
         <!--初始圖-->
         <div class="block_sec img_first flex_col" v-else>
-          <div class="img_01"></div>
+          <div class="img_03"></div>
         </div>
       </div>
 

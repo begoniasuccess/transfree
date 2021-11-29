@@ -125,7 +125,7 @@ export default {
       isDynamicKeyboardShow: false,
       isBusInfoShow: false,
       searchBusList: new Array(),
-      routeName: String, // 路線名稱
+      routeName: "", // 路線名稱
       bus: BusObj,
       inputValue: "",
       busNum: "",

@@ -19,10 +19,10 @@
                 <i class="i_zoomout active"></i>
 
                 <!-- &lt;!&ndash;站牌相關公車資訊&ndash;&gt; -->
-                <div class="content_card">
+                <div class="content_card" v-if="isPopUpActive">
                   <div class="flex_row_cb">
-                    <p class="title_card_txt">2380 捷運北屯總站(松竹路)</p>
-                    <i class="i_close"></i>
+                    <p class="title_card_txt">2380 捷運北屯總站(松竹路132)</p>
+                    <i class="i_close" @click="isPopUpActive = false;"></i>
                   </div>
                   <label class="flex_row_cb">
                     <p>站牌公車</p>
@@ -81,7 +81,7 @@ export default {
       center:[22.612961, 120.304167],
     //   zoomSize : 13,
       popUpMode:'route',
-      isPopUpActive :true,
+      isPopUpActive :false,
       zoomMode:'in',
       activeStop:{},
       operatorName:"",
