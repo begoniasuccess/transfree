@@ -83,7 +83,7 @@ export default new VueRouter({
           component: SearchList,
         },
         {
-          path: "nearby-map/:city/:stopName",
+          path: "nearby-map/:city",
           name: "NearbyMap",
           component: NearbyMap,
         },

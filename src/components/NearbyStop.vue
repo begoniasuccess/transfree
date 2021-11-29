@@ -12,7 +12,7 @@
         ></Search>
 
         <!--次要列表-->
-        <div
+        <!-- <div
           class="block_sec flex_col select_scrollbar"
           :style="[
             isMobileOpenBusInfo ? { display: 'block' } : { display: 'none' },
@@ -32,10 +32,10 @@
               @mobileSwitchBusInfo="mobileSwitchBusInfo"
             ></BusInfo>
           </span>
-        </div>
+        </div> -->
 
         <!--初始圖-->
-        <div class="block_sec img_first flex_col" v-else>
+        <div class="block_sec img_first flex_col">
           <div class="img_02"></div>
         </div>
       </div>
@@ -60,14 +60,16 @@
 import { CITIES } from "../constant/city";
 import { BusObj } from "../constant/bus";
 import Search from "./Search";
-import BusInfo from "./BusInfo";
-import DynamicKeyboard from "./DynamicKeyboard";
+// import BusInfo from "./BusInfo";
+// import DynamicKeyboard from "./DynamicKeyboard";
 import NearbyMap from "./NearbyMap";
 
 export default {
   name: "NearbyStop",
   // components: { DynamicKeyboard, Search },
-  components: { DynamicKeyboard, BusInfo, Search, NearbyMap },
+  // components: { DynamicKeyboard, BusInfo, Search, NearbyMap },
+  components: { Search, NearbyMap },
+
 
   data() {
     return {
@@ -118,8 +120,8 @@ export default {
     mobileSwitchBusInfo() {
       this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
     },
-    loadSearchList() {
-      this.$router.replace(`/nearby-stop/search-list`).catch(() => {});
+    loadNearbyStop() {
+      this.$router.replace(`/nearby-stop/nearby-map`).catch(() => {});
     },
   },
   watch: {
@@ -129,13 +131,13 @@ export default {
     selected: function () {
       this.isDynamicKeyboardShow = true;
       if (this.selected.value !== "" && this.inputValue !== "") {
-        this.loadSearchList();
+        this.loadNearbyStop();
       }
     },
     inputValue: function () {
       this.isDynamicKeyboardShow = true;
       if (this.selected.value !== "" && this.inputValue !== "") {
-        this.loadSearchList();
+        this.loadNearbyStop();
       }
     },
   },

@@ -21,7 +21,7 @@
                 <i class="i_zoomout active"></i>
 
                 <!-- &lt;!&ndash;站牌相關公車資訊&ndash;&gt; -->
-                <div class="content_card" v-if="isPopUpActive">
+                <!-- <div class="content_card" v-if="isPopUpActive">
                   <div class="flex_row_cb">
                     <p class="title_card_txt">2380 捷運北屯總站(松竹路132)</p>
                     <i class="i_close" @click="isPopUpActive = false;"></i>
@@ -37,9 +37,9 @@
                       <p>m</p>
                     </div>
                   </label>
-                </div>                
+                </div>                 -->
                 <Map    :center="center" 
-                        :stopsData="activeList"
+                        :stopsData="stopList"
                         :zoom="zoom"
                         @show-stop-popup="showStopInfo"
                     ></Map>
@@ -71,10 +71,9 @@ export default {
   },
   data() {
     return {
-      routeName: '',
       isgoStopListActive: true,
       updateTime: getCurrentDateTime(),
-      busList: [],
+      stopList: [],
       interval: "",
       multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
       multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
@@ -83,7 +82,8 @@ export default {
       zoomMode:'in',
       activeStop:{},
       operatorName:"",
-      plateNumb: "" 
+      plateNumb: "" ,
+      city:""
     };
   },
   components:{
@@ -91,7 +91,7 @@ export default {
   },
   
   mounted() {
-    this.getBusList();
+    // this.getStopList();
     this.setCenter();
     if (this.$store.getters.getIsAutoUpdate) {
       const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
@@ -107,7 +107,7 @@ export default {
   methods: {
     resetData() {
       // this.getStopOfRoute();      
-    //   this.getBusList();
+      this.getStopList();
     },    
     // getStopOfRoute(){
     //   const city = this.$route.params.city;
@@ -130,16 +130,14 @@ export default {
     //         window.alert("Get getStopOfRoute occurs error：" + err);
     //       });
     // },
-    makeStopList(dataFromRouteCityStops){
-      let stops = dataFromRouteCityStops.Stops;
+    makeStopList(dataFromCityStops){
       let stopList = [];
-      stops.forEach((aStop, index) => {
+      dataFromCityStops.forEach((aStop, index) => {
           let aLocObj = {
             StopID : aStop.StopID,
             StopName : aStop.StopName,
             StopPosition : [aStop.StopPosition.PositionLat, aStop.StopPosition.PositionLon],
-            StopIndex : index+1,
-            
+            StopIndex : index+1,            
           };
           stopList.push(aLocObj);
           
@@ -150,8 +148,12 @@ export default {
       let self = this;
       getCurrentLocationInfo().then((data)=>{
           console.log({locData:data});
+          let city = data.data.city.replace(" ","");
+          self.city = city;
           self.center=[data.data.lat, data.data.lon];
           console.log({setCenter:self.center});
+          this.$router.replace(`/nearby-stop/nearby-map/${city}`).catch(() => {});
+          self.getStopList();
       }).catch((err)=>{
           console.log({setCenterErr:err});
       });      
@@ -163,19 +165,21 @@ export default {
       this.activeStop = this.activeList[stopIndex];
       console.log({activeStop:this.activeStop});
     },
-    getBusList() {
+    getStopList() {
       let self = this;
+      let skip = this.stopList.length;
       const city = this.$route.params.city;
       sendRequest(
           "get",
-          `${BUS_URL_V2}/Stop/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`
+          `${BUS_URL_V2}/Stop/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}&$top=500&$skip=${skip}`
+          // `${BUS_URL_V2}/Stop/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}`
       )
           .then((res) => {
-            self.busList = res.data;
-            console.log({busList:self.busList});
+            self.stopList = self.makeStopList(res.data);
+            console.log({getStopList:res});
           })
           .catch((err) => {
-            window.alert("Get RealTimeNearStop occurs error：" + err);
+            window.alert("Get getStopList occurs error：" + err);
           });
     },
   },
