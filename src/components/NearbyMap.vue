@@ -42,7 +42,7 @@ import {
   RESPONSE_DATA_FORMAT_JSON,
 } from "../constant/common";
 import { getCurrentDateTime } from "../utils/date";
-import { getCurrentLocationInfo } from "../utils/location";
+import { getCurrentLocationInfo, distance } from "../utils/location";
 
 import Map from "./Map";
 
@@ -50,10 +50,10 @@ export default {
   name: "NearbyMap",
   props: {
     zoom: Number,
+    limitDist: Number
   },
   data() {
     return {
-      isgoStopListActive: true,
       updateTime: getCurrentDateTime(),
       stopList: [],
       interval: "",
@@ -114,7 +114,7 @@ export default {
           let city = data.data.city.replace(" ", "");
           self.city = city;
           self.center = [data.data.lat, data.data.lon];
-          console.log({ setCenter: self.center });
+          // console.log({ setCenter: self.center });
           this.$router
             .replace(`/nearby-stop/nearby-map/${city}`)
             .catch(() => {});
@@ -133,6 +133,7 @@ export default {
     },
     getStopList() {
       let self = this;
+      //一個縣市的站牌數量眾多，設置skip以利分批呼叫
       let skip = this.rawStopList.length;
       const city = this.$route.params.city;
       sendRequest(
@@ -140,40 +141,47 @@ export default {
         `${BUS_URL_V2}/Stop/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}&$top=200&$skip=${skip}`
       )
         .then((res) => {
+          // console.log({ getStopList: res });
+
+          //為 stops 加上 與使用者當前的距離(km)
+          res.data.forEach((aStop, index)=>{
+            let stopLat = aStop.StopPosition.PositionLat;
+            let stopLon = aStop.StopPosition.PositionLon;
+            let distFromCenter = distance(self.center[0], self.center[1], stopLat, stopLon);
+            res.data[index].distance = distFromCenter;
+          });
+
+          //將stops寫入rawStopList
           self.rawStopList = self.rawStopList.concat(res.data);
-          if (res.data.length == 200 && self.rawStopList.length < 1000) {
+
+          //未搜尋完的站牌，分批呼叫
+          //注意：實作local快取機制前，暫時設置總搜尋上限避免本頁loading時間過長
+          //餘下的資料由背景更新function-->resetData()去實現
+          if (res.data.length == 200 && self.rawStopList.length < 2000) {
             self.getStopList();
           }
-          self.stopList = self.makeStopList(self.rawStopList);
-          console.log({ getStopList: res });
+          self.setStopList();
+
+          
         })
         .catch((err) => {
           window.alert("Get getStopList occurs error：" + err);
         });
     },
-  },
+    setStopList(){
+      let self = this;
+      let stopListInRange = self.rawStopList.filter((aRawStop) => {            
+        return (aRawStop.distance <= self.limitDist);
+      });
+      self.stopList = self.makeStopList(stopListInRange);
+    }
+  },  
   computed: {
-    activeList: {
-      get() {
-        if (this.isgoStopListActive) {
-          return this.goStopList;
-        } else {
-          return this.backStopList;
-        }
-      },
-      // eslint-disable-next-line
-      set(value) {},
-    },
   },
   watch: {
-    isgoStopListActive: function (newVal, oldVal) {
-      if (newVal && !oldVal) {
-        this.activeList = this.goStopList;
-      } else {
-        this.activeList = this.backStopList;
-      }
-      this.setCenter();
-    },
+    limitDist(){
+      this.setStopList();
+    }
   },
 };
 </script>

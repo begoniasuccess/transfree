@@ -27,6 +27,14 @@
     margin-top: 0px;
 }
 
+.block_primary .form-group{
+    display: flex;
+    flex-direction: row;
+}
+.block_primary .form-group label{
+    width:6em;
+}
+
 .block_setting {
     width: 100%;
     height: 200px;

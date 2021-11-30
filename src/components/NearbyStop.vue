@@ -2,13 +2,13 @@
   <div class="h_100 w_100">
     <div class="flex_row_sb w_100 h_100">
       <div class="flex_col w_100 h_100 auto">
-        <Search
-          v-on:getSearchCity="getSearchCity"
+        <SearchForNearby
           v-on:getInputValue="getInputValue"
+          :nowCity="$route.params.city"
           :inputValue="inputValue"
           :page="page"
           :inputHint="inputHint"
-        ></Search>
+        ></SearchForNearby>
 
         <!--初始圖-->
         <div class="block_sec img_first flex_col">
@@ -16,15 +16,13 @@
         </div>
       </div>
 
-      <!--右側列表-->
-
-      <!--block_list:動態公車列表模式-->
+      <!--block_list:附近站牌-->
       <div class="block_list">
         <NearbyMap
           :zoom="zoom"
           :center="center"
           :city="$route.params.city"
-          :routeName="$route.params.routeName"
+          :limitDist="inputValue"
         ></NearbyMap>
       </div>
     </div>
@@ -32,29 +30,22 @@
 </template>
 
 <script>
-import { CITIES } from "../constant/city";
-import { BusObj } from "../constant/bus";
-import Search from "./Search";
+import SearchForNearby from "./SearchForNearby";
 import NearbyMap from "./NearbyMap";
 
 export default {
   name: "NearbyStop",
-  components: { Search, NearbyMap },
+  components: { SearchForNearby, NearbyMap },
 
   data() {
     return {
       page: "nearbyStop",
-      inputHint: "enterLocation",
-      cities: CITIES,
-      selected: CITIES[0],
+      inputHint: "distanceFromCenter",
       open: false,
       isDynamicKeyboardShow: false,
       isBusInfoShow: false,
       searchBusList: new Array(),
-      routeName: String, // 路線名稱
-      bus: BusObj,
-      inputValue: "",
-      busNum: "",
+      inputValue: 2,
       isMobileOpenBusInfo: true,
       zoom: 13,
     };
@@ -74,17 +65,13 @@ export default {
         //Set the input value as value.
       }
     },
-    getBusNum: function (busNum) {
-      this.isDynamicKeyboardShow = false;
-      this.busNum = busNum;
-    },
     getSearchCity: function (city) {
       this.selected = city;
     },
     getInputValue: function (inputValue) {
-      this.isDynamicKeyboardShow = true;
-      this.isMobileOpenBusInfo = true;
-      this.isBusInfoShow = false;
+      // this.isDynamicKeyboardShow = true;
+      // this.isMobileOpenBusInfo = true;
+      // this.isBusInfoShow = false;
       this.inputValue = inputValue;
     },
     mobileSwitchBusInfo() {
@@ -95,9 +82,6 @@ export default {
     },
   },
   watch: {
-    busNum: function () {
-      console.log("watch father busNum:" + this.busNum);
-    },
     selected: function () {
       this.isDynamicKeyboardShow = true;
       if (this.selected.value !== "" && this.inputValue !== "") {
@@ -111,10 +95,11 @@ export default {
       }
     },
   },
+  mounted(){
+    // this.inputValue = this.$route.params.city;
+  }
 };
 </script>
-
-<style src="../assets/css/global_all.css"></style>
 <style scoped>
 .flex_row_sb w_100 h_100 > .h_100 {
   height: inherit;
