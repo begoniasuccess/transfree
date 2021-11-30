@@ -31,7 +31,7 @@
   "selectCity": "Please Select City",
   "enterRouteName": "Please Enter The Route Name",
   "enterLocation": "Please Enter The Place",
-  "distanceFromCenter":"Ditance",
+  "distanceFromCenter":"Distance",
   "distanceUnit":"kilometer",
   "currentCity":"The city you are",
   "searchTimestamp": "Search Timestamp",

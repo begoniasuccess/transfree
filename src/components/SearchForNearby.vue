@@ -35,7 +35,7 @@ export default {
   name: "SearchForNearby",
   props: {
     nowCity: String,
-    inputValue: String,
+    inputValue: Number,
     page: String,
     inputHint: String,
   },

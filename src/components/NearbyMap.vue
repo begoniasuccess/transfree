@@ -5,7 +5,7 @@
         <div class="content_list">
           <div class="list_top flex_row_cb">
             <i></i>
-            <p>附近站牌</p>
+            <p>{{ $t("nearbyStop") }}</p>
             <div class="flex_row_ce">
               <i class="i_update"></i>
             </div>
@@ -73,8 +73,9 @@ export default {
     Map,
   },
 
-  mounted() {
-    this.setCenter();
+  mounted() {    
+    this.setCenter(this.$route.params.city);
+
     if (this.$store.getters.getIsAutoUpdate) {
       const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
       this.interval = setInterval(() => {
@@ -106,30 +107,27 @@ export default {
       });
       return stopList;
     },
-    setCenter() {
+    setCenter(getStops) {
       let self = this;
       getCurrentLocationInfo()
         .then((data) => {
-          console.log({ locData: data });
+          // console.log({ locData: data });
           let city = data.data.city.replace(" ", "");
           self.city = city;
           self.center = [data.data.lat, data.data.lon];
           // console.log({ setCenter: self.center });
-          this.$router
+          self.$router
             .replace(`/nearby-stop/nearby-map/${city}`)
             .catch(() => {});
-          self.getStopList();
+          if (getStops) self.getStopList();
         })
         .catch((err) => {
           console.log({ setCenterErr: err });
         });
     },
-    showStopInfo(stopIndex) {
-      console.log("showStopInfo", { stopIndex });
+    showStopInfo() {
       this.isPopUpActive = true;
       this.popUpMode = "stop";
-      this.activeStop = this.activeList[stopIndex];
-      console.log({ activeStop: this.activeStop });
     },
     getStopList() {
       let self = this;
