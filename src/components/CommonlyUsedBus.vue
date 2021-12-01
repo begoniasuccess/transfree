@@ -39,17 +39,19 @@
         </div>
       </div>
 
-      <!--block_list:常用搜尋列表-->
-      <div
-        class="block_list"
-        v-if="
-          (busList.length >= 1 || isSelectedTheBus == false) &&
-          !showEstimatedTimeOfArrival
-        "
-      >
-        <div class="content_list">
+      <!--右側列表-->
+      <div class="block_list">
+        <div
+          class="content_list"
+          v-if="isSelectedTheBus == false && !showEstimatedTimeOfArrival"
+        >
           <div class="list_top flex_row_cc">{{ $t("searchList") }}</div>
-          <div class="list_bottom h_100 flex_col">
+          <!--block_list:白箱狀態-->
+          <div class="list_bottom flex_col_cc" v-if="busList.length < 1">
+            <div class="img_box"></div>
+          </div>
+          <!--block_list:常用搜尋列表-->
+          <div class="list_bottom h_100 flex_col" v-if="busList.length >= 1">
             <div class="select_scrollbar">
               <div class="list_inner" v-for="(bus, i) in busList" :key="i">
                 <div class="flex_col" @click="getThisBus(bus.zh_tw)">
@@ -72,17 +74,10 @@
             </div>
           </div>
         </div>
-      </div>
-      <!--block_list:動態公車列表模式-->
-      <div
-        class="block_list"
-        v-if="
-          busList.length >= 1 &&
-          isSelectedTheBus == true &&
-          showEstimatedTimeOfArrival
-        "
-      >
+        <!--block_list:動態公車列表模式-->
         <router-view
+          class="content_list"
+          v-if="isSelectedTheBus == true && showEstimatedTimeOfArrival"
           @mobileSwitchBusInfo="mobileSwitchBusInfo"
           @showBusInfo="
             isBusInfoShow = true;
