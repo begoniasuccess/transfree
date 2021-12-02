@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy" : "sh deploy.sh"
+    "deploy": "sh deploy.sh"
   },
   "dependencies": {
     "axios": "^0.24.0",
@@ -19,6 +19,7 @@
     "vue": "^2.6.11",
     "vue-axios": "^3.4.0",
     "vue-i18n": "^8.26.7",
+    "vue-jsonp": "^2.0.0",
     "vue-router": "^3.5.3",
     "vue2-leaflet": "^2.7.1",
     "vuex": "^3.6.2"

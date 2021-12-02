@@ -152,14 +152,14 @@ export default {
           //將stops寫入rawStopList
           self.rawStopList = self.rawStopList.concat(res.data);
 
+          self.setStopList();
+
           //未搜尋完的站牌，分批呼叫
           //注意：實作local快取機制前，暫時設置總搜尋上限避免本頁loading時間過長
           //餘下的資料由背景更新function-->resetData()去實現
           if (res.data.length == 200 && self.rawStopList.length < 2000) {
             self.getStopList();
           }
-          self.setStopList();
-
           
         })
         .catch((err) => {

@@ -8,11 +8,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import store from "./store";
 import i18n from "./lang/lang";
+import { VueJsonp } from 'vue-jsonp'
 
 Vue.config.productionTip = false;
 Vue.use(VueAxios, axios);
-Vue.use(BootstrapVue)
-Vue.use(IconsPlugin)
+Vue.use(BootstrapVue);
+Vue.use(IconsPlugin);
+Vue.use(VueJsonp);
 
 // [for map]
 // 載入 vue2-leaflet，依照自己需要載入組件

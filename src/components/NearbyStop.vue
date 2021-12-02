@@ -2,6 +2,7 @@
   <div class="h_100 w_100">
     <div class="flex_row_sb w_100 h_100">
       <div class="flex_col w_100 h_100 auto">
+        <Test></Test>
         <SearchForNearby
           v-on:getInputValue="getInputValue"
           :nowCity="$route.params.city"
@@ -32,10 +33,13 @@
 <script>
 import SearchForNearby from "./SearchForNearby";
 import NearbyMap from "./NearbyMap";
+import Test from "./Test";
+
 
 export default {
   name: "NearbyStop",
-  components: { SearchForNearby, NearbyMap },
+  // components: { SearchForNearby, NearbyMap },
+  components: { SearchForNearby, NearbyMap, Test },
 
   data() {
     return {
