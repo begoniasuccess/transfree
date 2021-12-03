@@ -2,10 +2,9 @@
   <div class="h_100 w_100">
     <div class="flex_row_sb w_100 h_100">
       <div class="flex_col w_100 h_100 auto">
-        <Test></Test>
         <SearchForNearby
           v-on:getInputValue="getInputValue"
-          :nowCity="$route.params.city"
+          v-on:getSelected="getSelected"
           :inputValue="inputValue"
           :page="page"
           :inputHint="inputHint"
@@ -17,31 +16,30 @@
         </div>
       </div>
 
-      <!--block_list:附近站牌-->
-      <!--
+      <!--block_list:附近站牌     --> 
         <div class="block_list">
           <NearbyMap
             :zoom="zoom"
             :center="center"
-            :city="$route.params.city"
             :limitDist="inputValue"
+            :city="selected"
           ></NearbyMap>
         </div>
-      -->
     </div>
   </div>
 </template>
 
 <script>
 import SearchForNearby from "./SearchForNearby";
-// import NearbyMap from "./NearbyMap";
-import Test from "./Test";
+import NearbyMap from "./NearbyMap";
+// import Test from "./Test";
 
 
 export default {
   name: "NearbyStop",
-  // components: { SearchForNearby, NearbyMap },
-  components: { SearchForNearby, Test },
+  components: { SearchForNearby, NearbyMap },
+  // components: { SearchForNearby, NearbyMap, Test },
+  // components: { SearchForNearby},
 
   data() {
     return {
@@ -51,9 +49,10 @@ export default {
       isDynamicKeyboardShow: false,
       isBusInfoShow: false,
       searchBusList: new Array(),
-      inputValue: 2,
+      inputValue: 1000,
       isMobileOpenBusInfo: true,
-      zoom: 13,
+      zoom: 16,
+      selected: ""
     };
   },
   methods: {
@@ -71,33 +70,33 @@ export default {
         //Set the input value as value.
       }
     },
-    getSearchCity: function (city) {
-      this.selected = city;
-    },
+    // getSearchCity: function (city) {
+    //   this.selected = city;
+    // },
     getInputValue: function (inputValue) {
-      // this.isDynamicKeyboardShow = true;
-      // this.isMobileOpenBusInfo = true;
-      // this.isBusInfoShow = false;
       this.inputValue = inputValue;
+    },
+    getSelected: function (selected) {
+      this.selected = selected;
     },
     mobileSwitchBusInfo() {
       this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
     },
-    loadNearbyStop() {
-      this.$router.replace(`/nearby-stop/nearby-map`).catch(() => {});
-    },
+    // loadNearbyStop() {
+    //   this.$router.replace(`/nearby-stop/nearby-map`).catch(() => {});
+    // },
   },
   watch: {
     selected: function () {
       this.isDynamicKeyboardShow = true;
       if (this.selected.value !== "" && this.inputValue !== "") {
-        this.loadNearbyStop();
+        // this.loadNearbyStop();
       }
     },
     inputValue: function () {
       this.isDynamicKeyboardShow = true;
       if (this.selected.value !== "" && this.inputValue !== "") {
-        this.loadNearbyStop();
+        // this.loadNearbyStop();
       }
     },
   },

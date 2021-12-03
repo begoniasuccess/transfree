@@ -28,7 +28,7 @@
   "selectCity": "請選擇縣市",
   "enterRouteName": "請輸入路線",
   "distanceFromCenter":"距離範圍",
-  "distanceUnit":"單位：公里",
+  "distanceUnit":"單位：公尺",
   "currentCity":"當前縣市",
   "enterLocation": "你要去哪裡?",
   "searchTimestamp": "搜尋時間",

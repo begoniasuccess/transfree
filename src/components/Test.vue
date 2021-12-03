@@ -1,11 +1,13 @@
 <template>
     <div id="test">
-        <button class="btn btn-primary btn-lg btn-block" type="button" @click="test">Test</button>
+        <button class="btn btn-primary btn-lg btn-block" type="button" @click="test">
+            Test
+        </button>
     </div>
 </template>
 
 <script>
-
+import { getCurrentLocation } from "../utils/location";
 export default {
     data(){
         return {
@@ -14,8 +16,13 @@ export default {
     },
     methods:{
         test(){
-            // let api = "https://618fb9d2f6bf450017484a23.mockapi.io/test";
-        }
+            getCurrentLocation()
+                .then((geoRes)=>{
+                    console.log({getCurrentLocation:geoRes});
+                }).catch((err)=>{
+                    console.log({getCurrentLocation:err});
+                });
+        }   
     }
 }
 </script>

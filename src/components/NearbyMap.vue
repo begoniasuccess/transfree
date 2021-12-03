@@ -36,13 +36,9 @@
 
 <script>
 import { BUS_URL_V2, sendRequest } from "../utils/https";
-import {
-  GLOBAL_MULTILINGUAL_CHINESE,
-  GLOBAL_MULTILINGUAL_ENGLISH,
-  RESPONSE_DATA_FORMAT_JSON,
-} from "../constant/common";
+import { RESPONSE_DATA_FORMAT_JSON } from "../constant/common";
 import { getCurrentDateTime } from "../utils/date";
-import { getCurrentLocationInfo, distance } from "../utils/location";
+import { getCurrentLocation, distance } from "../utils/location";
 
 import Map from "./Map";
 
@@ -50,22 +46,20 @@ export default {
   name: "NearbyMap",
   props: {
     zoom: Number,
-    limitDist: Number
+    limitDist: Number,
+    city:Object
   },
   data() {
     return {
       updateTime: getCurrentDateTime(),
       stopList: [],
       interval: "",
-      multilingualChinese: GLOBAL_MULTILINGUAL_CHINESE,
-      multilingualEnglish: GLOBAL_MULTILINGUAL_ENGLISH,
       center: [22.612961, 120.304167],
       isPopUpActive: false,
       zoomMode: "in",
       activeStop: {},
       operatorName: "",
       plateNumb: "",
-      city: "",
       rawStopList: [],
     };
   },
@@ -73,8 +67,9 @@ export default {
     Map,
   },
 
-  mounted() {    
-    this.setCenter(this.$route.params.city);
+  mounted() {
+    console.log(this.city.value);
+    this.setCenter(this.city);
 
     if (this.$store.getters.getIsAutoUpdate) {
       const updateSecond = this.$store.getters.getUpdateFrequency * 1000;
@@ -109,16 +104,9 @@ export default {
     },
     setCenter(getStops) {
       let self = this;
-      getCurrentLocationInfo()
-        .then((data) => {
-          // console.log({ locData: data });
-          let city = data.data.city.replace(" ", "");
-          self.city = city;
-          self.center = [data.data.lat, data.data.lon];
-          // console.log({ setCenter: self.center });
-          self.$router
-            .replace(`/nearby-stop/nearby-map/${city}`)
-            .catch(() => {});
+      getCurrentLocation()
+        .then((geoData) => {
+          self.center = [geoData.lat, geoData.lon];
           if (getStops) self.getStopList();
         })
         .catch((err) => {
@@ -133,7 +121,7 @@ export default {
       let self = this;
       //一個縣市的站牌數量眾多，設置skip以利分批呼叫
       let skip = this.rawStopList.length;
-      const city = this.$route.params.city;
+      let city = self.city.value;
       sendRequest(
         "get",
         `${BUS_URL_V2}/Stop/City/${city}?$format=${RESPONSE_DATA_FORMAT_JSON}&$top=200&$skip=${skip}`
@@ -169,7 +157,7 @@ export default {
     setStopList(){
       let self = this;
       let stopListInRange = self.rawStopList.filter((aRawStop) => {            
-        return (aRawStop.distance <= self.limitDist);
+        return (aRawStop.distance <= (self.limitDist/1000));
       });
       self.stopList = self.makeStopList(stopListInRange);
     }

@@ -9,22 +9,14 @@ export const sendRequest = (httpMethod, url) => {
     if ("get" === httpMethod.toString().toLowerCase()) {
         return new Promise((resolve, reject) => {
             axios.get(url, {headers: getAuthorizationHeader()})
-                .then(res => {
-                    resolve(res)
-                })
-                .catch(err => {
-                    reject(err)
-                })
+                .then(resolve)
+                .catch(reject)
         })
     } else if ("post" === httpMethod.toString().toLowerCase()) {
         return new Promise((resolve, reject) => {
             axios.post(url, {headers: getAuthorizationHeader()})
-                .then(res => {
-                    resolve(res)
-                })
-                .catch(err => {
-                    reject(err)
-                })
+                .then(resolve)
+                .catch(reject)
         })
     }
 }

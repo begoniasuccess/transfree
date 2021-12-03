@@ -1,5 +1,21 @@
 import axios from "axios";
 
+export const getCurrentLocation = () => {
+    return new Promise((resolve, reject) => {
+        if (window.navigator.geolocation) {
+            window.navigator.geolocation.getCurrentPosition((geoData)=>{
+                let coordinate = {
+                    lat:geoData.coords.latitude,
+                    lon:geoData.coords.longitude,
+                }
+                resolve(coordinate);
+            }, reject);
+        }else{
+            reject("the browser doesn't support geolocation API");
+        }
+    })
+}
+
 /**
  * Get user's current location information.
  * @returns {Promise<unknown>} Response body contains country, city, lat, lon etc.

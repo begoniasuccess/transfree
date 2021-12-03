@@ -32,8 +32,8 @@
   "enterRouteName": "Please Enter The Route Name",
   "enterLocation": "Please Enter The Place",
   "distanceFromCenter":"Distance",
-  "distanceUnit":"kilometer",
-  "currentCity":"The city you in",
+  "distanceUnit":"meter",
+  "currentCity":"Current City",
   "searchTimestamp": "Search Timestamp",
   "searchList": "Search List",
 
