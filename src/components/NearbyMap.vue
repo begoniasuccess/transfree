@@ -68,7 +68,7 @@ export default {
   },
 
   mounted() {
-    console.log(this.city.value);
+    console.log({City:this.city});
     this.setCenter(this.city);
 
     if (this.$store.getters.getIsAutoUpdate) {
