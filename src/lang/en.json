@@ -33,7 +33,7 @@
   "enterLocation": "Please Enter The Place",
   "distanceFromCenter":"Distance",
   "distanceUnit":"meter",
-  "currentCity":"Current City",
+  "currentCity":"City",
   "searchTimestamp": "Search Timestamp",
   "searchList": "Search List",
 
