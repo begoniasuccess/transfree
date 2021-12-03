@@ -148,6 +148,7 @@ export default {
       }
     },
     setCityBusList() {
+      this.isDynamicKeyboardShow = false;
       let tmpList = [];
       this.allBusList.forEach((element) => {
         if (element.routeUID.substring(0, 3) == this.selected.id) {
@@ -212,8 +213,8 @@ export default {
       this.isMobileOpenBusInfo = !this.isMobileOpenBusInfo;
     },
     getBusInfo(bus) {
-      this.isDynamicKeyboardShow = false;
-      this.isBusInfoShow = true;
+      this.isDynamicKeyboardShow = !this.isDynamicKeyboardShow;
+      this.isBusInfoShow = !this.isBusInfoShow;
       this.busNum = bus.zh_tw;
     },
   },
