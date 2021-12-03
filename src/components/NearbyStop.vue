@@ -18,28 +18,30 @@
       </div>
 
       <!--block_list:附近站牌-->
-      <div class="block_list">
-        <NearbyMap
-          :zoom="zoom"
-          :center="center"
-          :city="$route.params.city"
-          :limitDist="inputValue"
-        ></NearbyMap>
-      </div>
+      <!--
+        <div class="block_list">
+          <NearbyMap
+            :zoom="zoom"
+            :center="center"
+            :city="$route.params.city"
+            :limitDist="inputValue"
+          ></NearbyMap>
+        </div>
+      -->
     </div>
   </div>
 </template>
 
 <script>
 import SearchForNearby from "./SearchForNearby";
-import NearbyMap from "./NearbyMap";
+// import NearbyMap from "./NearbyMap";
 import Test from "./Test";
 
 
 export default {
   name: "NearbyStop",
   // components: { SearchForNearby, NearbyMap },
-  components: { SearchForNearby, NearbyMap, Test },
+  components: { SearchForNearby, Test },
 
   data() {
     return {

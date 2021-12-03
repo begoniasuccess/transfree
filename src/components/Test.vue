@@ -1,12 +1,11 @@
 <template>
     <div id="test">
         <button class="btn btn-primary btn-lg btn-block" type="button" @click="test">Test</button>
-
     </div>
 </template>
 
 <script>
-import Vue from "vue";
+
 export default {
     data(){
         return {
@@ -15,7 +14,7 @@ export default {
     },
     methods:{
         test(){
-            let api = "https://618fb9d2f6bf450017484a23.mockapi.io/test";
+            // let api = "https://618fb9d2f6bf450017484a23.mockapi.io/test";
         }
     }
 }
