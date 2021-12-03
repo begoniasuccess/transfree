@@ -131,6 +131,7 @@ export default {
 
           //為 stops 加上 與使用者當前的距離(km)
           res.data.forEach((aStop, index)=>{
+            // if (!index) console.log({aStop});
             let stopLat = aStop.StopPosition.PositionLat;
             let stopLon = aStop.StopPosition.PositionLon;
             let distFromCenter = distance(self.center[0], self.center[1], stopLat, stopLon);
@@ -145,7 +146,7 @@ export default {
           //未搜尋完的站牌，分批呼叫
           //注意：實作local快取機制前，暫時設置總搜尋上限避免本頁loading時間過長
           //餘下的資料由背景更新function-->resetData()去實現
-          if (res.data.length == 200 && self.rawStopList.length < 2000) {
+          if (res.data.length == 200 && self.rawStopList.length < 3000) {
             self.getStopList();
           }
           
@@ -167,6 +168,9 @@ export default {
   watch: {
     limitDist(){
       this.setStopList();
+    },
+    city(){
+      this.getStopList();
     }
   },
 };
